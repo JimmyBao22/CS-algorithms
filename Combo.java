@@ -12,6 +12,7 @@ public class Combo {
 	public static void main(String[] args) {
 		
 		choose = new long[n+1][k+1];
+		build();
 		
 	}
 	
