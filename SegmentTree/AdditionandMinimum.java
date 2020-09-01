@@ -92,7 +92,7 @@ public class AdditionandMinimum {
 	2 3 5
 	
 	tree:						min:
-	       0						   0
+	       0				       0
 	   0       0     			   0       0
 	 0   0   0   0				 0   0   0   0
 	0 0 0 0 0 0 0 0				0 0 0 0 0 0 0 0 
@@ -102,7 +102,7 @@ public class AdditionandMinimum {
 	Only add to parent nodes so you don't add to every single element in last row
 	
 	tree:						min:
-	       0						   0
+	       0				       0
 	   0       0     			   0       0
 	 3   0   0   0				 3   0   0   0
 	0 0 3 0 0 0 0 0				0 0 3 0 0 0 0 0 
@@ -115,7 +115,7 @@ public class AdditionandMinimum {
 	Add 4 from indices 1 to 3 inclusive
 	
 	tree:						min:
-	       0						   0
+	       0				       0
 	   0       0     			   0       0
 	 3   4   0   0				 0   4   0   0
 	0 4 3 0 0 0 0 0				0 4 3 0 0 0 0 0 
