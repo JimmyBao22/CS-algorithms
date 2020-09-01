@@ -134,7 +134,7 @@ public class NestedSegments {
 		Now that this has finished, update segtree
 			Map.get(1) should become 1
 			
-				   2
+		       2
 	       2               0
 	   2       0       0       0
 	 1   1   0   0   0   0   0   0
