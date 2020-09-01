@@ -119,7 +119,7 @@ public class Inversions2 {
 		will be equal to the curnum
 	
 	Segtree beginning
-		   5
+	       5
 	   3       2
 	 1   2   2   0 
 	0 1 1 1 1 1 0 0
@@ -130,7 +130,7 @@ public class Inversions2 {
 			
 	Now that 2 has been 'unvisited', change it to 0
 	
-		   4
+	       4
 	   2       2
 	 1   1   2   0 
 	0 1 1 0 1 1 0 0
@@ -141,7 +141,7 @@ public class Inversions2 {
 		
 	Now that 5 has been 'unvisited', change it to 0
 	
-		   3
+	       3
 	   2       1
 	 1   1   1   0 
 	0 1 1 0 1 0 0 0
