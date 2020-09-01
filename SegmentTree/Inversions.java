@@ -77,24 +77,6 @@ public class Inversions {
 			
 			tree[x] = tree[2*x+1] + tree[2*x+2];
 		}
-		
-		public void build(int[] arr) {		// arr is the orig arr
-			build(arr, 0, 0, size);
-		}
-		
-		public void build(int[] arr, int x, int lx, int rx) {
-			if (rx - lx == 1) {		// in leaf node aka bottom level
-				if (lx < arr.length) {
-					tree[x] = 0;
-				}
-				return;
-			}
-			
-			int m = (lx + rx)/2;
-			build(arr, 2*x+1, lx, m);
-			build(arr, 2*x+2, m, rx);
-			tree[x] = tree[2*x+1] + tree[2*x+2];
-		}
 	}
 }
 
@@ -115,7 +97,7 @@ public class Inversions {
 	0 0 0 0 0 0 0 0
 	
 	Visit 4. Calculate sum of segment from 4 to 5 inclusive
-	Now that 4 is visited, update segtree. Visited = 1
+	Now that 4 is visited, update segtree. 
 	
 	       1
 	   0       1
@@ -123,7 +105,7 @@ public class Inversions {
 	0 0 0 0 1 0 0 0
 	
 	Visit 1. Calculate sum of segment from 1 to 5 inclusive
-	Now that 1 is visited, update segtree. Visited = 1
+	Now that 1 is visited, update segtree. 
 
 	       2
 	   1       1
@@ -131,7 +113,7 @@ public class Inversions {
 	0 1 0 0 1 0 0 0
 	
 	Visit 3. Calculate sum of segment from 3 to 5 inclusive
-	Now that 3 is visited, update segtree. Visited = 3
+	Now that 3 is visited, update segtree. 
 
 	       3
 	   2       1
