@@ -142,7 +142,7 @@ public class IntersectingSegments {
 	Visit 5. Has not been visited yet, add to map. Map = {5 = 0}
 		Set Segtree at this index to 1
 		
-				   1
+		       1
 	       1               0
 	   1       0       0       0
 	 1   0   0   0   0   0   0   0
@@ -152,7 +152,7 @@ public class IntersectingSegments {
 	Visit 1. Has not been visited yet, add to map. Map = {5 = 0, 1 = 1}
 		Set Segtree at this index to 1
 		
-				   2
+		       2
 	       2               0
 	   2       0       0       0
 	 2   0   0   0   0   0   0   0
@@ -161,7 +161,7 @@ public class IntersectingSegments {
 	Visit 2. Has not been visited yet, add to map. Map = {5 = 0, 1 = 1, 2 = 2}
 		Set Segtree at this index to 1
 		
-				   3
+		       3
 	       3               0
 	   3       0       0       0
 	 2   1   0   0   0   0   0   0
@@ -172,7 +172,7 @@ public class IntersectingSegments {
 		Now that this has finished, update segtree
 			Map.get(2) should become 0
 			
-				   2
+		       2
 	       2               0
 	   2       0       0       0
 	 2   0   0   0   0   0   0   0
@@ -181,7 +181,7 @@ public class IntersectingSegments {
 	Visit 3. Has not been visited yet, add to map. Map = {5 = 0, 1 = 1, 2 = 2, 3 = 4}
 		Set Segtree at this index to 1
 		
-				   3
+		       3
 	       3               0
 	   2       1       0       0
 	 2   0   1   0   0   0   0   0
@@ -192,7 +192,7 @@ public class IntersectingSegments {
 		Now that this has finished, update segtree
 			Map.get(1) should become 0
 			
-				   2
+		       2
 	       2               0
 	   1       1       0       0
 	 1   0   1   0   0   0   0   0
