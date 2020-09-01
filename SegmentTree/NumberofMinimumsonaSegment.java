@@ -33,7 +33,8 @@ public class NumberofMinimumsonaSegment {
 			else {
 				int a = Integer.parseInt(st.nextToken());
 				int b = Integer.parseInt(st.nextToken());
-				System.out.println(c.comp(a, b)[0] + " " + c.comp(a, b)[1]);
+				long[] cur = c.comp(a, b);
+				System.out.println(cur[0] + " " + cur[1]);
 			}
 		}
 	}
