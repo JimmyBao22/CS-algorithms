@@ -23,9 +23,7 @@ public class AdditiontoSegment {
 				int three = Integer.parseInt(st.nextToken());
 				long v = Integer.parseInt(st.nextToken());
 				s.set(two, v);
-				//s.print();
 				s.set(three, -v);
-				//s.print();
 			}
 			else {
 				System.out.println(s.comp(0, two+1));
