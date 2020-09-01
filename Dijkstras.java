@@ -87,10 +87,7 @@ public class Dijkstras {
 		}
 		
 		public int compareTo(Edge o) {
-			if (length <= o.length) {
-				return -1;
-			}
-			else return 1;
+			return Long.compare(length, o.length);
 		}
 	}
 }
