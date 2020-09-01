@@ -112,7 +112,7 @@ public class Inversions {
 		   
 	Segtree beginning
 	
-		   0
+	       0
 	   0       0
 	 0   0   0   0 
 	0 0 0 0 0 0 0 0
@@ -120,7 +120,7 @@ public class Inversions {
 	Visit 4. Calculate sum of segment from 4 to 5 inclusive
 	Now that 4 is visited, update segtree. Visited = 1
 	
-		   1
+	       1
 	   0       1
 	 0   0   1   0 
 	0 0 0 0 1 0 0 0
@@ -128,7 +128,7 @@ public class Inversions {
 	Visit 1. Calculate sum of segment from 1 to 5 inclusive
 	Now that 1 is visited, update segtree. Visited = 1
 
-		   2
+	       2
 	   1       1
 	 1   0   1   0 
 	0 1 0 0 1 0 0 0
@@ -136,7 +136,7 @@ public class Inversions {
 	Visit 3. Calculate sum of segment from 3 to 5 inclusive
 	Now that 3 is visited, update segtree. Visited = 3
 
-		   3
+	       3
 	   2       1
 	 1   1   1   0 
 	0 1 1 0 1 0 0 0
