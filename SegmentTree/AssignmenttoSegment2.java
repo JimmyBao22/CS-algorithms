@@ -105,7 +105,7 @@ public class AssignmenttoSegment2 {
 	
 	Only update to parent nodes so you don't add to every single element in last row
 	
-		   0
+	       0
 	   0       0
 	 3   0   0   0
 	0 0 3 0 0 0 0 0
@@ -113,16 +113,16 @@ public class AssignmenttoSegment2 {
 	Get element at index 1. Propagate downwards so the value you get at index 1
 		is the value you want
 	
-	       0							0
-	   0       0					0       0
-	 3   0   0   0		-->       0   0   0   0
+	       0					0
+	   0       0				    0       0
+	 3   0   0   0		-->       	  0   0   0   0
 	0 0 3 0 0 0 0 0				 3 3 3 0 0 0 0 0 
 		
 		Index 1 = 3
 	
 	Update 4 from indices 2 to 3 inclusive
 	
-	 	   0
+	        0
 	   0       0
 	 0   4   0   0
 	3 3 3 0 0 0 0 0
@@ -130,9 +130,9 @@ public class AssignmenttoSegment2 {
 	Get element at index 3. Propagate downwards so the value you get at index 3
 		is the value you want
 		
-		   0							0
-	   0       0					0       0
-	 0   4   0   0		-->       0   0   0   0
+	       0					0
+	   0       0				    0       0
+	 0   4   0   0		-->       	  0   0   0   0
 	3 3 3 0 0 0 0 0				 3 3 4 4 0 0 0 0 
 		
 		Index 3 = 4
@@ -140,9 +140,9 @@ public class AssignmenttoSegment2 {
 	Get element at index 4. Propagate downwards so the value you get at index 4
 		is the value you want
 		
-		   0							0
-	   0       0					0       0
-	 0   0   0   0		-->       0   0   0   0
+	       0					0
+	   0       0				    0       0
+	 0   0   0   0		-->      	  0   0   0   0
 	3 3 4 4 0 0 0 0				 3 3 4 4 0 0 0 0 
 
 		Index 4 = 4
