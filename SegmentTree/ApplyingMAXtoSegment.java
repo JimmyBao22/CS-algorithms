@@ -109,7 +109,7 @@ public class ApplyingMAXtoSegment {
 	
 	Only update to parent nodes so you don't add to every single element in last row
 	
-		   0
+	       0
 	   0       0
 	 3   0   0   0
 	0 0 3 0 0 0 0 0
@@ -123,7 +123,7 @@ public class ApplyingMAXtoSegment {
 	
 	Update 4 from indices 2 to 3 inclusive
 	
-	 	   0
+	       0
 	   0       0
 	 3   4   0   0
 	0 0 3 0 0 0 0 0
