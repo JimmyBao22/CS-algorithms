@@ -19,11 +19,8 @@ public class Inversions2 {
 		
 		int[] ans = new int[n];
 		for (int i=n-1; i>=0; i--) {
-			//s.print();
 			int ret = s.comp(arr[i]);
 			ans[i] = ret;
-			//System.out.print(ret + " " );
-			//System.out.println();
 			s.set(ret);
 		}
 		
