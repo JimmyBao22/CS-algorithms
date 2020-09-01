@@ -15,12 +15,9 @@ public class Inversions {
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		int[] arr = new int[n];
 		for (int i=0; i<n; i++) arr[i] = Integer.parseInt(st.nextToken());
-		//s.build(arr);
 		
 		for (int i=0; i<n; i++) {
-			//s.print();
 			System.out.print(s.sum(arr[i], n+1) + " " );
-			//System.out.println();
 			s.set(arr[i]);
 		}
 	}
