@@ -130,7 +130,7 @@ public class Inversions2 {
 	       4
 	   2       2
 	 1   1   2   0 
-	0 1 1 0 1 1 0 0
+	0 1 0 1 1 1 0 0
 
 	Now Find which one has sum 0 for stuff strictly on its right
 		This comes out to be number 5, because the stuff strictly on its right
@@ -141,7 +141,7 @@ public class Inversions2 {
 	       3
 	   2       1
 	 1   1   1   0 
-	0 1 1 0 1 0 0 0
+	0 1 0 1 1 0 0 0
 	
 	And so on...
 
