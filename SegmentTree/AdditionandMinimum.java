@@ -71,6 +71,8 @@ public class AdditionandMinimum {
 		public void print() {
 			for (int i=0; i<tree.length; i++) System.out.print(tree[i] + " ");
 			System.out.println();
+			for (int i=0; i<mins.length; i++) System.out.print(mins[i] + " ");
+			System.out.println();
 		}
 	}
 }
@@ -116,16 +118,16 @@ public class AdditionandMinimum {
 	
 	tree:						min:
 	       0				       0
-	   0       0     			   0       0
-	 3   4   0   0				 0   4   0   0
+	   0       0     			   3       0
+	 3   4   0   0				 3   4   0   0
 	0 4 3 0 0 0 0 0				0 4 3 0 0 0 0 0 
 	
 	Get min from indices 1 to 2 inclusive
 		Go through min tree.
 		Index 1 --> min=4; Index 2 --> min = 3
 		End:
-			Index 1 --> 4 + 3 (3 from min, then other 3 from tree index 3)
-			Index 2 --> 3 + 4 (3 from min, then other 4 from tree index 4)
+			Index 1 --> 4 + 3 (3 from min, then other 3 from TREE index 3)
+			Index 2 --> 3 + 4 (3 from min, then other 4 from TREE index 4)
 	Therefore min = 7
 		
 		
@@ -133,7 +135,7 @@ public class AdditionandMinimum {
 		Go through min tree.
 		Index 1 --> min=4; Index 2-3 --> min = 4
 		End:
-			Index 1 --> 4 + 3 (4 from min, then other 3 from tree index 3)
+			Index 1 --> 4 + 3 (4 from min, then other 3 from TREE index 3)
 			Index 2-3 --> 4
 	Therefore min = 4
 
@@ -144,6 +146,6 @@ public class AdditionandMinimum {
 		End:
 			Index 3 --> 0 + 4 (0 from min, then other 4 from tree index 4)
 			Index 4 --> 0
-	Therefore min = 4
+	Therefore min = 0
 	
 */
