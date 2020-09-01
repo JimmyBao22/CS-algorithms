@@ -116,7 +116,7 @@ public class Kthone {
 	to compute the index, find where it is.
 		
 		
-			   4
+		       4
 		   3       1
 		 1   2   0   1
 		1 0 1 1 0 0 1 0
