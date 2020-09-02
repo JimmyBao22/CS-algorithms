@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Dijkstras {
 	
-	static ArrayList<ArrayList<Edge>> adj = new ArrayList<>();
+	static ArrayList<ArrayList<Edge>> g = new ArrayList<>();
 	static long[] dist; 	// dist[i] = shortest distance from src to i
 	static int[] parent;	// parent[i] = parent of i that gives shortest dist
 	static int n, m;
@@ -19,14 +19,14 @@ public class Dijkstras {
 		dist = new long[n];
 		parent = new int[n];
 		
-		for (int i=0; i<n; i++) adj.add(new ArrayList<>());
+		for (int i=0; i<n; i++) g.add(new ArrayList<>());
 		
 		for (int i=0; i<m; i++) {
 			st = new StringTokenizer(in.readLine());
 			int a = Integer.parseInt(st.nextToken())-1; 	
 			int b = Integer.parseInt(st.nextToken())-1; 	
 			long c = Long.parseLong(st.nextToken()); 
-			adj.get(a).add(new Edge(b, c));
+			g.get(a).add(new Edge(b, c));
 			// adj.get(b).add(new Edge(a, c)); 		// if undirected
 		}
 		
@@ -50,7 +50,7 @@ public class Dijkstras {
 			if (visited[node]) continue;
 			visited[node] = true;
 			
-			for (Edge i : adj.get(node)) {
+			for (Edge i : g.get(node)) {
 				if (visited[i.destination]) continue;
 				
 				if (cur.length + i.length < dist[i.destination]) {
@@ -81,7 +81,7 @@ public class Dijkstras {
 				}
 			}
 			
-			for (Edge a : adj.get(smallest)) {
+			for (Edge a : g.get(smallest)) {
 				if (!visited[a.destination] && dist[a.destination] > minval + a.length) {
 					dist[a.destination] = minval + a.length;
 					parent[a.destination] = smallest;
