@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.io.*;
 
@@ -36,6 +35,7 @@ public class Dijkstras {
 		
 	}
 	
+		// O((N+M)logM)
 	public static void dijkstras(int start) {
 		PriorityQueue<Edge> pq = new PriorityQueue<>();
 		boolean[] visited = new boolean[n];
@@ -46,19 +46,48 @@ public class Dijkstras {
 		pq.add(new Edge(start, 0));
 		while (!pq.isEmpty()) {
 			Edge cur = pq.poll();
-			if (visited[cur.destination]) continue;
-			visited[cur.destination] = true;
+			int node = cur.destination;
+			if (visited[node]) continue;
+			visited[node] = true;
 			
-			for (Edge i : adj.get(cur.destination)) {
+			for (Edge i : adj.get(node)) {
 				if (visited[i.destination]) continue;
 				
 				if (cur.length + i.length < dist[i.destination]) {
 					dist[i.destination] = cur.length + i.length;
-					parent[i.destination] = cur.destination;
+					parent[i.destination] = node;
 					pq.add(new Edge(i.destination, dist[i.destination]));
 				}
 				
 			}
+		}
+	}
+	
+		// O(N^2)
+	public static void dijkstras2(int start) {
+		boolean[] visited = new boolean[n];
+		Arrays.fill(dist, INF);
+		dist[start] = 0;
+		parent[start] = -1;
+		
+		for (int i=0; i<n; i++) {
+			// find the smallest one
+			int smallest=0;
+			long minval=INF;
+			for (int j=0; j<n; j++) {
+				if (!visited[j] && dist[j]<minval) {
+					minval = dist[j];
+					smallest = j;
+				}
+			}
+			
+			for (Edge a : adj.get(smallest)) {
+				if (!visited[a.destination] && dist[a.destination] > minval + a.length) {
+					dist[a.destination] = minval + a.length;
+					parent[a.destination] = smallest;
+				}
+			}
+			visited[smallest] = true;
 		}
 	}
 	
