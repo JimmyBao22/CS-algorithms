@@ -91,7 +91,7 @@ public class Dijkstras {
 		}
 	}
 	
-	public static void PrintPath(int dest) {
+	public static void Backtrack(int dest) {
 		if (dist[dest] == INF) {
 			System.out.println("NO PATH FOUND");
 			return;
