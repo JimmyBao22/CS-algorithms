@@ -79,10 +79,13 @@ public class AdditionandMinimum {
 
 /*
 	
-	Use two different arrays. One keeps track of the minimum value, where a node keeps 
-		track of the minimum value of this tree
+	Use two different trees. The first tree is min, and each node keeps 
+		track of the minimum amongst all its children. The second tree
+		keeps track of normal sums on segments
 		
-		One keeps track of the added values
+	When you search the tree, you go to the bottom most nodes and take the min.
+		Then, as you move upwards in the tree, repeatedly add on the added sums 
+		from the second tree.
 		
 	Ex. 
 	5 6
