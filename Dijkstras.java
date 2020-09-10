@@ -30,7 +30,7 @@ public class Dijkstras {
 			// adj.get(b).add(new Edge(a, c)); 		// if undirected
 		}
 		
-		int start = Integer.parseInt(in.readLine());
+		int start = Integer.parseInt(in.readLine())-1;
 		dijkstras(start);
 		
 	}
