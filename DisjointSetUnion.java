@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.io.*;
 
@@ -26,6 +25,7 @@ public class DisjointSetUnion {
 		}
 		
 		public void MakeSet(int a) {
+			n++;
 			parent.add(a);
 			size.add(1);
 		}
@@ -39,16 +39,17 @@ public class DisjointSetUnion {
 		public void Union(int a, int b) {
 			a = FindSet(a);
 			b = FindSet(b);
-			// if (a == b) { } // cycle found
-			if (a != b) {
-				if (size.get(a) < size.get(b)) {
-					parent.set(a, b);
-					size.set(b, size.get(b) + size.get(a));
-				}
-				else {
-					parent.set(b, a);
-					size.set(a, size.get(b) + size.get(a));
-				}
+			if (a == b) { 	// cycle found
+				return;
+			}
+			
+			if (size.get(a) < size.get(b)) {
+				parent.set(a, b);
+				size.set(b, size.get(b) + size.get(a));
+			}
+			else {
+				parent.set(b, a);
+				size.set(a, size.get(b) + size.get(a));
 			}
 		}
 	}
