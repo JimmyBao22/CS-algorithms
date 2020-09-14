@@ -8,16 +8,51 @@ public class DisjointSetUnion {
 		//BufferedReader in = new BufferedReader(new FileReader("DisjointSetUnion"));
 		
 		int n = Integer.parseInt(in.readLine());
-		DSU d = new DSU(n);
+		dsu d = new dsu(n);
 		
 	}
 	
-	static class DSU {
+	static class dsu {
+		int n;
+		int[] parent;
+		int[] size;
+		
+		dsu (int n) {
+			this.n = n;
+			parent = new int[n];
+			size = new int[n];
+			for (int i=0; i<n; i++) {parent[i] = i; size[i] = 1;}
+		}
+
+		public int FindSet(int a) {
+			if (a == parent[a]) return a;
+			return parent[a] = FindSet(parent[a]);
+		}
+		
+		public void Union(int a, int b) {
+			a = FindSet(a);
+			b = FindSet(b);
+			if (a == b) { 	// cycle found
+				return;
+			}
+			
+			if (size[a] < size[b]) {
+				parent[a] = b;
+				size[b] += size[a];
+			}
+			else {
+				parent[b] = a;
+				size[a] += size[b];
+			}
+		}
+	}
+	
+	static class dsu_c {
 		int n;
 		ArrayList<Integer> parent;
 		ArrayList<Integer> size;
 		
-		DSU (int n) {
+		dsu_c (int n) {
 			this.n = n;
 			parent = new ArrayList<>();
 			size = new ArrayList<>();
