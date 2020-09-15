@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.io.*;
 
@@ -19,7 +18,7 @@ public class numbers {
 	
 	public static ArrayList<Integer> getDivisors(int n) { 
         ArrayList<Integer> a = new ArrayList<>();
-		for (int i = 1; i<=Math.sqrt(n); i++)  { 
+		for (int i = 1; i*i<=n; i++)  { 
             if (n%i==0) { 
                 if (n/i == i) a.add(i);
                 else {
@@ -33,7 +32,7 @@ public class numbers {
 	
 	public static ArrayList<Integer> getDivisorsinOrder(int n) { 
         ArrayList<Integer> a = new ArrayList<>();
-		for (int i = 1; i<=Math.sqrt(n); i++)  { 
+		for (int i = 1; i*i<=n; i++)  { 
             if (n%i==0) { 
                 a.add(i);
             } 
@@ -66,5 +65,3 @@ public class numbers {
 		return false;
 	}
 }
-
-
