@@ -15,7 +15,7 @@ public class BinaryIndexTree {
 		int n;
 		long[] f;	// 1 base indexing
 		BIT (int n) {
-			this.n = n+1; f = new long[n+1];
+			this.n = n; f = new long[n+1];
 		}
 		
 		long sum (int i) {		// sum from 0 to i
