@@ -26,7 +26,6 @@ public class BinaryIndexTree {
 		}
 		
 		long sum (int l, int r) {	// sum from l to r
-			l++; r++;
 			return sum(r) - sum(l-1);
 		}
 		
@@ -39,7 +38,6 @@ public class BinaryIndexTree {
 		}
 		
 		void set(int l, int r, long value) {	// add value to indices l to r
-			l++; r++;
 			set(l,value); set(r+1,-value);
 		}
 	}
