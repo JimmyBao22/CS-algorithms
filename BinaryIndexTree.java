@@ -3,8 +3,6 @@ import java.util.*;
 import java.io.*;
 
 public class BinaryIndexTree {
-
-	// https://cp-algorithms.com/data_structures/fenwick.html
 	
 	public static void main(String[] args) {
 
@@ -32,7 +30,7 @@ public class BinaryIndexTree {
 			return sum(r) - sum(l-1);
 		}
 		
-		void add(int i, long value) {	// add value to index i
+		void set(int i, long value) {	// add value to index i
 			i++;
 			while (i<=n) {
 				f[i] += value;
@@ -40,9 +38,9 @@ public class BinaryIndexTree {
 			}
 		}
 		
-		void add(int l, int r, long value) {	// add value to indices l to r
+		void set(int l, int r, long value) {	// add value to indices l to r
 			l++; r++;
-			add(l,value); add(r+1,-value);
+			set(l,value); set(r+1,-value);
 		}
 	}
 }
