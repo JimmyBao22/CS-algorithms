@@ -70,9 +70,9 @@ public class Dijkstras {
 		dist[start] = 0;
 		parent[start] = -1;
 		
-		for (int i=0; i<n; i++) {
+		while (true) {
 			// find the smallest one
-			int smallest=0;
+			int smallest=-1;
 			long minval=INF;
 			for (int j=0; j<n; j++) {
 				if (!visited[j] && dist[j]<minval) {
@@ -80,6 +80,7 @@ public class Dijkstras {
 					smallest = j;
 				}
 			}
+			if (smallest == -1) break;
 			
 			for (Edge a : g.get(smallest)) {
 				if (!visited[a.destination] && dist[a.destination] > minval + a.length) {
