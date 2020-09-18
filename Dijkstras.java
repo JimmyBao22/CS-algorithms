@@ -92,20 +92,17 @@ public class Dijkstras {
 		}
 	}
 	
-	public static void Backtrack(int dest) {
-		if (dist[dest] == INF) {
-			System.out.println("NO PATH FOUND");
-			return;
-		}
-		
+	public static ArrayList<Integer> Backtrack(int dest) {
 		ArrayList<Integer> path = new ArrayList<>();
+		if (dist[dest] == INF) {
+			path.add(-1);
+			return path;
+		}
 		while (dest!= -1) {
 			path.add(dest);
 			dest = parent[dest];
 		}
-		for (int i=path.size()-1; i>=0; i--) {
-			System.out.print(path.get(i) + " ");
-		}
+		return path;
 	}
 	
 	static class Edge implements Comparable<Edge> {
