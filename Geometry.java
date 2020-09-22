@@ -25,7 +25,7 @@ public class Geometry {
 		return (double)Math.abs(firstsum - secsum) / 2.0;
 	}
 	
-	// counterclockwise
+	// counterclockwise --> x,y around a,b
 	public static long[] Rotate(long x, long y, long a, long b, int degree) {
 		long[] ans = new long[2];
 		if (degree == 0) {
