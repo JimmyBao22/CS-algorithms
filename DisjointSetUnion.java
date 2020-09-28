@@ -32,9 +32,7 @@ public class DisjointSetUnion {
 		public void Union(int a, int b) {
 			a = FindSet(a);
 			b = FindSet(b);
-			if (a == b) { 	// cycle found
-				return;
-			}
+			if (a == b) return;
 			
 			if (size[a] < size[b]) {
 				parent[a] = b;
@@ -74,9 +72,7 @@ public class DisjointSetUnion {
 		public void Union(int a, int b) {
 			a = FindSet(a);
 			b = FindSet(b);
-			if (a == b) { 	// cycle found
-				return;
-			}
+			if (a == b) return;
 			
 			if (size.get(a) < size.get(b)) {
 				parent.set(a, b);
