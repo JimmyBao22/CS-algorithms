@@ -24,11 +24,8 @@ public class KruskalMinimumSpanningTree {
 			long c = Long.parseLong(st.nextToken()); 
 			edges[i] = new Edge(a,b,c);
 		}
-		
 		Arrays.parallelSort(edges);
-		
 		dsu s = new dsu(n);
-		int ans = MST(s);
 		
 	}
 	
