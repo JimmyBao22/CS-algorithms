@@ -25,17 +25,14 @@ public class PrimMinimumSpanningTree {
 			g.get(a).add(new Edge(b, c));
 			g.get(b).add(new Edge(a, c));
 		}
-
-		int start = Integer.parseInt(in.readLine());
-		int minlength = MST(start);
 		
 	}
 	
-	public static int MST(int start) {
+	public static long MST(int start) {
 		PriorityQueue<Edge> pq = new PriorityQueue<>();
 		boolean[] visited = new boolean[n];
 		pq.add(new Edge(start, 0));
-		int minlength = 0;
+		long minlength = 0;
 		
 		while (!pq.isEmpty()) {
 			Edge cur = pq.poll();
@@ -47,6 +44,36 @@ public class PrimMinimumSpanningTree {
 				if (visited[i.destination]) continue;
 				pq.add(i);
 			}
+		}
+		return minlength;
+	}
+	
+	public static long MST2(int start) {
+		boolean[] visited = new boolean[n];
+		long[] dist = new long[n];
+		Arrays.fill(dist, INF);
+		dist[start] = 0;
+		long minlength = 0;
+		
+		while (true) {
+			// find the smallest one
+			int smallest=-1;
+			long minval=INF;
+			for (int j=0; j<n; j++) {
+				if (!visited[j] && dist[j]<minval) {
+					minval = dist[j];
+					smallest = j;
+				}
+			}
+			if (smallest == -1) break;
+			minlength += minval;
+			
+			for (Edge a : g.get(smallest)) {
+				if (!visited[a.destination] && dist[a.destination] > a.length) {
+					dist[a.destination] = a.length;
+				}
+			}
+			visited[smallest] = true;
 		}
 		return minlength;
 	}
