@@ -14,8 +14,8 @@ public class Dijkstras {
 		//BufferedReader in = new BufferedReader(new FileReader("Dijkstras"));
 
 		StringTokenizer st = new StringTokenizer(in.readLine());
-		n = Integer.parseInt(st.nextToken()); 	// number of vertices
-		m = Integer.parseInt(st.nextToken()); 	// number of edges
+		n = Integer.parseInt(st.nextToken());
+		m = Integer.parseInt(st.nextToken());
 		dist = new long[n];
 		parent = new int[n];
 		
@@ -29,9 +29,6 @@ public class Dijkstras {
 			g.get(a).add(new Edge(b, c));
 			// g.get(b).add(new Edge(a, c)); 		// if undirected
 		}
-		
-		int start = Integer.parseInt(in.readLine())-1;
-		dijkstras(start);
 		
 	}
 	
