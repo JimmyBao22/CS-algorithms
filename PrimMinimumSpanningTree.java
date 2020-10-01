@@ -59,10 +59,10 @@ public class PrimMinimumSpanningTree {
 			// find the smallest one
 			int smallest=-1;
 			long minval=INF;
-			for (int j=0; j<n; j++) {
-				if (!visited[j] && dist[j]<minval) {
-					minval = dist[j];
-					smallest = j;
+			for (int i=0; i<n; i++) {
+				if (!visited[i] && dist[i]<minval) {
+					minval = dist[i];
+					smallest = i;
 				}
 			}
 			if (smallest == -1) break;
