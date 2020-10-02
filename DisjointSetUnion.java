@@ -86,33 +86,34 @@ public class DisjointSetUnion {
 	}
 	
 	static class dsu2D {
-		int n;
+		int n, m;
+		int mult = (int)5e4;
 		int[][] parent;
 		int[][] size;
 		
-		dsu2D (int n) {
-			this.n = n;
+		dsu2D (int n, int m) {
+			this.n = n; this.m = m;
 			parent = new int[n][n];
 			size = new int[n][n];
 			for (int i=0; i<n; i++) {
-				for (int j=0; j<n; j++) {
-					parent[i][j] = i*n+j; size[i][j] = 1;
+				for (int j=0; j<m; j++) {
+					parent[i][j] = i*mult+j; size[i][j] = 1;
 				}	
 			}
 		}
 
 		public int FindSet(int i, int j) {
-			if (i*n+j == parent[i][j]) return i*n+j;
-			return parent[i][j] = FindSet(parent[i][j]/n, parent[i][j]%n);
+			if (i*mult+j == parent[i][j]) return i*mult+j;
+			return parent[i][j] = FindSet(parent[i][j]/mult, parent[i][j]%mult);
 		}
 		
 		public boolean Union(int i1, int j1, int i2, int j2) {
 			int a = FindSet(i1,j1);
 			int b = FindSet(i2,j2);
-			i1 = a/n;
-			j1 = a%n;
-			i2 = b/n;
-			j2 = b%n;
+			i1 = a/mult;
+			j1 = a%mult;
+			i2 = b/mult;
+			j2 = b%mult;
 			if (a == b) { 			// already grouped
 				return false;
 			}
@@ -128,5 +129,4 @@ public class DisjointSetUnion {
 			return true;
 		}
 	}
-	
 }
