@@ -45,12 +45,12 @@ public class DisjointSetUnion {
 		}
 	}
 	
-	static class dsu_c {
+	static class dsuArrayList {
 		int n;
 		ArrayList<Integer> parent;
 		ArrayList<Integer> size;
 		
-		dsu_c (int n) {
+		dsuArrayList (int n) {
 			this.n = n;
 			parent = new ArrayList<>();
 			size = new ArrayList<>();
@@ -84,4 +84,49 @@ public class DisjointSetUnion {
 			}
 		}
 	}
+	
+	static class dsu2D {
+		int n;
+		int[][] parent;
+		int[][] size;
+		
+		dsu2D (int n) {
+			this.n = n;
+			parent = new int[n][n];
+			size = new int[n][n];
+			for (int i=0; i<n; i++) {
+				for (int j=0; j<n; j++) {
+					parent[i][j] = i*n+j; size[i][j] = 1;
+				}	
+			}
+		}
+
+		public int FindSet(int i, int j) {
+			if (i*n+j == parent[i][j]) return i*n+j;
+			return parent[i][j] = FindSet(parent[i][j]/n, parent[i][j]%n);
+		}
+		
+		public boolean Union(int i1, int j1, int i2, int j2) {
+			int a = FindSet(i1,j1);
+			int b = FindSet(i2,j2);
+			i1 = a/n;
+			j1 = a%n;
+			i2 = b/n;
+			j2 = b%n;
+			if (a == b) { 			// already grouped
+				return false;
+			}
+			
+			if (size[i1][j1] < size[i2][j2]) {
+				parent[i1][j1] = b;
+				size[i2][j2] += size[i1][j1];
+			}
+			else {
+				parent[i2][j2] = a;
+				size[i1][j1] += size[i2][j2];
+			}
+			return true;
+		}
+	}
+	
 }
