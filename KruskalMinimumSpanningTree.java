@@ -29,8 +29,8 @@ public class KruskalMinimumSpanningTree {
 		
 	}
 	
-	public static int MST(dsu s) {
-		int ans=0;
+	public static long MST(dsu s) {
+		long ans=0;
 		for (int i=0; i<m; i++) {
 			if (s.Union(edges[i].from, edges[i].destination)) {
 				ans += edges[i].length;
