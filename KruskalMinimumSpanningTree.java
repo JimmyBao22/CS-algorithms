@@ -5,12 +5,11 @@ import java.io.*;
 public class KruskalMinimumSpanningTree {
 
 	static int n, m;
-	static long INF = (long)(1e18);
 	static Edge[] edges;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		//BufferedReader in = new BufferedReader(new FileReader("Dijkstras"));
+		//BufferedReader in = new BufferedReader(new FileReader("KruskalMinimumSpanningTree"));
 
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		n = Integer.parseInt(st.nextToken()); 	// number of vertices
