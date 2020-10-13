@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.io.*;
 
@@ -25,7 +24,7 @@ public class Geometry {
 		return (double)Math.abs(firstsum - secsum) / 2.0;
 	}
 	
-	// counterclockwise --> x,y around a,b
+	// counterclockwise
 	public static long[] Rotate(long x, long y, long a, long b, int degree) {
 		long[] ans = new long[2];
 		if (degree == 0) {
@@ -43,6 +42,24 @@ public class Geometry {
 		else if (degree == 270) {
 			ans[0] = y - b + a;
 			ans[1] = a - x + b;
+		}
+		
+		// about origin
+		if (degree == 45) {
+			ans[0] = x - y;
+			ans[1] = x + y;
+		}
+		else if (degree == 135) {
+			ans[0] = -x - y;
+			ans[1] = x - y;
+		}
+		else if (degree == 225) {
+			ans[0] = y - x;
+			ans[1] = -x - y;
+		}
+		else if (degree == 315) {
+			ans[0] = x + y;
+			ans[1] = y - x;
 		}
 		return ans;
 	}
@@ -79,5 +96,4 @@ public class Geometry {
 	public static double ccw(long[] A, long[] B, long[] C) {
 	    return ((double)(B[0] - A[0]) * (C[1] - B[1]) - (B[1] - A[1]) * (C[0] - B[0])) * 0.5;
 	}
-
 }
