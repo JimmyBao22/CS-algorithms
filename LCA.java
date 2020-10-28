@@ -41,7 +41,7 @@ public class LCA {
 		// depth[u] >= depth[v];
 		int diff = depth[u] - depth[v];
 		for (int i=0; i<log; i++) {
-			if (((1 << i) & diff) == 1) {
+			if (((1 << i) & diff) > 0) {
 				u = parent[u][i];
 			}
 		}
