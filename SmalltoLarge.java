@@ -9,8 +9,8 @@ public class SmalltoLarge {
 	static int n,m;
 	static ArrayList<ArrayList<Integer>> g = new ArrayList<>();
 	static int[] ans, value;
-	static HashMap<Integer, TreeMap<Integer, Integer>> vals = new HashMap<>();
-		// node = set of lengths
+	static ArrayList<TreeMap<Integer, Integer>> vals = new ArrayList<>();
+		// node --> set of lengths
 	static ArrayList<ArrayList<Integer>> queries = new ArrayList<>();
 	
 	public static void main(String[] args) throws IOException, FileNotFoundException {
@@ -25,7 +25,7 @@ public class SmalltoLarge {
 		
 		for (int i=0; i<n; i++) {
 			g.add(new ArrayList<>());
-			vals.put(i, new TreeMap<>());
+			vals.add(new TreeMap<>());
 		}
 		
 		for (int i=0; i<n-1; i++) {
@@ -61,8 +61,8 @@ public class SmalltoLarge {
 		
 			// swap over so don't need to copy
 		TreeMap<Integer, Integer> c = vals.get(biggest);
-		vals.put(biggest, vals.get(node));
-		vals.put(node, c);
+		vals.set(biggest, vals.get(node));
+		vals.set(node, c);
 		
 		for (int i=0; i<g.get(node).size(); i++) {
 			int to = g.get(node).get(i);
