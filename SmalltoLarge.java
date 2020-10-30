@@ -76,7 +76,7 @@ public class SmalltoLarge {
 		vals.get(node).put(value[node], vals.get(node).getOrDefault(value[node], 0)+1);
 		
 		// answer queries
-		if (parent == -1) return;
+		//if (parent == -1) return;
 		for (int i=0; i<queries.get(node).size(); i++) {
 			ans[queries.get(node).get(i)] = vals.get(node).firstKey();
 		}
