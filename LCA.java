@@ -10,8 +10,8 @@ public class LCA {
 	static int[] depth;
 	
 	public static void main(String[] args) throws IOException {
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		//BufferedReader in = new BufferedReader(new FileReader("LCA"));
+		//BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		BufferedReader in = new BufferedReader(new FileReader("LCA"));
 
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		n = Integer.parseInt(st.nextToken());
@@ -55,9 +55,13 @@ public class LCA {
 	}
 	
 	public static void precomp() {
+		parent[0][0] = -1;	// parent of root = -1
 		for (int i=1; i<log; i++) {
 			for (int j=0; j<n; j++) {
-				parent[j][i] = parent[parent[j][i-1]][i-1];
+				if (parent[j][i-1] != -1) {
+					parent[j][i] = parent[parent[j][i-1]][i-1];
+				}
+				else parent[j][i] = -1;
 			}
 		}
 	}
