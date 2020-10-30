@@ -16,7 +16,7 @@ public class LCA {
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		n = Integer.parseInt(st.nextToken());
 		m = Integer.parseInt(st.nextToken());
-		log = log(n);
+		log = log(n)+1;
 		parent = new int[n][log];
 		depth = new int[n];
 		for (int i=0; i<n; i++) g.add(new ArrayList<>());
