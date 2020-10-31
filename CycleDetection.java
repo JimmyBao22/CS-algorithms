@@ -10,7 +10,7 @@ public class CycleDetection {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		//BufferedReader in = new BufferedReader(new FileReader("Dijkstras"));
+		//BufferedReader in = new BufferedReader(new FileReader("CycleDetection"));
 
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		n = Integer.parseInt(st.nextToken());
