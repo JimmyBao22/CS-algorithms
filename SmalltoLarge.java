@@ -3,8 +3,6 @@ import java.util.*;
 import java.io.*;
 
 public class SmalltoLarge {
-
-	// http://www.usaco.org/index.php?page=viewproblem2&cpid=842
 	
 	static int n,m;
 	static ArrayList<ArrayList<Integer>> g = new ArrayList<>();
