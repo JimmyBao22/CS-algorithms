@@ -30,8 +30,8 @@ public class FloydWarshall {
 			long weight = Long.parseLong(st.nextToken());
 			g.get(one).add(two);
 			dist[one][two] = weight;
-			//g.get(two).add(one);		// if undirected
-			//dist[two][one] = weight;		// if undirected
+			g.get(two).add(one);
+			dist[two][one] = weight;
 		}
 		
 		FW();
