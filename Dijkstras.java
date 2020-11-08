@@ -27,7 +27,7 @@ public class Dijkstras {
 			int b = Integer.parseInt(st.nextToken())-1; 	
 			long c = Long.parseLong(st.nextToken()); 
 			g.get(a).add(new Edge(b, c));
-			// g.get(b).add(new Edge(a, c)); 		// if undirected
+			g.get(b).add(new Edge(a, c));
 		}
 		
 	}
