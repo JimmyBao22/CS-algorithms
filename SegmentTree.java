@@ -64,7 +64,7 @@ public class SegmentTree {
 		
 		public void modify(int l, int r, long v, int x, int lx, int rx) {
 			if (lx >= r || rx <= l) return;		// do not intersect this segment
-			// propagate(x, lx, rx);
+			// propogate(x, lx, rx);
 			if (l <= lx && rx <= r) {		// inside whole segment
 				tree[x] += v;
 				return;
