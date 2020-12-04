@@ -7,8 +7,7 @@ public class SegmentTree {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		//BufferedReader in = new BufferedReader(new FileReader("SegmentTree"));
 		
-		// StringTokenizer st = new StringTokenizer(in.readLine());
-		int n = Integer.parseInt(in.readLine());	// size of array
+		int n = Integer.parseInt(in.readLine());
 		SegTree s = new SegTree(n); 
 		
 	}
