@@ -16,7 +16,8 @@ public class BinaryIndexTree {
 			this.n = n; f = new long[n+1];
 		}
 		
-		long sum (int i) {		// sum from 0 to i
+		// sum from l to r
+		long sum (int i) {		
 			long ret=0; i++;
 			while (i>0) {
 				ret += f[i];
@@ -24,20 +25,23 @@ public class BinaryIndexTree {
 			}
 			return ret;
 		}
-		
-		long sum (int l, int r) {	// sum from l to r
+
+		// sum from l to r
+		long sum (int l, int r) {	
 			return sum(r) - sum(l-1);
 		}
 		
-		void set(int i, long value) {	// add value to index i
+		// add value to index i
+		void set(int i, long value) {	
 			i++;
 			while (i<=n) {
 				f[i] += value;
 				i += i&-i;
 			}
 		}
-		
-		void set(int l, int r, long value) {	// add value to indices l to r
+
+		// add value to indices l to r
+		void set(int l, int r, long value) {	
 			set(l,value); set(r+1,-value);
 		}
 	}
