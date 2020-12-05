@@ -16,7 +16,7 @@ public class LCA {
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		n = Integer.parseInt(st.nextToken());
 		m = Integer.parseInt(st.nextToken());
-		log = log(n)+1;
+		log = log2(n)+1;
 		parent = new int[n][log];
 		depth = new int[n];
 		for (int i=0; i<n; i++) g.add(new ArrayList<>());
@@ -75,9 +75,7 @@ public class LCA {
 		}
 	}
 	
-	public static int log(int n) {
-		int x = 1;
-		while ((1<<(x+1)) <= n) x++;
-		return x;
+	public static int log2(int n) {
+		return 31 - Integer.numberOfLeadingZeros(n);
 	}
 }
