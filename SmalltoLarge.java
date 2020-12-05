@@ -5,7 +5,7 @@ import java.io.*;
 public class SmalltoLarge {
 	
 	static int n,m;
-	static ArrayList<ArrayList<Integer>> g = new ArrayList<>();
+	static ArrayList<Integer>[] g;
 	static int[] ans, value;
 	static ArrayList<TreeMap<Integer, Integer>> vals = new ArrayList<>();
 		// node --> set of lengths
@@ -20,9 +20,10 @@ public class SmalltoLarge {
 		m = Integer.parseInt(st.nextToken());
 		ans = new int[n];
 		value = new int[n];
+		g = new ArrayList[n];
 		
 		for (int i=0; i<n; i++) {
-			g.add(new ArrayList<>());
+			g[i] = new ArrayList<>();
 			vals.add(new TreeMap<>());
 		}
 		
@@ -30,8 +31,8 @@ public class SmalltoLarge {
 			st = new StringTokenizer(in.readLine());
 			int one = Integer.parseInt(st.nextToken())-1;
 			int two = Integer.parseInt(st.nextToken())-1;
-			g.get(one).add(two);
-			g.get(two).add(one);
+			g[one].add(two);
+			g[two].add(one);
 		}
 		
 		for (int i=0; i<m; i++) {
@@ -48,8 +49,7 @@ public class SmalltoLarge {
 	
 	public static void smalltolarge(int node, int parent) {
 		int biggest = node;			// node with biggest length
-		for (int i=0; i<g.get(node).size(); i++) {
-			int to = g.get(node).get(i);
+		for (Integer to : g[node]) {
 			if (to == parent) continue;
 			smalltolarge(to, node);
 			if (vals.get(to).size() > vals.get(biggest).size()) {
@@ -62,14 +62,13 @@ public class SmalltoLarge {
 		vals.set(biggest, vals.get(node));
 		vals.set(node, c);
 		
-		for (int i=0; i<g.get(node).size(); i++) {
-			int to = g.get(node).get(i);
+		for (Integer to : g[node]) {
 			if (to == parent || to == biggest) continue;
 			for (Integer a : vals.get(to).keySet()) {		// copy over
 				vals.get(node).put(a, vals.get(node).getOrDefault(a, 0) + vals.get(to).get(a));
 			}
 		}
-		
+				
 		// add/remove values at node
 		vals.get(node).put(value[node], vals.get(node).getOrDefault(value[node], 0)+1);
 		
