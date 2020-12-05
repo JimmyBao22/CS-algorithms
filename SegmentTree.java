@@ -11,7 +11,7 @@ public class SegmentTree {
 		SegTree s = new SegTree(n); 
 		
 	}
-		
+	
 	static class SegTree {
 		int size=1;
 		long[] tree;
@@ -22,7 +22,7 @@ public class SegmentTree {
 			for (int i=0; i<2*size; i++) tree[i] = 0;
 		}
 		
-		// random computation on segment
+		// random computation on segment (l to r-1)
 		public long comp_seg(int l, int r) { return comp_seg(l, r, 0, 0, size); }
 		
 		public long comp_seg(int l, int r, int x, int lx, int rx) {
@@ -58,7 +58,7 @@ public class SegmentTree {
 			return result + tree[x];
 		}
 				
-		// change segments
+		// change segments (l to r-1)
 		public void modify(int l, int r, long v) { modify(l, r, v, 0, 0, size); }
 		
 		public void modify(int l, int r, long v, int x, int lx, int rx) {
