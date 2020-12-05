@@ -32,12 +32,14 @@ public class SqrtDecomposition {
 			for (int i=0; i<n; i++) b[i/len] += arr[i];
 		}
 		
+		// set index i
 		public void update(int i, long x) {
 			int block = i/len;
 			b[block] += x - arr[i];
 			arr[i] = x;
 		}
 		
+		// query l to r
 		public long query(int l, int r) {
 			long sum=0;
 			int left = l/len; int right = r/len;
@@ -52,6 +54,7 @@ public class SqrtDecomposition {
 			return sum;
 		}
 		
+		// update l to r
 		public void update_seg(int l, int r, long x) {
 			int left = l/len; int right = r/len;
 			if (left == right) {
@@ -64,6 +67,7 @@ public class SqrtDecomposition {
 			}
 		}
 		
+		// query index i
 		public long query_index(int i) {
 			return arr[i] + b[i/len];
 		}
