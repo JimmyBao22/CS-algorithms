@@ -1,11 +1,10 @@
-
 import java.util.*;
 import java.io.*;
 
 public class StronglyConnectedComponentsKosaraju {
 	
-	static ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
-	static ArrayList<ArrayList<Integer>> reverse = new ArrayList<>();
+	static ArrayList<Integer>[] adj;
+	static ArrayList<Integer>[] reverse;
 	static boolean[] visited;
 	static ArrayDeque<Integer> stack = new ArrayDeque<>();
 	static ArrayList<ArrayList<Integer>> SCC = new ArrayList<>();
@@ -19,19 +18,21 @@ public class StronglyConnectedComponentsKosaraju {
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		n = Integer.parseInt(st.nextToken()); 	// number of vertices
 		m = Integer.parseInt(st.nextToken()); 	// number of edges
-
+		adj = new ArrayList[n];
+		reverse = new ArrayList[n];
+		
 		visited = new boolean[n];
 		for (int i=0; i<n; i++) {
-			adj.add(new ArrayList<>());
-			reverse.add(new ArrayList<>());
+			adj[i] = new ArrayList<>();
+			reverse[i] = new ArrayList<>();
 		}
 		
 		for (int i=0; i<m; i++) {
 			st = new StringTokenizer(in.readLine());
 			int a = Integer.parseInt(st.nextToken())-1;
 			int b = Integer.parseInt(st.nextToken())-1;
-			adj.get(a).add(b);
-			reverse.get(b).add(a);
+			adj[a].add(b);
+			reverse[b].add(a);
 		}
 		
 		SCC();
@@ -56,7 +57,7 @@ public class StronglyConnectedComponentsKosaraju {
 	
 	public static void fillstack(int cur) {
 		visited[cur] = true;
-		for (Integer i : adj.get(cur)) {
+		for (Integer i : adj[cur]) {
 			if (!visited[i]) fillstack(i);
 		}
 		stack.push(cur);
@@ -65,7 +66,7 @@ public class StronglyConnectedComponentsKosaraju {
 	public static void dfsRev(int cur, ArrayList<Integer> curarr) {
 		visited[cur] = true;
 		curarr.add(cur);
-		for (Integer i : reverse.get(cur)) {
+		for (Integer i : reverse[cur]) {
 			if (!visited[i]) dfsRev(i, curarr);
 		}
 	}
