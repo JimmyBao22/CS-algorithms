@@ -3,7 +3,7 @@ import java.io.*;
 
 public class StronglyConnectedComponentsKosaraju {
 	
-	static ArrayList<Integer>[] adj;
+	static ArrayList<Integer>[] g;
 	static ArrayList<Integer>[] reverse;
 	static boolean[] visited;
 	static ArrayDeque<Integer> stack = new ArrayDeque<>();
@@ -18,12 +18,12 @@ public class StronglyConnectedComponentsKosaraju {
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		n = Integer.parseInt(st.nextToken()); 	// number of vertices
 		m = Integer.parseInt(st.nextToken()); 	// number of edges
-		adj = new ArrayList[n];
+		g = new ArrayList[n];
 		reverse = new ArrayList[n];
 		
 		visited = new boolean[n];
 		for (int i=0; i<n; i++) {
-			adj[i] = new ArrayList<>();
+			g[i] = new ArrayList<>();
 			reverse[i] = new ArrayList<>();
 		}
 		
@@ -31,7 +31,7 @@ public class StronglyConnectedComponentsKosaraju {
 			st = new StringTokenizer(in.readLine());
 			int a = Integer.parseInt(st.nextToken())-1;
 			int b = Integer.parseInt(st.nextToken())-1;
-			adj[a].add(b);
+			g[a].add(b);
 			reverse[b].add(a);
 		}
 		
@@ -57,7 +57,7 @@ public class StronglyConnectedComponentsKosaraju {
 	
 	public static void fillstack(int cur) {
 		visited[cur] = true;
-		for (Integer i : adj[cur]) {
+		for (Integer i : g[cur]) {
 			if (!visited[i]) fillstack(i);
 		}
 		stack.push(cur);
