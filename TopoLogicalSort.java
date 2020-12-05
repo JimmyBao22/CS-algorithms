@@ -1,10 +1,9 @@
-
 import java.util.*;
 import java.io.*;
 
 public class TopoLogicalSort {
 	
-	static ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+	static ArrayList<Integer>[] g;
 	static ArrayDeque<Integer> stack = new ArrayDeque<>();
 	static ArrayList<Integer> finalsequence = new ArrayList<>();
 	static boolean[] visited;
@@ -17,15 +16,16 @@ public class TopoLogicalSort {
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		n = Integer.parseInt(st.nextToken()); 	// number of vertices
 		m = Integer.parseInt(st.nextToken()); 	// number of edges
-
+		g = new ArrayList[n];
+		
 		visited = new boolean[n];
-		for (int i=0; i<n; i++) adj.add(new ArrayList<>());
+		for (int i=0; i<n; i++) g[i] = new ArrayList<>();
 		
 		for (int i=0; i<m; i++) {
 			st = new StringTokenizer(in.readLine());
 			int a = Integer.parseInt(st.nextToken())-1;
 			int b = Integer.parseInt(st.nextToken())-1;
-			adj.get(a).add(b);
+			g[a].add(b);
 		}
 		
 		toposort();
@@ -43,7 +43,7 @@ public class TopoLogicalSort {
 	
 	public static void fillstack(int cur) {
 		visited[cur] = true;
-		for (Integer i : adj.get(cur)) {
+		for (Integer i : g[cur]) {
 			if (!visited[i]) fillstack(i);
 		}
 		stack.push(cur);
