@@ -5,7 +5,7 @@ import java.io.*;
 public class HLD {
 	
 	static int n, curpos;
-	static ArrayList<ArrayList<Integer>> g;
+	static ArrayList<Integer>[] g;
 	static A[] arr;
 	static SegTree s;
 	static long[] starr;
@@ -15,7 +15,7 @@ public class HLD {
 		//BufferedReader in = new BufferedReader(new FileReader("HLD"));
 		
 		n = Integer.parseInt(in.readLine());
-		g = new ArrayList<>();
+		g = new ArrayList[n];
 		arr = new A[n];
 		curpos = 0;
 		s = new SegTree(n);
@@ -23,15 +23,15 @@ public class HLD {
 		
 		for (int i=0; i<n; i++) {
 			arr[i] = new A();
-			g.add(new ArrayList<>());
+			g[i] = new ArrayList<>();
 		}
 		
 		for (int i=0; i<n-1; i++) {
 			StringTokenizer st = new StringTokenizer(in.readLine());
 			int one = Integer.parseInt(st.nextToken())-1;
 			int two = Integer.parseInt(st.nextToken())-1;
-			g.get(one).add(two); 
-			g.get(two).add(one);
+			g[one].add(two); 
+			g[two].add(one);
 		}
 		
 		dfs(0, 0, 0);
@@ -87,9 +87,9 @@ public class HLD {
 		if (arr[node].heavy != -1) {	
 			hld(arr[node].heavy, head);
 		}
-		for (int i=0; i<g.get(node).size(); i++) {
-			if (g.get(node).get(i) == arr[node].parent || g.get(node).get(i) == arr[node].heavy) continue;
-			hld(g.get(node).get(i), g.get(node).get(i));		// start a new chain
+		for (Integer i : g[node]) {
+			if (i == arr[node].parent || i == arr[node].heavy) continue;
+			hld(i, i);					// start a new chain
 		}
 	}
 	
@@ -99,13 +99,13 @@ public class HLD {
 		arr[node].depth = d;
 		
 		int max_subtree_size = 0;
-		for (int i=0; i<g.get(node).size(); i++) {
-			if (g.get(node).get(i) == p) continue;
-			int cursize = dfs(g.get(node).get(i), node, d+1);
+		for (Integer i : g[node]) {
+			if (i == p) continue;
+			int cursize = dfs(i, node, d+1);
 			arr[node].size += cursize;
 			if (cursize > max_subtree_size) {
 				max_subtree_size = cursize;
-				arr[node].heavy = g.get(node).get(i);
+				arr[node].heavy = i;
 			}
 		}
 		return arr[node].size;
