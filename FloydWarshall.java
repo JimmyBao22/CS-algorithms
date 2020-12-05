@@ -6,7 +6,7 @@ public class FloydWarshall {
 	
 	static int n, m;
 	static long INF = (long)(1e18);
-	static ArrayList<ArrayList<Integer>> g = new ArrayList<>();
+	static ArrayList<Integer>[] g;
 	static long[][] dist;
 	
 	public static void main(String[] args) throws IOException {
@@ -17,10 +17,11 @@ public class FloydWarshall {
 		n = Integer.parseInt(st.nextToken());
 		m = Integer.parseInt(st.nextToken());
 		dist = new long[n][n];
+		g = new ArrayList[n];
 		for (int i=0; i<n; i++) {
 			Arrays.fill(dist, INF);
 			dist[i][i]=0;
-			g.add(new ArrayList<>());
+			g[i] = new ArrayList<>();
 		}
 		
 		for (int i=0; i<m; i++) {
@@ -28,9 +29,9 @@ public class FloydWarshall {
 			int one = Integer.parseInt(st.nextToken())-1;
 			int two = Integer.parseInt(st.nextToken())-1;
 			long weight = Long.parseLong(st.nextToken());
-			g.get(one).add(two);
+			g[one].add(two);
 			dist[one][two] = weight;
-			g.get(two).add(one);
+			g[two].add(one);
 			dist[two][one] = weight;
 		}
 		
