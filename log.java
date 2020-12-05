@@ -16,14 +16,22 @@ public class log {
 	public static long log(long top, long base) {
 		return (long)(Math.log(top)/Math.log(base));
 	}
+		
+	public static int log2(int n) {
+		return 31 - Integer.numberOfLeadingZeros(n);
+	}
 	
 	public static long log2(long n) {
+		return 63 - Long.numberOfLeadingZeros(n);
+	}
+	
+	public static long slowlog2(long n) {
 		long x = 1;
 		while ((1l<<(x+1)) <= n) x++;
 		return x;
 	}
 	
-	public static int log2(int n) {
+	public static int slowlog2(int n) {
 		int x = 1;
 		while ((1<<(x+1)) <= n) x++;
 		return x;
