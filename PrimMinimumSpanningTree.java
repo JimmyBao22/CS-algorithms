@@ -3,7 +3,7 @@ import java.io.*;
 
 public class PrimMinimumSpanningTree {
 	
-	static ArrayList<ArrayList<Edge>> g = new ArrayList<>();
+	static ArrayList<Edge>[] g;
 	static int n, m;
 	static long INF = (long)(1e18);
 
@@ -14,16 +14,17 @@ public class PrimMinimumSpanningTree {
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		n = Integer.parseInt(st.nextToken()); 	// number of vertices
 		m = Integer.parseInt(st.nextToken()); 	// number of edges
+		g = new ArrayList[n];
 		
-		for (int i=0; i<n; i++) g.add(new ArrayList<>());
+		for (int i=0; i<n; i++) g[i] = new ArrayList<>();
 		
 		for (int i=0; i<m; i++) {
 			st = new StringTokenizer(in.readLine());
 			int a = Integer.parseInt(st.nextToken())-1; 	
 			int b = Integer.parseInt(st.nextToken())-1; 	
 			long c = Long.parseLong(st.nextToken()); 
-			g.get(a).add(new Edge(b, c));
-			g.get(b).add(new Edge(a, c));
+			g[a].add(new Edge(b, c));
+			g[b].add(new Edge(a, c));
 		}
 		
 	}
@@ -40,7 +41,7 @@ public class PrimMinimumSpanningTree {
 			visited[cur.destination] = true;
 			minlength += cur.length;
 			
-			for (Edge i : g.get(cur.destination)) {
+			for (Edge i : g[cur.destination]) {
 				if (visited[i.destination]) continue;
 				pq.add(i);
 			}
@@ -68,7 +69,7 @@ public class PrimMinimumSpanningTree {
 			if (smallest == -1) break;
 			minlength += minval;
 			
-			for (Edge a : g.get(smallest)) {
+			for (Edge a : g[smallest]) {
 				if (!visited[a.destination] && dist[a.destination] > a.length) {
 					dist[a.destination] = a.length;
 				}
