@@ -5,7 +5,7 @@ import java.io.*;
 public class LCA {
 
 	static int n, m, log;
-	static ArrayList<ArrayList<Integer>> g = new ArrayList<>();
+	static ArrayList<Integer>[] g;
 	static int[][] parent;
 	static int[] depth;
 	
@@ -19,14 +19,15 @@ public class LCA {
 		log = log2(n)+1;
 		parent = new int[n][log];
 		depth = new int[n];
-		for (int i=0; i<n; i++) g.add(new ArrayList<>());
+		g = new ArrayList[n];
+		for (int i=0; i<n; i++) g[i] = new ArrayList<>();
 		
 		for (int i=0; i<m; i++) {
 			st = new StringTokenizer(in.readLine());
 			int a = Integer.parseInt(st.nextToken())-1; 	
 			int b = Integer.parseInt(st.nextToken())-1; 	
-			g.get(a).add(b);
-			g.get(b).add(a);
+			g[a].add(b);
+			g[b].add(a);
 		}
 		
 		dfs(0, 0);	// start from root node
@@ -68,10 +69,10 @@ public class LCA {
 	
 	public static void dfs(int node, int p) {
 		parent[node][0] = p;
-		for (int i=0; i<g.get(node).size(); i++) {
-			if (g.get(node).get(i) == p) continue;
-			depth[g.get(node).get(i)] = depth[node]+1;
-			dfs(g.get(node).get(i), node);
+		for (Integer i : g[node]) {
+			if (i == p) continue;
+			depth[i] = depth[node] + 1;
+			dfs(i, node);
 		}
 	}
 	
