@@ -16,7 +16,7 @@ public class BinaryIndexTree {
 			this.n = n; f = new long[n+1];
 		}
 		
-		// sum from l to r
+		// sum from i to 0
 		long sum (int i) {		
 			i++;
 			long ret=0;
