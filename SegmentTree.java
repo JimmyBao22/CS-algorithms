@@ -97,6 +97,7 @@ public class SegmentTree {
 		
 		public void print() {
 			System.out.println(Arrays.toString(tree));
+			System.out.println();
 		}
 	}
 }
