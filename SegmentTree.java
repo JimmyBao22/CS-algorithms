@@ -19,7 +19,6 @@ public class SegmentTree {
 		public SegTree(int n) {			
 			while (size < n) size *= 2;
 			tree = new long[2*size];
-			for (int i=0; i<2*size; i++) tree[i] = 0;
 		}
 		
 		// random computation on segment (l to r-1)
