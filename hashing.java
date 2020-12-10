@@ -53,14 +53,14 @@ public class hashing {
     
     static long pow(long a, long b, long m) {
     	long ans=1;
-    	while (b >0) {
+    	while (b > 0) {
     		if (b%2 == 1) {
     			ans *= a%m;
     			ans %= m;
     		}
-    		a *= a %m;
-    		a%=m;
-    		b >>=1;
+    		a *= a % m;
+    		a %= m;
+    		b >>= 1;
     	}
     	return ans;
     }
