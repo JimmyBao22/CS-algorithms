@@ -24,44 +24,17 @@ public class Geometry {
 		return (double)Math.abs(firstsum - secsum) / 2.0;
 	}
 	
-	// counterclockwise
-	public static long[] Rotate(long x, long y, long a, long b, int degree) {
-		long[] ans = new long[2];
-		if (degree == 0) {
-			ans[0] = x;
-			ans[1] = y;
-		}
-		else if (degree == 90) {
-			ans[0] = b - y + a;
-			ans[1] = x - a + b;
-		}
-		else if (degree == 180) {
-			ans[0] = 2*a - x;
-			ans[1] = 2*b - y;
-		}
-		else if (degree == 270) {
-			ans[0] = y - b + a;
-			ans[1] = a - x + b;
-		}
-		
-		// about origin
-		if (degree == 45) {
-			ans[0] = x - y;
-			ans[1] = x + y;
-		}
-		else if (degree == 135) {
-			ans[0] = -x - y;
-			ans[1] = x - y;
-		}
-		else if (degree == 225) {
-			ans[0] = y - x;
-			ans[1] = -x - y;
-		}
-		else if (degree == 315) {
-			ans[0] = x + y;
-			ans[1] = y - x;
-		}
-		return ans;
+	// counterclockwise (x,y) around (a,b)
+	public static double[] Rotate(double x, double y, double a, double b, double degree) {
+		double ansx = 0; double ansy = 0;
+		double rad = toRadians(degree);
+		ansx = x*Math.cos(rad) - a*Math.cos(rad) - y*Math.sin(rad) + b*Math.sin(rad) + a;
+		ansy = x*Math.sin(rad) + y*Math.cos(rad) - a*Math.sin(rad) - b*Math.cos(rad) + b;
+		return new double[] {ansx, ansy};
+	}
+	
+	public static double toRadians(double degree) {
+		return degree * Math.PI/180;
 	}
 	
 	// point[] = {x, y}
@@ -93,7 +66,40 @@ public class Geometry {
 	
 		// takes in 3 points. returns +1 if a->b->c is a counterclockwise angle, 
 		// -1 if a->b->c is a clockwise angle, and 0 if a->b->c are collinear
-	public static double ccw(long[] A, long[] B, long[] C) {
-	    return ((double)(B[0] - A[0]) * (C[1] - B[1]) - (B[1] - A[1]) * (C[0] - B[0])) * 0.5;
+	public static double ccw(Point a, Point b, Point c) {
+		double val = (double)(b.x - a.x) * (c.y - b.y) - (b.y - a.y) * (c.x - b.x) * 0.5;
+		return val == 0 ? 0 : val < 0 ? -1 : 1;
+	}
+	
+		// returns whether a1 - a2 line segment intersects b1 - b2 line segment
+	public static boolean Intersect(Point a1, Point a2, Point b1, Point b2) {
+		double o1 = ccw(a1, a2, b1); 
+		double o2 = ccw(a1, a2, b2); 
+		double o3 = ccw(b1, b2, a1); 
+		double o4 = ccw(b1, b2, a2); 
+		
+		if (o1 != o2 && o3 != o4) return true;
+		
+		if (o1 == 0 && onSegment(a1, b1, a2)) return true; 
+		if (o2 == 0 && onSegment(a1, b2, a2)) return true; 	  
+	    if (o3 == 0 && onSegment(b1, a1, b2)) return true; 	  
+	    if (o4 == 0 && onSegment(b1, a2, b2)) return true; 
+	    
+	    return false;
+	}
+	
+		// point c lies on segment a-b
+	public static boolean onSegment(Point a, Point b, Point c) {
+		if (c.x <= Math.max(a.x, b.x) && c.x >= Math.min(a.x, b.x) && 
+		        c.y <= Math.max(a.y, b.y) && c.y >= Math.min(a.y, b.y)) return true; 
+		  
+		return false; 
+	}
+
+	static class Point {
+		int x; int y;
+		Point(int a, int b) {
+			x = a; y = b;
+		}
 	}
 }
