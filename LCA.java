@@ -24,8 +24,8 @@ public class LCA {
 		
 		for (int i=0; i<m; i++) {
 			st = new StringTokenizer(in.readLine());
-			int a = Integer.parseInt(st.nextToken())-1; 	
-			int b = Integer.parseInt(st.nextToken())-1; 	
+			int a = Integer.parseInt(st.nextToken())-1;
+			int b = Integer.parseInt(st.nextToken())-1;
 			g[a].add(b);
 			g[b].add(a);
 		}
