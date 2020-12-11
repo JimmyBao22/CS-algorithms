@@ -10,8 +10,8 @@ public class LCA {
 	static int[] depth;
 	
 	public static void main(String[] args) throws IOException {
-		//BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		BufferedReader in = new BufferedReader(new FileReader("LCA"));
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		//BufferedReader in = new BufferedReader(new FileReader("LCA"));
 
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		n = Integer.parseInt(st.nextToken());
