@@ -21,13 +21,14 @@ public class HLD {
 		s = new SegTree(n);
 		starr = new long[n];
 		
+		StringTokenizer st = new StringTokenizer(in.readLine());
 		for (int i=0; i<n; i++) {
-			arr[i] = new A();
+			arr[i] = new A(Integer.parseInt(st.nextToken()));
 			g[i] = new ArrayList<>();
 		}
 		
 		for (int i=0; i<n-1; i++) {
-			StringTokenizer st = new StringTokenizer(in.readLine());
+			st = new StringTokenizer(in.readLine());
 			int one = Integer.parseInt(st.nextToken())-1;
 			int two = Integer.parseInt(st.nextToken())-1;
 			g[one].add(two); 
@@ -42,7 +43,7 @@ public class HLD {
 		StringBuilder sb = new StringBuilder();
 		int q = Integer.parseInt(in.readLine());
 		for (int i=0; i<q; i++) {
-			StringTokenizer st = new StringTokenizer(in.readLine());
+			st = new StringTokenizer(in.readLine());
 			int one = Integer.parseInt(st.nextToken());
 			if (one == 0) {			// update
 				int two = Integer.parseInt(st.nextToken())-1;		// node
