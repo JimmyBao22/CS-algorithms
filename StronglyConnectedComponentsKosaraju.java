@@ -8,7 +8,7 @@ public class StronglyConnectedComponentsKosaraju {
 	static boolean[] visited;
 	static ArrayDeque<Integer> stack = new ArrayDeque<>();
 	static ArrayList<ArrayList<Integer>> SCC = new ArrayList<>();
-		// scores all of the components
+		// stores all of the components
 	static int n, m;
 	
 	public static void main(String[] args) throws IOException {
