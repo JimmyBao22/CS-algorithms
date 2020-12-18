@@ -1,15 +1,15 @@
-
 import java.util.*;
 import java.io.*;
+import java.math.BigInteger;
 
-public class modInverse {
+public class ModInverse {
 	
 	public static void main(String[] args) {
-		System.out.println(modInversePrime(3,11));
+
 	}
 	
 	// If m is prime
-    static long modInversePrime(long a, long m) {
+    static long modInverse(long a, long m) {
         return pow(a, m - 2, m)%m;
     }
     
@@ -28,9 +28,9 @@ public class modInverse {
     	return ans;
     }
     
-    static long x=1;
-    static long y=1;
-    static long modInverse1 (long a, long m) {         
+    static long x,y;
+    static long modInverse1(long a, long m) {         
+    	x=y=1;
     	long g = gcdExtended(a, m);
     	if (g!=1) return -1; 	// if a and m are not coprime, there is not an inverse
     	long inverse = (x%m + m)%m;
@@ -52,5 +52,12 @@ public class modInverse {
         y = x1; 
   
         return gcd; 
-    } 
+    }
+    
+    static long modInverse2(long a, long m) {
+    	BigInteger one = new BigInteger(a + "");
+    	BigInteger mod = new BigInteger(m + "");
+    	BigInteger res = one.modInverse(mod);
+    	return res.longValue();
+    }
 }
