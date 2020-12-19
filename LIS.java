@@ -6,7 +6,7 @@ public class LIS {
 
 	public static void main(String[] args) throws IOException, FileNotFoundException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		//BufferedReader in = new BufferedReader(new FileReader("Badge"));
+		//BufferedReader in = new BufferedReader(new FileReader("LIS"));
 
 		int n = Integer.parseInt(in.readLine());
 		int[] arr = new int[n];
