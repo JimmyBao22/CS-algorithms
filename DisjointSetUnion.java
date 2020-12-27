@@ -82,7 +82,7 @@ public class DisjointSetUnion {
 	
 	static class dsu2D {
 		int n, m;
-		int mult = (int)2e4;
+		int mult = (int)1e4;
 		int[][] parent;
 		int[][] size;
 		
