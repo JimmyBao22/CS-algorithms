@@ -2,12 +2,12 @@ import java.util.*;
 import java.io.*;
 
 public class binexponentation {
-	public static void main(String[] args) {
+    
+    public static void main(String[] args) {
 
-	}
-	
-    // a^b
-	public static long pow(long a, long b) {
+    }
+
+    public static long pow(long a, long b) {
     	long ans = 1;
     	while (b > 0) {
     		if (b%2 == 1) {
@@ -19,8 +19,7 @@ public class binexponentation {
     	return ans;
     }
 	
-    // a^b mod m
-	public static long pow(long a, long b, long m) {
+    public static long pow(long a, long b, long m) {
     	long ans = 1;
     	while (b > 0) {
     		if (b%2 == 1) {
