@@ -4,11 +4,6 @@ import java.io.*;
 public class DisjointSetUnion {
 	
 	public static void main(String[] args) throws IOException {
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		//BufferedReader in = new BufferedReader(new FileReader("DisjointSetUnion"));
-		
-		int n = Integer.parseInt(in.readLine());
-		dsu d = new dsu(n);
 		
 	}
 	
