@@ -3,8 +3,7 @@ import java.io.*;
 
 public class StronglyConnectedComponentsKosaraju {
 	
-	static ArrayList<Integer>[] g;
-	static ArrayList<Integer>[] reverse;
+	static ArrayList<Integer>[] g, reverse;
 	static boolean[] visited;
 	static ArrayDeque<Integer> stack = new ArrayDeque<>();
 	static ArrayList<ArrayList<Integer>> SCC = new ArrayList<>();
