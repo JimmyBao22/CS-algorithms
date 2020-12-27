@@ -4,8 +4,8 @@ import java.io.*;
 
 public class Sieve {
 	
-	private static int max = (int)1e5;
-	private static int[] arr = new int[max];
+	static int max = (int)1e5;
+	static int[] arr = new int[max];
 	
 	public static void sieve() {
 		for (int i=2; i<max; i++) {
