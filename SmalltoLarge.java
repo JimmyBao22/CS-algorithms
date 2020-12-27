@@ -5,11 +5,10 @@ import java.io.*;
 public class SmalltoLarge {
 	
 	static int n,m;
-	static ArrayList<Integer>[] g;
+	static ArrayList<Integer>[] g, queries;
 	static int[] ans, value;
 	static ArrayList<TreeMap<Integer, Integer>> vals = new ArrayList<>();
 		// node --> set of lengths
-	static ArrayList<ArrayList<Integer>> queries = new ArrayList<>();
 	
 	public static void main(String[] args) throws IOException, FileNotFoundException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -21,10 +20,12 @@ public class SmalltoLarge {
 		ans = new int[n];
 		value = new int[n];
 		g = new ArrayList[n];
+		queries = new ArrayList[n];
 		
 		for (int i=0; i<n; i++) {
 			g[i] = new ArrayList<>();
 			vals.add(new TreeMap<>());
+			queries[i] = new ArrayList<>();
 		}
 		
 		for (int i=0; i<n-1; i++) {
@@ -39,7 +40,7 @@ public class SmalltoLarge {
 			st = new StringTokenizer(in.readLine());
 			int one = Integer.parseInt(st.nextToken())-1;
 			int two = Integer.parseInt(st.nextToken())-1;
-			queries.get(one).add(two);
+			queries[one].add(two);
 		}
 		
 		smalltolarge(0,-1);
@@ -73,9 +74,8 @@ public class SmalltoLarge {
 		vals.get(node).put(value[node], vals.get(node).getOrDefault(value[node], 0)+1);
 		
 		// answer queries
-		//if (parent == -1) return;
-		for (int i=0; i<queries.get(node).size(); i++) {
-			ans[queries.get(node).get(i)] = vals.get(node).firstKey();
+		for (Integer i : queries[node]) {
+			ans[i] = vals.get(node).firstKey();
 		}
 	}
 }
