@@ -82,14 +82,14 @@ public class DisjointSetUnion {
 	
 	static class dsu2D {
 		int n, m;
-		int mult = (int)5e4;
+		int mult = (int)2e4;
 		int[][] parent;
 		int[][] size;
 		
 		dsu2D (int n, int m) {
 			this.n = n; this.m = m;
-			parent = new int[n][n];
-			size = new int[n][n];
+			parent = new int[n][m];
+			size = new int[n][m];
 			for (int i=0; i<n; i++) {
 				for (int j=0; j<m; j++) {
 					parent[i][j] = i*mult+j; size[i][j] = 1;
