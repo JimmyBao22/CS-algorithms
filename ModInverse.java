@@ -8,13 +8,11 @@ public class ModInverse {
 
 	}
 	
-	// If m is prime
     static long modInverse(long a, long m) {
         return pow(a, m - 2, m)%m;
     }
     
     static long pow(long a, long b, long m) {
-        // a^b
     	long ans=1;
     	while (b >0) {
     		if (b%2 == 1) {
