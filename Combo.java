@@ -15,8 +15,8 @@ public class Combo {
 		choose = new long[n+1][k+1];
 		build();
 		
-		fact = new long[n + k + 1]; 
-		inv_fact = new long[n + k + 1];
+		fact = new long[n+1]; 
+		inv_fact = new long[n+1];
 		fact[0] = inv_fact[0] = 1;
 		for (int i=1; i<fact.length; i++) {
 			fact[i] = fact[i-1] * i;
