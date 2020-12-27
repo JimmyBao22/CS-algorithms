@@ -6,7 +6,7 @@ public class EulerTour {
 
 	static int n, time;
 	static ArrayList<Integer>[] g;
-	static int[] start, end;
+	static int[] start, stop;
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -24,7 +24,7 @@ public class EulerTour {
 			g[b].add(a);
 		}
 		
-		start = new int[n]; end = new int[n];
+		start = new int[n]; stop = new int[n];
 		dfs(0, -1);
 		
 	}
@@ -34,6 +34,6 @@ public class EulerTour {
 		for (Integer i : g[node]) {
 			if (i != p) dfs(i, node);
 		}
-		end[node] = time-1;
+		stop[node] = time-1;
 	}
 }
