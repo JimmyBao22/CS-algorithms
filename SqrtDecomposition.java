@@ -27,7 +27,7 @@ public class SqrtDecomposition {
 		long[] b;
 		
 		public SqrtDecomp() {
-			len = (int) (Math.sqrt(n) + 1);
+			len = 32;
 			b = new long[len];
 			for (int i=0; i<n; i++) b[i/len] += arr[i];
 		}
