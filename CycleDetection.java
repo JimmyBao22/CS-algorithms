@@ -4,7 +4,7 @@ import java.io.*;
 
 public class CycleDetection {
 
-	static ArrayList<ArrayList<Integer>> g = new ArrayList<>();
+	static ArrayList<Integer>[] g;
 	static int n, m;
 	static boolean[] visited, open;
 
@@ -17,14 +17,15 @@ public class CycleDetection {
 		m = Integer.parseInt(st.nextToken());
 		visited = new boolean[n];
 		open = new boolean[n];
+		g = new ArrayList[n];
 		
-		for (int i=0; i<n; i++) g.add(new ArrayList<>());
+		for (int i=0; i<n; i++) g[i] = new ArrayList<>();
 		
 		for (int i=0; i<m; i++) {
 			st = new StringTokenizer(in.readLine());
 			int a = Integer.parseInt(st.nextToken())-1; 	
 			int b = Integer.parseInt(st.nextToken())-1; 
-			g.get(a).add(b);
+			g[a].add(b);
 			// g.get(b).add(a);			// if undirected
 		}
 
@@ -40,7 +41,7 @@ public class CycleDetection {
 		if (visited[node]) return false;
 		visited[node] = true;
 		open[node] = true;
-		for (Integer i : g.get(node)) {
+		for (Integer i : g[node]) {
 			if (dfscheck(i)) return true;
 		}
 		open[node] = false;
