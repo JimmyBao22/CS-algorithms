@@ -26,10 +26,9 @@ public class Geometry {
 	
 	// counterclockwise (x,y) around (a,b)
 	public static double[] Rotate(double x, double y, double a, double b, double degree) {
-		double ansx = 0; double ansy = 0;
 		double rad = toRadians(degree);
-		ansx = x*Math.cos(rad) - a*Math.cos(rad) - y*Math.sin(rad) + b*Math.sin(rad) + a;
-		ansy = x*Math.sin(rad) + y*Math.cos(rad) - a*Math.sin(rad) - b*Math.cos(rad) + b;
+		double ansx = x*Math.cos(rad) - a*Math.cos(rad) - y*Math.sin(rad) + b*Math.sin(rad) + a;
+		double ansy = x*Math.sin(rad) + y*Math.cos(rad) - a*Math.sin(rad) - b*Math.cos(rad) + b;
 		return new double[] {ansx, ansy};
 	}
 	
