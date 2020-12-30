@@ -11,8 +11,8 @@ public class LCS {
 		String a = in.readLine();
 		String b = in.readLine();
 		int n = a.length();
-       		int m = b.length();
-        	int[][] dp = new int[n][m];
+        int m = b.length();
+        int[][] dp = new int[n][m];
         if (a.charAt(0) == b.charAt(0)) dp[0][0] = 1;
         for (int i=1; i<n; i++) {
             if (a.charAt(i) == b.charAt(0)) dp[i][0] = 1;
@@ -29,7 +29,14 @@ public class LCS {
         		}
                 dp[i][j] = Math.max(dp[i][j], Math.max(dp[i-1][j], dp[i][j-1]));
         	}
-        } 
+        }
+        
+        int max=0;
+        for (int i=0; i<n; i++) {
+        	for (int j=0; j<n; j++) {
+        		max = Math.max(max, dp[i][j]);
+        	}
+        }
 	}
 	
 	public static void find(BufferedReader in) throws IOException {
@@ -38,20 +45,16 @@ public class LCS {
 		int n = a.length();
         int m = b.length();
         A[][] dp = new A[n][m];
-        int max=0;
         if (a.charAt(0) == b.charAt(0)) dp[0][0] = new A(1, 0, 0);
         else dp[0][0] = new A(0,0,0);
         
-        max = Math.max(max, dp[0][0].val);
         for (int i=1; i<n; i++) {
             if (a.charAt(i) == b.charAt(0)) dp[i][0] = new A(1, i, 0);
             else dp[i][0] = new A(dp[i-1][0].val, i-1, 0);
-            max = Math.max(max, dp[i][0].val);
         }
         for (int i=1; i<m; i++) {
             if (a.charAt(0) == b.charAt(i)) dp[0][i] = new A(1, 0, i);
             else dp[0][i] = new A(dp[0][i-1].val, 0, i-1);
-            max = Math.max(max, dp[0][i].val);
         }
         
         for (int i=1; i<n; i++) {
@@ -65,7 +68,13 @@ public class LCS {
                 if (dp[i][j-1].val > dp[i][j].val) {
                 	dp[i][j] = new A(dp[i][j-1].val, i, j-1);
                 }
-                max = Math.max(max, dp[i][j].val);
+        	}
+        }
+        
+        int max=0;
+        for (int i=0; i<n; i++ ) {
+        	for (int j=0; j<m; j++) {
+        		max = Math.max(max, dp[i][j].val);
         	}
         }
         
