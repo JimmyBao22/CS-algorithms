@@ -34,6 +34,6 @@ public class EulerTour {
 		for (Integer i : g[node]) {
 			if (i != p) dfs(i, node);
 		}
-		stop[node] = time;
+		stop[node] = time-1;
 	}
 }
