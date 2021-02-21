@@ -7,6 +7,7 @@ public class CycleDetection {
 	static ArrayList<Integer>[] g;
 	static int n, m;
 	static boolean[] visited, open;
+	static ArrayList<Integer> cycle = new ArrayList<>();
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -33,6 +34,14 @@ public class CycleDetection {
 			if (!visited[i]) dfscheck(0);
 		}
 		
+		for (int i=0; i<n; i++) {
+	        if (!visited[i]) {
+	            findcycle(i);
+	            if (!cycle.isEmpty()) break;
+	        }
+	    }
+	    Collections.reverse(cycle);
+		
 	}
 	
 		// true = cycle, false = no cycle
@@ -46,5 +55,34 @@ public class CycleDetection {
 		}
 		open[node] = false;
 		return false;
+	}
+	
+	public static boolean findcycle(int node) {
+	    visited[node] = true;
+	    open[node] = true;
+	    for (Integer i : g[node]) {
+	        if (open[i]) {
+	            cycle.add(node);     // start cycle
+	            open[node] = false;
+	            open[i] = false;
+	            return true;
+	        }
+	        else if (!visited[i]) {
+	            if (findcycle(i)) {         // continue cycle
+	                if (open[node]) {
+	                    cycle.add(node);
+	                    open[node] = false;
+	                    return true;
+	                }
+	                else {
+	                    cycle.add(node);     // end cycle
+	                    return false;
+	                }
+	            }
+	            if (!cycle.isEmpty()) return false;       // finished cycle
+	        }
+	    }
+	    open[node] = false;
+	    return false;
 	}
 }
