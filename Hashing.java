@@ -2,10 +2,10 @@
 import java.util.*;
 import java.io.*;
 
-public class hashing {
+public class Hashing {
 
 	static long mod = (long)(1e9+7);
-	static long p = 53;
+	static long p = 97;
 	
 	public static void main(String[] args) {
 
@@ -39,8 +39,8 @@ public class hashing {
 		// pref is array calculated in prefhash. Therefore only use this if you need
 			// to calculate hash of a lot of substrings
 	public static long SubstringHash(String s, int i, int j, long[] pref) {
-		if (i == 0) {
-			return ((pref[j] - pref[i-1]) * modInversePrime(pow(p, i, mod), mod))%mod;
+		if (i != 0) {
+	        return ((((pref[j] - pref[i-1])%mod+mod)%mod) * modInversePrime(pow(p, i, mod), mod))%mod;
 		}
 		else {
 			return (pref[j] * modInversePrime(pow(p, i, mod), mod))%mod;
@@ -55,10 +55,10 @@ public class hashing {
     	long ans=1;
     	while (b > 0) {
     		if (b%2 == 1) {
-    			ans *= a%m;
+    			ans *= a;
     			ans %= m;
     		}
-    		a *= a % m;
+    		a *= a;
     		a %= m;
     		b >>= 1;
     	}
