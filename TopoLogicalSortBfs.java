@@ -5,7 +5,7 @@ public class TopoLogicalSortBfs {
 	
 	static ArrayList<Integer>[] g;
 	static ArrayDeque<Integer> queue = new ArrayDeque<>();
-	static ArrayList<Integer> finalsequence = new ArrayList<>();
+	static ArrayList<Integer> fs = new ArrayList<>();
 	static int[] indegree;
 	static boolean[] visited;
 	static int n, m;
@@ -51,7 +51,7 @@ public class TopoLogicalSortBfs {
 					visited[a] = true;
 				}
 			}
-			finalsequence.add(cur);
+			fs.add(cur);
 		}
 	}
 }
