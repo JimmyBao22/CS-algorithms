@@ -4,6 +4,11 @@ import java.io.*;
 public class MatrixExponentationFibonacci {
 
 	// finds the nth fibonacci number  -  O(logn)
+	
+	// a_(n-2) = a_(n-1)
+	// a_(n-1) = a_(n-2) + a_(n-1)
+	// {{0, 1},
+	//  {1, 1}}
 
 	static long mod = (long)1e9 + 7;
 	
@@ -15,13 +20,13 @@ public class MatrixExponentationFibonacci {
 		long[][] arr = {{0,1}, {1,1}};
 		long[][] ans = {{0,1}, {1,1}};
 		while (n > 0) {
-			if (n%2 == 1) {
-				ans = multiply(2, ans, arr);
+			if ((n&1) == 1) {
+				ans = multiply(arr.length, ans, arr);
 			}
-			arr = multiply(2, arr, arr);
+			arr = multiply(arr.length, arr, arr);
 			n >>= 1;
 		}
-		System.out.println(ans[0][0]%mod);
+		System.out.println(ans[0][0]);
 	}
 	
 	public static long[][] multiply (int n, long[][] a, long[][] b) {
