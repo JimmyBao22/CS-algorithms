@@ -27,7 +27,7 @@ public class LCS {
 				if (a.charAt(i) == b.charAt(j)) {
 				    dp[i][j] = dp[i-1][j-1]+1;
 				}
-			dp[i][j] = Math.max(dp[i][j], Math.max(dp[i-1][j], dp[i][j-1]));
+				dp[i][j] = Math.max(dp[i][j], Math.max(dp[i-1][j], dp[i][j-1]));
 			}
 		}
 
@@ -37,10 +37,10 @@ public class LCS {
 				max = Math.max(max, dp[i][j]);
 			}
 		}
-		}
+	}
 
-		public static void find(String a, String b) {
-			int n = a.length();
+	public static void find(String a, String b) {
+		int n = a.length();
 		int m = b.length();
 		A[][] dp = new A[n][m];
 		if (a.charAt(0) == b.charAt(0)) dp[0][0] = new A(1, 0, 0);
