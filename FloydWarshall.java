@@ -30,8 +30,8 @@ public class FloydWarshall {
 			int two = Integer.parseInt(st.nextToken())-1;
 			long weight = Long.parseLong(st.nextToken());
 			g[one].add(two);
-			dist[one][two] = weight;
 			g[two].add(one);
+			dist[one][two] = weight;
 			dist[two][one] = weight;
 		}
 		
