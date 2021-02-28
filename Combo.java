@@ -3,8 +3,7 @@ import java.io.*;
 
 public class Combo {
 	
-	static int n;
-	static int k;
+	static int n, k;
 	static long mod;
 	static long[][] choose;
 	
