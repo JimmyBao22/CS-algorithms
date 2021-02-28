@@ -30,7 +30,7 @@ public class LCA {
 			g[b].add(a);
 		}
 		
-		dfs(0, 0);	// start from root node
+		dfs(0, -1);	// start from root node
 		precomp();
 		
 	}
