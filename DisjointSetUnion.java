@@ -7,12 +7,12 @@ public class DisjointSetUnion {
 		
 	}
 	
-	static class dsu {
+	static class DSU {
 		int n;
 		int[] parent;
 		int[] size;
 		
-		dsu (int n) {
+		DSU (int n) {
 			this.n = n;
 			parent = new int[n];
 			size = new int[n];
@@ -40,12 +40,12 @@ public class DisjointSetUnion {
 		}
 	}
 	
-	static class dsuArrayList {
+	static class DSUArrayList {
 		int n;
 		ArrayList<Integer> parent;
 		ArrayList<Integer> size;
 		
-		dsuArrayList (int n) {
+		DSUArrayList (int n) {
 			this.n = n;
 			parent = new ArrayList<>();
 			size = new ArrayList<>();
@@ -80,13 +80,13 @@ public class DisjointSetUnion {
 		}
 	}
 	
-	static class dsu2D {
+	static class DSU2D {
 		int n, m;
 		int mult = (int)1e4;
 		int[][] parent;
 		int[][] size;
 		
-		dsu2D (int n, int m) {
+		DSU2D (int n, int m) {
 			this.n = n; this.m = m;
 			parent = new int[n][m];
 			size = new int[n][m];
