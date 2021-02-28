@@ -31,7 +31,16 @@ public class CycleDetection {
 		}
 
 		for (int i=0; i<n; i++) {
-			if (!visited[i]) dfscheck(0);
+			if (!visited[i]) {
+				if (dfscheck(i)) {
+					System.out.println("cycle");
+				}
+			}
+		}
+		
+		for (int i=0; i<n; i++) {
+			visited[i] = false;
+			open[i] = false;
 		}
 		
 		for (int i=0; i<n; i++) {
@@ -40,6 +49,7 @@ public class CycleDetection {
 	            if (!cycle.isEmpty()) break;
 	        }
 	    }
+		
 	    Collections.reverse(cycle);
 		
 	}
