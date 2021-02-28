@@ -11,13 +11,14 @@ public class Hashing {
 
 	
 	public static void main(String[] args) {
-		
+		pref = new long[n];
+		power = new long[n];
 	}
 	
 		// hash of substring from i to j
 		// pref is array calculated in prefhash. Therefore only use this if you need
 			// to calculate hash of a lot of substrings
-	public static long SubstringHash(String s, int i, int j) {
+	public static long SubstringHash(int i, int j) {
 	    if (i != 0) {
 	        return (((pref[j] - (pref[i-1] * power[j - i + 1])%mod)%mod+mod)%mod);
 	    }
