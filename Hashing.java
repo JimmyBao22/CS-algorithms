@@ -28,14 +28,14 @@ public class Hashing {
 	}
 	
 	public static void prefHash(String s) {
-	    pref[0] = s.charAt(0) - 'a';
+	    if (s.length() > 0) pref[0] = s.charAt(0) - 'a';
 	    for (int i=1; i<s.length(); i++) {
 	        pref[i] = ((pref[i-1]*p)%mod + (s.charAt(i) - 'a'))%mod;
 	    }
 	}
 	
 	public static void calc_power() {
-	    power[0] = 1;
+	    if (power.length > 0) power[0] = 1;
 	    for (int i=1; i<n; i++) {
 	        power[i] = power[i-1] * p;
 	        power[i] %= mod;
