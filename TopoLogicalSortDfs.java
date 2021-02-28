@@ -5,7 +5,7 @@ public class TopoLogicalSortDfs {
 	
 	static ArrayList<Integer>[] g;
 	static ArrayDeque<Integer> stack = new ArrayDeque<>();
-	static ArrayList<Integer> finalsequence = new ArrayList<>();
+	static ArrayList<Integer> fs = new ArrayList<>();
 	static boolean[] visited;
 	static int n, m;
 	
@@ -37,7 +37,7 @@ public class TopoLogicalSortDfs {
 		}
 		
 		while (!stack.isEmpty()) {
-			finalsequence.add(stack.pop());
+			fs.add(stack.pop());
 		}
 	}
 	
