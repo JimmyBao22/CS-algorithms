@@ -39,9 +39,7 @@ public class LCS {
 		}
 		}
 
-		public static void find(BufferedReader in) throws IOException {
-			String a = in.readLine();
-			String b = in.readLine();
+		public static void find(String a, String b) {
 			int n = a.length();
 		int m = b.length();
 		A[][] dp = new A[n][m];
