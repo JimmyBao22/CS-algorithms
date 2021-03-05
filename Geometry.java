@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Geometry {
+	
 	public static void main(String[] args) {
 
 	}
@@ -66,7 +67,7 @@ public class Geometry {
 		// takes in 3 points. returns +1 if a->b->c is a counterclockwise angle, 
 		// -1 if a->b->c is a clockwise angle, and 0 if a->b->c are collinear
 	public static double ccw(Point a, Point b, Point c) {
-		double val = (double)(b.x - a.x) * (c.y - b.y) - (b.y - a.y) * (c.x - b.x) * 0.5;
+	    double val = (double)(b.y - a.y) * (c.x - b.x) - (b.x - a.x) * (c.y - b.y);
 		return val == 0 ? 0 : val < 0 ? -1 : 1;
 	}
 	
@@ -88,7 +89,7 @@ public class Geometry {
 	}
 	
 		// point c lies on segment a-b
-	public static boolean onSegment(Point a, Point b, Point c) {
+	public static boolean onSegment(Point a, Point c, Point b) {
 		if (c.x <= Math.max(a.x, b.x) && c.x >= Math.min(a.x, b.x) && 
 		        c.y <= Math.max(a.y, b.y) && c.y >= Math.min(a.y, b.y)) return true; 
 		  
