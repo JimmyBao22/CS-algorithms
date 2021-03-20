@@ -4,7 +4,7 @@ import java.io.*;
 
 public class SmalltoLarge {
 	
-	static int n,m;
+	static int n, q;
 	static ArrayList<Integer>[] g, queries;
 	static int[] ans, value;
 	static ArrayList<TreeMap<Integer, Integer>> vals = new ArrayList<>();
@@ -16,7 +16,7 @@ public class SmalltoLarge {
 
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		n = Integer.parseInt(st.nextToken());
-		m = Integer.parseInt(st.nextToken());
+		q = Integer.parseInt(st.nextToken());
 		ans = new int[n];
 		value = new int[n];
 		g = new ArrayList[n];
@@ -36,7 +36,7 @@ public class SmalltoLarge {
 			g[two].add(one);
 		}
 		
-		for (int i=0; i<m; i++) {
+		for (int i=0; i<q; i++) {
 			st = new StringTokenizer(in.readLine());
 			int one = Integer.parseInt(st.nextToken())-1;
 			int two = Integer.parseInt(st.nextToken())-1;
