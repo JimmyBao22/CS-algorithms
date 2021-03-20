@@ -117,7 +117,7 @@ public class HLD {
 		int heavy = -1; 	// child at other end of heavy edge from this node
 		int head;			// head of heavy path that this node is in
 		int stpos;			// position in segment tree
-		long val;
+		long val = 0;
 		int parent;
 		int depth;
 		A () { }
