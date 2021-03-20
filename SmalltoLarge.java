@@ -22,7 +22,9 @@ public class SmalltoLarge {
 		g = new ArrayList[n];
 		queries = new ArrayList[n];
 		
+		st = new StringTokenizer(in.readLine());
 		for (int i=0; i<n; i++) {
+			value[i] = Integer.parseInt(st.nextToken());
 			g[i] = new ArrayList<>();
 			vals.add(new TreeMap<>());
 			queries[i] = new ArrayList<>();
