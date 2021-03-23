@@ -7,12 +7,12 @@ public class numbers {
 
 	}
 	
-	public static int gcd(int a, int b) { 
+	public static long gcd(long a, long b) { 
         	if (b == 0) return a; 
         	return gcd(b, a%b); 
-    	} 
+   	} 
 	
-	public static int lcm(int a, int b) { 
+	public static long lcm(long a, long b) { 
         	return a/gcd(a, b) * b; 
     	} 
 	
