@@ -4,7 +4,7 @@ import java.io.*;
 
 public class EulerTour {
 
-	static int n, time;
+	static int n, time = 0;
 	static ArrayList<Integer>[] g;
 	static int[] start, stop;
 	
@@ -13,7 +13,6 @@ public class EulerTour {
 		//BufferedReader in = new BufferedReader(new FileReader("EulerTour"));
 
 		n = Integer.parseInt(in.readLine());
-		time = 0;
 		g = new ArrayList[n];
 		for (int i=0; i<n; i++) g[i] = new ArrayList<>();
 		for (int i=0; i<n-1; i++) {
