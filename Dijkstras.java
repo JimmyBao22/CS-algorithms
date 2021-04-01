@@ -4,8 +4,8 @@ import java.io.*;
 public class Dijkstras {
 	
 	static ArrayList<Edge>[] g;
-	static long[] dist; 	// dist[i] = shortest distance from src to i
-	static int[] parent;	// parent[i] = parent of i that gives shortest dist
+	static long[] dist;
+	static int[] parent;
 	static int n, m;
 	static long INF = (long)(1e18);
 
@@ -92,11 +92,8 @@ public class Dijkstras {
 	
 	public static ArrayList<Integer> Backtrack(int dest) {
 		ArrayList<Integer> path = new ArrayList<>();
-		if (dist[dest] == INF) {
-			path.add(-1);
-			return path;
-		}
-		while (dest!= -1) {
+		if (dist[dest] == INF) return path;
+		while (dest != -1) {
 			path.add(dest);
 			dest = parent[dest];
 		}
