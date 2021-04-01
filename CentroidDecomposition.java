@@ -38,8 +38,8 @@ public class CentroidDecomposition {
 	}
 	
 	public static void CDbuild(int node, int p) {
-		int n = FindSizes(node, p); 						// find the size of each subtree
-		int centroid = getCentroid(node, p, n); 			// find the centroid
+		int s = FindSizes(node, p); 						// find the size of each subtree
+		int centroid = getCentroid(node, p, s); 			// find the centroid
 		if (p == -1) p = centroid; 					// parent of root is the root itself
 		parent[centroid] = p;
 
@@ -61,10 +61,10 @@ public class CentroidDecomposition {
 		return subtreeSize[node];
 	}
 
-	public static int getCentroid(int node, int p, int n) {
+	public static int getCentroid(int node, int p, int s) {
 		for (Integer i : g2[node]) {
-			if (i != p && subtreeSize[i] > n/2) {
-				return getCentroid(i, node, n);
+			if (i != p && subtreeSize[i] > s/2) {
+				return getCentroid(i, node, s);
 			}
 		}
 
