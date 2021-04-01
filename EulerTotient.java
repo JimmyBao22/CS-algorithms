@@ -45,22 +45,16 @@ public class EulerTotient {
 		
 		buildtotient();
 		
-		for (int i=1; i<=10000; i++) {
-			if (totient(i) != totient[i]) {
-				System.out.println("FALSE");
-				break;
-			}
-			System.out.println(totient[i]);
-		}
+
 		
 	}
 	
 	public static long totient(long n) {
 		long ret = 1;
 		if (n%2 == 0) {
-			n>>=1;
+			n >>= 1;
 			while (n%2 == 0) {
-				n >>=1;
+				n >>= 1;
 				ret *= 2;
 			}
 		}
@@ -68,9 +62,9 @@ public class EulerTotient {
             if (n%i==0) { 
                 ret *= (i-1);
                 n /= i;
-                while (n%i ==0) {
+                while (n%i==0) {
                 	ret *= i;
-                	n/=i;
+                	n /= i;
                 }
             } 
         }
