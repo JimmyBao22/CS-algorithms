@@ -38,10 +38,8 @@ public class CycleDetection {
 			}
 		}
 		
-		for (int i=0; i<n; i++) {
-			visited[i] = false;
-			open[i] = false;
-		}
+		Arrays.fill(visited, false);
+		Arrays.fill(open, false);
 		
 		for (int i=0; i<n; i++) {
 	        if (!visited[i]) {
@@ -72,24 +70,24 @@ public class CycleDetection {
 	    open[node] = true;
 	    for (Integer i : g[node]) {
 	        if (open[i]) {
-	            cycle.add(node);     // start cycle
+	            cycle.add(node);     						// start cycle
 	            open[node] = false;
 	            open[i] = false;
 	            return true;
 	        }
 	        else if (!visited[i]) {
-	            if (findcycle(i)) {         // continue cycle
+	            if (findcycle(i)) {         				// continue cycle
 	                if (open[node]) {
 	                    cycle.add(node);
 	                    open[node] = false;
 	                    return true;
 	                }
 	                else {
-	                    cycle.add(node);     // end cycle
+	                    cycle.add(node);     				// end cycle
 	                    return false;
 	                }
 	            }
-	            if (!cycle.isEmpty()) return false;       // finished cycle
+	            if (!cycle.isEmpty()) return false;       	// finished cycle
 	        }
 	    }
 	    open[node] = false;
