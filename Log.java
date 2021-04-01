@@ -1,20 +1,12 @@
 import java.util.*;
 import java.io.*;
 
-public class log {
+public class Log {
 	public static void main(String[] args) {
 		System.out.println(log2((long)2048));
 		System.out.println(log2(2048));
 		System.out.println(log(2048, 2));
 		System.out.println(log((long)2048, 2));
-	}
-	
-	public static int log(int top, int base) {
-		return (int)(Math.log(top)/Math.log(base));
-	}
-	
-	public static long log(long top, long base) {
-		return (long)(Math.log(top)/Math.log(base));
 	}
 		
 	public static int log2(int n) {
@@ -23,6 +15,14 @@ public class log {
 	
 	public static long log2(long n) {
 		return 63 - Long.numberOfLeadingZeros(n);
+	}
+	
+	public static int log(int top, int base) {
+		return (int)(Math.log(top)/Math.log(base));
+	}
+	
+	public static long log(long top, long base) {
+		return (long)(Math.log(top)/Math.log(base));
 	}
 	
 	public static long slowlog2(long n) {
