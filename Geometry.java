@@ -95,11 +95,54 @@ public class Geometry {
 		  
 		return false; 
 	}
+	
+		// y = m1x+b1 and y = m2x+b2
+	public static Point LineLineIntersection(double m1, double b1, double m2, double b2) { 
+        m1 = -m1; m2 = -m2;
+		double determinant = m1 - m2; 
+       
+        if (determinant == 0) { 
+            // parallel
+            return new Point(Double.MAX_VALUE, Double.MAX_VALUE); 
+        } 
+        else { 
+            double x = (b1 - b2)/determinant; 
+            double y = (m1*b2 - m2*b1)/determinant; 
+            return new Point(x, y); 
+        } 
+    }
+	
+	static Point PointLineIntersection(Point a, Point b, Point c, Point d) { 
+        // Line ab represented as a1x + b1y = c1 
+        double a1 = b.y - a.y; 
+        double b1 = a.x - b.x; 
+        double c1 = a1*(a.x) + b1*(a.y); 
+       
+        // Line cd represented as a2x + b2y = c2 
+        double a2 = d.y - c.y; 
+        double b2 = c.x - d.x; 
+        double c2 = a2*(c.x)+ b2*(c.y); 
+       
+        double determinant = a1*b2 - a2*b1; 
+       
+        if (determinant == 0) { 
+            // parallel 
+            return new Point(Double.MAX_VALUE, Double.MAX_VALUE); 
+        } 
+        else { 
+            double x = (b2*c1 - b1*c2)/determinant; 
+            double y = (a1*c2 - a2*c1)/determinant; 
+            return new Point(x, y); 
+        } 
+    } 
 
 	static class Point {
-		int x; int y;
-		Point(int a, int b) {
+		double x, y;
+		Point(double a, double b) {
 			x = a; y = b;
+		}
+		void print() {
+			System.out.println(x + " " + y);
 		}
 	}
 }
