@@ -31,8 +31,8 @@ public class Permutation {
 			System.out.println(include);
 			return;
 		}
-		combination(arr, include, i+1);		// don't include
-		include.add(arr[i]); 	// include
+		combination(arr, include, i+1);			// don't include
+		include.add(arr[i]); 					// include
 		combination(arr, include, i+1);
 		include.remove(include.size()-1);		// undo
 	}
@@ -45,8 +45,8 @@ public class Permutation {
 		}
 		if (i >= arr.length || arr.length - i + include.size() < length_needed) return;
 		combination_size(arr, include, i+1, length_needed);		// don't include
-		include.add(arr[i]); 	// include
+		include.add(arr[i]); 									// include
 		combination_size(arr, include, i+1, length_needed);
-		include.remove(include.size()-1);		// undo
+		include.remove(include.size()-1);						// undo
 	}
 }
