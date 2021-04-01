@@ -9,7 +9,7 @@ public class Mod {
 	}
 	
     public static long modInverse(long a, long m) {
-        return pow(a, m - 2, m)%m;
+        return pow(a, m - 2, m);
     }
     
     public static long pow(long a, long b, long m) {
@@ -20,7 +20,7 @@ public class Mod {
     			ans %= m;
     		}
     		a *= a;
-    		a%=m;
+    		a %= m;
     		b >>= 1;
     	}
     	return ans;
@@ -70,7 +70,7 @@ public class Mod {
     	long ans=0;
     	for (int i=0; i<m; i++) {
     		long x = modAll/mods[i];
-    										// use better modinvrse if mods[i] not prime
+    										// use better modinverse if mods[i] not prime
     		ans += remainders[i] * x * modInverse(x, mods[i]);
     	}
     	
