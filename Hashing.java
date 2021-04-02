@@ -5,9 +5,9 @@ import java.io.*;
 public class Hashing {
 
 	static long mod = (long)(1e9+7);
-	static long p = 97;
 	static int n;
 	static long[] pref, power, inv_power;
+	static long p = 911382323, p1 = 972663749;
 	
 	public static void main(String[] args) {
 		pref = new long[n];
