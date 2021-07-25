@@ -13,8 +13,8 @@ public class SegmentTree2D {
 		long[][] tree;
 		
 		public SegTree2D(int n, int m) {		
-			while (sizex < n) sizex *= 2;
-			while (sizey < m) sizey *= 2;
+			while (sizex < n) sizex <<= 1;
+			while (sizey < m) sizey <<= 1;
 			tree = new long[2*sizex][2*sizey];
 		}
 		
@@ -26,7 +26,7 @@ public class SegmentTree2D {
 			if (rx - lx == 1) {
 				return comp_segy(l1, l2, r1, r2, x, 0, 0, sizey);	
 			}
-			int m = (lx + rx)/2;
+			int m = (lx + rx) >> 1;
 			long one = comp_segx(l1, l2, r1, r2, 2*x+1, lx, m); 
 			long two = comp_segx(l1, l2, r1, r2, 2*x+2, m, rx);
 			return one + two;
@@ -37,7 +37,7 @@ public class SegmentTree2D {
 			if (r1 <= ly && ry <= r2) {
 				return tree[x][y];				// inside whole segment
 			}
-			int m = (ly + ry)/2;
+			int m = (ly + ry) >> 1;
 			long one = comp_segy(l1, l2, r1, r2, x, 2*y+1, ly, m); 
 			long two = comp_segy(l1, l2, r1, r2, x, 2*y+2, m, ry);
 			return one + two;
@@ -50,7 +50,7 @@ public class SegmentTree2D {
 			if (rx - lx == 1) {		// in leaf node aka bottom level
 				sety(i, j, v, x, 0, 0, sizey); return;
 			}
-			int m = (lx + rx)/2;
+			int m = (lx + rx) >> 1;
 			if (i < m) setx(i, j, v, 2*x+1, lx, m); 	// go to left subtree
 			else setx(i, j, v, 2*x+2, m, rx);			// go to right subtree
 		}
@@ -59,7 +59,7 @@ public class SegmentTree2D {
 			if (ry - ly == 1) {		// in leaf node aka bottom level
 				tree[x][y] = v; return;
 			}
-			int m = (ly + ry)/2;
+			int m = (ly + ry) >> 1;
 			if (j < m) sety(i, j, v, x, 2*y+1, ly, m); 	// go to left subtree
 			else sety(i, j, v, x, 2*y+2, m, ry);			// go to right subtree
 			tree[x][y] = tree[x][2*y+1] + tree[x][2*y+2];
@@ -74,7 +74,7 @@ public class SegmentTree2D {
 				}
 				return;
 			}
-			int m = (lx + rx)/2;
+			int m = (lx + rx) >> 1;
 			buildx(arr, 2*x+1, lx, m);	buildx(arr, 2*x+2, m, rx);
 		}
 		
@@ -83,7 +83,7 @@ public class SegmentTree2D {
 				if (ly < arr.length) tree[x][y] = arr[lx][ly];
 				return;
 			}
-			int m = (ly + ry)/2;
+			int m = (ly + ry) >> 1;
 			buildy(arr, x, 2*y+1, lx, ly, m);	buildy(arr, x, 2*y+2, lx, m, ry);
 			tree[x][y] = tree[x][2*y+1] + tree[x][2*y+2];
 		} 
