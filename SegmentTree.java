@@ -17,7 +17,7 @@ public class SegmentTree {
 		long[] tree;
 		
 		public SegTree(int n) {			
-			while (size < n) size *= 2;
+			while (size < n) size <<= 1;
 			tree = new long[2*size];
 		}
 		
