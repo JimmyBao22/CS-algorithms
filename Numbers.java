@@ -45,15 +45,15 @@ public class numbers {
 	
 	public static ArrayList<Integer> getprimeDivisors(int n) { 
 		ArrayList<Integer> a = new ArrayList<>();
-			if (n%2 == 0) {
-				a.add(2);
-				while (n%2 == 0) n >>=1;
-			}
+		if (n%2 == 0) {
+		    a.add(2);
+		    while (n%2 == 0) n >>=1;
+		}
 		for (int i = 3; i*i<=n; i+=2)  { 
 		    if (n%i==0) { 
 			a.add(i);
 			while (n%i ==0) n/=i;
-            	} 
+		    } 
 		}
 		if (n!=1) a.add(n);
 		return a;
