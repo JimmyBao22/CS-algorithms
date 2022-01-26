@@ -15,29 +15,30 @@ public class LargestRectangleinHistogram {
 			heights[i] = Integer.parseInt(st.nextToken());
 		}
 		
-        ArrayDeque<Integer> s = new ArrayDeque<>();
-        int maxArea = 0;
-        int i=0;
-        while (i<n) {
-            if (s.isEmpty() || heights[i] > heights[s.peek()]) {
-                s.push(i++);
-            } 
-            else {
-                int cur = s.pop();
-                int left = 0;
-                if (!s.isEmpty()) left = s.peek()+1;
-                int right = i-1;
-                maxArea = Math.max(maxArea, heights[cur] * (right - left + 1));
-            }
-        }
-        while (!s.isEmpty()) {
-        	int cur = s.pop();
-            int left = 0;
-            if (!s.isEmpty()) left = s.peek()+1;
-            int right = n-1;
-            maxArea = Math.max(maxArea, heights[cur] * (right - left + 1));
-        }
-        
+		ArrayDeque<Integer> s = new ArrayDeque<>();
+		int maxArea = 0;
+		int i=0;
+		while (i<n) {
+			if (s.isEmpty() || heights[i] > heights[s.peek()]) {
+				s.push(i++);
+		    	} 
+		    	else {
+				int cur = s.pop();
+				int left = 0;
+				if (!s.isEmpty()) left = s.peek()+1;
+				int right = i-1;
+				maxArea = Math.max(maxArea, heights[cur] * (right - left + 1));
+		    	}
+		}
+		
+		while (!s.isEmpty()) {
+		    	int cur = s.pop();
+		    	int left = 0;
+		    	if (!s.isEmpty()) left = s.peek()+1;
+		    	int right = n-1;
+		    	maxArea = Math.max(maxArea, heights[cur] * (right - left + 1));
+		}
+
         
 	}
 }
