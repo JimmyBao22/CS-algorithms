@@ -58,19 +58,19 @@ public class EulerTotient {
 				ret *= 2;
 			}
 		}
-        for (long i = 3; i*i<=n; i+=2)  { 
-            if (n%i==0) { 
-                ret *= (i-1);
-                n /= i;
-                while (n%i==0) {
-                	ret *= i;
-                	n /= i;
-                }
-            } 
-        }
-        if (n!=1) {
-        	ret *= (n-1);
-        }
+		for (long i = 3; i*i<=n; i+=2)  { 
+		    if (n%i==0) { 
+			ret *= (i-1);
+			n /= i;
+			while (n%i==0) {
+				ret *= i;
+				n /= i;
+			}
+		    } 
+		}
+		if (n!=1) {
+			ret *= (n-1);
+		}
 		return ret;
 	}
 }
