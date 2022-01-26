@@ -14,7 +14,7 @@ public class Hashing {
 		power = new long[n];
 		inv_power = new long[n];
 		
-	    // use the right ones together; either all '1' or all '2'
+	    	// use the right ones together; either all '1' or all '2'
 				
 	}
 	
