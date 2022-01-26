@@ -46,16 +46,16 @@ public class Geometry {
 		if (d1 == 0 || d2 == 0 || d3 == 0) return false; 
 		
 		if (d1 == d2 && 2 * d1 == d3 && 2 * DistSquared(pointtwo, pointfour) == DistSquared(pointtwo, pointthree)) { 
-	        return true; 
-	    } 
+			return true; 
+		} 
 		
 		if (d1 == d3 && 2 * d1 == d2 && 2 * DistSquared(pointtwo, pointthree) == DistSquared(pointtwo, pointfour)) { 
-	        return true; 
-	    } 
+			return true; 
+	    	} 
 		
 		if (d2 == d3 && 2 * d2 == d1 && 2 * DistSquared(pointtwo, pointthree) == DistSquared(pointfour, pointthree)) { 
-	        return true; 
-	    } 
+			return true; 
+	    	} 
 		
 		return false;
 	}
@@ -67,7 +67,7 @@ public class Geometry {
 		// takes in 3 points. returns +1 if a->b->c is a counterclockwise angle, 
 		// -1 if a->b->c is a clockwise angle, and 0 if a->b->c are collinear
 	public static double ccw(Point a, Point b, Point c) {
-	    double val = (double)(b.y - a.y) * (c.x - b.x) - (b.x - a.x) * (c.y - b.y);
+	    	double val = (double)(b.y - a.y) * (c.x - b.x) - (b.x - a.x) * (c.y - b.y);
 		return val == 0 ? 0 : val < 0 ? -1 : 1;
 	}
 	
@@ -82,8 +82,8 @@ public class Geometry {
 		
 		if (o1 == 0 && onSegment(a1, b1, a2)) return true; 
 		if (o2 == 0 && onSegment(a1, b2, a2)) return true; 	  
-	    if (o3 == 0 && onSegment(b1, a1, b2)) return true; 	  
-	    if (o4 == 0 && onSegment(b1, a2, b2)) return true; 
+	   	if (o3 == 0 && onSegment(b1, a1, b2)) return true; 	  
+	    	if (o4 == 0 && onSegment(b1, a2, b2)) return true; 
 	    
 	    return false;
 	}
@@ -98,43 +98,43 @@ public class Geometry {
 	
 		// y = m1x+b1 and y = m2x+b2
 	public static Point LineLineIntersection(double m1, double b1, double m2, double b2) { 
-        m1 = -m1; m2 = -m2;
+		m1 = -m1; m2 = -m2;
 		double determinant = m1 - m2; 
        
-        if (determinant == 0) { 
-            // parallel
-            return new Point(Double.MAX_VALUE, Double.MAX_VALUE); 
-        } 
-        else { 
-            double x = (b1 - b2)/determinant; 
-            double y = (m1*b2 - m2*b1)/determinant; 
-            return new Point(x, y); 
-        } 
-    }
+		if (determinant == 0) { 
+		    // parallel
+		    return new Point(Double.MAX_VALUE, Double.MAX_VALUE); 
+		} 
+		else { 
+		    double x = (b1 - b2)/determinant; 
+		    double y = (m1*b2 - m2*b1)/determinant; 
+		    return new Point(x, y); 
+		} 
+    	}
 	
 	static Point PointLineIntersection(Point a, Point b, Point c, Point d) { 
-        // Line ab represented as a1x + b1y = c1 
-        double a1 = b.y - a.y; 
-        double b1 = a.x - b.x; 
-        double c1 = a1*(a.x) + b1*(a.y); 
-       
-        // Line cd represented as a2x + b2y = c2 
-        double a2 = d.y - c.y; 
-        double b2 = c.x - d.x; 
-        double c2 = a2*(c.x)+ b2*(c.y); 
-       
-        double determinant = a1*b2 - a2*b1; 
-       
-        if (determinant == 0) { 
-            // parallel 
-            return new Point(Double.MAX_VALUE, Double.MAX_VALUE); 
-        } 
-        else { 
-            double x = (b2*c1 - b1*c2)/determinant; 
-            double y = (a1*c2 - a2*c1)/determinant; 
-            return new Point(x, y); 
-        } 
-    } 
+		// Line ab represented as a1x + b1y = c1 
+		double a1 = b.y - a.y; 
+		double b1 = a.x - b.x; 
+		double c1 = a1*(a.x) + b1*(a.y); 
+
+		// Line cd represented as a2x + b2y = c2 
+		double a2 = d.y - c.y; 
+		double b2 = c.x - d.x; 
+		double c2 = a2*(c.x)+ b2*(c.y); 
+
+		double determinant = a1*b2 - a2*b1; 
+
+		if (determinant == 0) { 
+		    // parallel 
+		    return new Point(Double.MAX_VALUE, Double.MAX_VALUE); 
+		} 
+		else { 
+		    double x = (b2*c1 - b1*c2)/determinant; 
+		    double y = (a1*c2 - a2*c1)/determinant; 
+		    return new Point(x, y); 
+		} 
+    	} 
 
 	static class Point {
 		double x, y;
