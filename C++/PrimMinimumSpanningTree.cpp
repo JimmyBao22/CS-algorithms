@@ -1,0 +1,102 @@
+#include <iostream>
+#include <vector>
+#include <map>
+#include <cmath>
+#include <algorithm>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <set>
+#include <string>
+#include <string.h>
+#include <array>
+#include <unordered_map>
+#include <unordered_set>
+#include <iomanip>
+using namespace std;
+typedef long long ll;
+typedef long double ld;
+#define pb push_back
+
+const int MaxN = 1e5+10;
+const int MaxM = 1e5+10;
+vector<pair<ll, int>> g[MaxN];      // length, dest
+ll INF = 1e18;
+int n, m;
+
+    // O((N+M)logM)
+ll MST(int start) {
+    using T = pair<ll, int>;
+    priority_queue<T, vector<T>, greater<T>> pq;
+    bool visited[n];
+    for (int i=0; i<n; i++) {
+        visited[i] = false;
+    }
+    ll minlength = 0;
+    pq.push({start, 0});
+
+    while (!pq.empty()) {
+        T cur = pq.top(); 
+        pq.pop();
+        int node = cur.second;
+        if (visited[node]) continue;
+        visited[node] = true;
+        minlength += cur.first;
+        
+        for (auto i : g[node]) {
+            if (visited[i.second]) continue;
+            pq.push({i.first, i.second});
+        }
+    }
+    return minlength;
+}
+
+    // O(N^2)
+ll MST2(int start) {
+    bool visited[n];
+    ll dist[n];
+    for (int i=0; i<n; i++) {
+        dist[i] = INF;
+        visited[i] = false;
+    }
+    dist[start] = 0;
+    ll minlength = 0;
+
+    while (true) {
+        // find the smallest one
+        int smallest=-1;
+        ll minval=INF;
+        for (int j=0; j<n; j++) {
+            if (!visited[j] && dist[j]<minval) {
+                minval = dist[j];
+                smallest = j;
+            }
+        }
+        if (smallest == -1) break;
+        minlength += minval;
+        
+        for (auto a : g[smallest]) {
+            if (!visited[a.second] && dist[a.second] > minval + a.first) {
+                dist[a.second] = minval + a.first;
+            }
+        }
+        visited[smallest] = true;
+    }
+    return minlength;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    cin >> n >> m;
+
+    for (int i=0; i<m; i++) {
+        int a, b; ll l;
+        cin >> a >> b >> l;
+        a--; b--;
+
+        g[a].push_back({l, b});
+        g[b].push_back({l, a});
+    }
+}

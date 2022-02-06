@@ -1,2 +1,2 @@
-# JavaAlgorithms
+# CSAlgorithms
 Good Stuff
