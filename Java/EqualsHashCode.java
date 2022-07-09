@@ -12,16 +12,15 @@ public class EqualsHashCode {
 		int a;
 		
 		@Override    
-		 public boolean equals(Object o) {        
-		     A cur = (A) o;   
-		     if (a != cur.a) return false;
-		     return true;
-		 }    
+		public boolean equals(Object o) {        
+		    A cur = (A) o;   
+		    if (a != cur.a) return false;
+		    return true;
+		}    
 		 
-		 @Override    
-		 public int hashCode() {        
-			 return a * 97 + 103;
-		 }
+		@Override    
+		public int hashCode() {        
+			return a * 97 + 103;
+		} 
 	}
-	
 }
