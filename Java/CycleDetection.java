@@ -27,7 +27,7 @@ public class CycleDetection {
 			int a = Integer.parseInt(st.nextToken())-1; 	
 			int b = Integer.parseInt(st.nextToken())-1; 
 			g[a].add(b);
-			// g.get(b).add(a);			// if undirected
+			// g[b].add(a);			// if undirected
 		}
 
 		for (int i=0; i<n; i++) {
