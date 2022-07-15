@@ -112,7 +112,7 @@ public class Geometry {
 		} 
     	}
 	
-	static Point PointLineIntersection(Point a, Point b, Point c, Point d) { 
+	public static Point PointLineIntersection(Point a, Point b, Point c, Point d) { 
 		// Line ab represented as a1x + b1y = c1 
 		double a1 = b.y - a.y; 
 		double b1 = a.x - b.x; 
