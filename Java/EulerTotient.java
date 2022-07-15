@@ -62,7 +62,7 @@ public class EulerTotient {
 		    if (n%i == 0) { 
 			ret *= (i-1);
 			n /= i;
-			while (n%i==0) {
+			while (n%i == 0) {
 				ret *= i;
 				n /= i;
 			}
