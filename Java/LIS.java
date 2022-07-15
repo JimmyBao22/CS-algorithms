@@ -23,6 +23,7 @@ public class LIS {
 		}
 		
 		// LIS = set.size();
-		
+		// find actual LIS, use dp --> dp[i] = max subsequence length ending at 
+			// i --> O(n^2)
 	}
 }
