@@ -15,8 +15,8 @@ public class EulerTotient {
 			totient[i] = totient[i]/2;
 		}
 		for (int i=3; i<MaxN; i+=2) {
-			if (totient[i] == i) {
-				for (int j= i; j < MaxN; j+= i) {
+			if (totient[i] == i) {				// prime
+				for (int j = i; j < MaxN; j += i) {
 					totient[j] /= i; totient[j] *= (i-1);
 				}
 			}
@@ -32,9 +32,9 @@ public class EulerTotient {
 			totient[i] = totient[i]/2;
 		}
 		for (int i=3; i<MaxN; i+=2) {
-			if (totient[i] == i) {
+			if (totient[i] == i) {				// prime
 				primes.add(i);
-				for (int j= i; j < MaxN; j+= i) {
+				for (int j = i; j < MaxN; j += i) {
 					totient[j] /= i; totient[j] *= (i-1);
 				}
 			}
@@ -58,8 +58,8 @@ public class EulerTotient {
 				ret *= 2;
 			}
 		}
-		for (long i = 3; i*i<=n; i+=2)  { 
-		    if (n%i==0) { 
+		for (long i = 3; i*i<=n; i += 2)  { 
+		    if (n%i == 0) { 
 			ret *= (i-1);
 			n /= i;
 			while (n%i==0) {
@@ -68,7 +68,7 @@ public class EulerTotient {
 			}
 		    } 
 		}
-		if (n!=1) {
+		if (n != 1) {
 			ret *= (n-1);
 		}
 		return ret;
