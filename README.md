@@ -1,2 +1,2 @@
 # CSAlgorithms
-Good Stuff
+Algorithms for Competitive Programming
