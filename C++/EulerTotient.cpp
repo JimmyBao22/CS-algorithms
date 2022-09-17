@@ -62,7 +62,7 @@ ll tot(ll n) {
         n>>= 1;
         while (n%2 == 0) {
             n >>= 1;
-            ret *= 2;
+            ret <<= 2;
         }
     }
     for (ll i = 3; i*i<=n; i+=2)  { 
