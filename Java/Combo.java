@@ -4,7 +4,7 @@ import java.io.*;
 public class Combo {
 	
 	static int n, k;
-	static long mod;
+	static long mod = (long)(1e9+7);
 	static long[][] choose;
 	
 	static long[] fact, inv_fact;
