@@ -54,10 +54,8 @@ public class Hashing {
 
 	public static void prefHash2(String s) {
 	    if (s.length() > 0) pref[0] = s.charAt(0) - 'a';
-	    long pow = p;
-	    for (int i=1; i<(int)s.length(); i++) {
-	        pref[i] = (pref[i-1] + (s.charAt(i) - 'a') * pow)%mod;
-	        pow = (pow*p)%mod;
+	    for (int i=1; i<s.length(); i++) {
+	        pref[i] = (pref[i-1] + (s.charAt(i) - 'a') * power[i])%mod;
 	    }
 	}
 	
