@@ -54,7 +54,7 @@ vector<int> getDivisorsinOrder(int n) {
     return a;
 }
 
-vector<int> getprimeDivisors(int n) { 
+vector<int> getPrimeDivisors(int n) { 
     vector<int> a;
     if (n%2 == 0) {
         a.push_back(2);
