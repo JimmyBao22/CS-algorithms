@@ -43,7 +43,7 @@ public class numbers {
 		return a;
 	}
 	
-	public static ArrayList<Integer> getprimeDivisors(int n) { 
+	public static ArrayList<Integer> getPrimeDivisors(int n) { 
 		ArrayList<Integer> a = new ArrayList<>();
 		if (n%2 == 0) {
 		    a.add(2);
