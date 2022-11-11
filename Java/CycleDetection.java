@@ -19,9 +19,9 @@ public class CycleDetection {
 		visited = new boolean[n];
 		open = new boolean[n];
 		g = new ArrayList[n];
-		
+
 		for (int i=0; i<n; i++) g[i] = new ArrayList<>();
-		
+
 		for (int i=0; i<m; i++) {
 			st = new StringTokenizer(in.readLine());
 			int a = Integer.parseInt(st.nextToken())-1; 	
@@ -42,13 +42,13 @@ public class CycleDetection {
 		Arrays.fill(open, false);
 		
 		for (int i=0; i<n; i++) {
-	        if (!visited[i]) {
-	            findcycle(i);
-	            if (!cycle.isEmpty()) break;
-	        }
-	    }
+			if (!visited[i]) {
+			    findcycle(i);
+			    if (!cycle.isEmpty()) break;
+			}
+		}
 		
-	    Collections.reverse(cycle);
+	    	Collections.reverse(cycle);
 		
 	}
 	
