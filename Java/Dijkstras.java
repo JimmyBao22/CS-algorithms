@@ -33,7 +33,7 @@ public class Dijkstras {
 		
 	}
 	
-		// O((N+M)logM)
+		// O((N+M)logN)
 	public static void dijkstras(int start) {
 		PriorityQueue<Edge> pq = new PriorityQueue<>();
 		boolean[] visited = new boolean[n];
