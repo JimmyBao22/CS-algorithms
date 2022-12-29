@@ -34,7 +34,7 @@ public class Hashing {
 	    }
 	}
 	
-	public static void calc_power1() {
+	public static void calcPower1() {
 	    power[0] = 1;
 	    for (int i=1; i<n; i++) {
 	        power[i] = power[i-1] * p;
@@ -59,7 +59,7 @@ public class Hashing {
 	    }
 	}
 	
-	public static void calc_power2() {
+	public static void calcPower2() {
 	    power[0] = inv_power[0] = 1;
 	    for (int i=1; i<n; i++) {
 	        power[i] = power[i-1] * p;
