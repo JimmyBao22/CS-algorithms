@@ -14,8 +14,31 @@ public class Hashing {
 		power = new long[n];
 		inv_power = new long[n];
 		
-	    	// use the right ones together; either all '1' or all '2'
+	    // use the right ones together; either all '0', '1', or '2'
 				
+	}
+
+	public static long SubstringHash0(int i, int j) {
+		if (i != 0) {
+			return pref[j] - (pref[i-1] * power[j - i + 1]);
+		}
+		else {
+			return pref[j];
+		}
+	}
+
+	public static void prefHash0(String s) {
+		if (s.length() > 0) pref[0] = s.charAt(0) - 'a';
+		for (int i=1; i<s.length(); i++) {
+			pref[i] = pref[i-1]*p + (s.charAt(i) - 'a');
+		}
+	}
+
+	public static void calc_power0() {
+		power[0] = 1;
+		for (int i=1; i<n; i++) {
+			power[i] = power[i-1] * p;
+		}
 	}
 	
 	public static long SubstringHash1(int i, int j) {
@@ -45,7 +68,7 @@ public class Hashing {
 	
 	public static long SubstringHash2(int i, int j) {
 	    if (i != 0) {
-	        return ((((pref[j] - pref[i-1])%mod+mod)%mod) * inv_power[i])%mod;
+	        return ((((pref[j] - pref[i-1]) * inv_power[i])%mod+mod)%mod);
 	    }
 	    else {
 	        return (pref[j] * inv_power[i])%mod;
@@ -69,16 +92,16 @@ public class Hashing {
 	}
 	
 	public static long pow(long a, long b, long m) {
-		long ans = 1;
-		while (b > 0) {
-			if (b%2 == 1) {
-				ans *= a;
-				ans %= m;
-			}
-			a *= a;
-			a %= m;
-			b >>= 1;
-		}
+    	long ans = 1;
+    	while (b > 0) {
+    		if (b%2 == 1) {
+    			ans *= a;
+    			ans %= m;
+    		}
+    		a *= a;
+    		a %= m;
+    		b >>= 1;
+    	}
     	return ans;
     }
 }

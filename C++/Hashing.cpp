@@ -22,6 +22,29 @@ const int MaxN = 1e5 + 1;
 ll inv_power[MaxN], power[MaxN], mod = 1e9+7, pref[MaxN];
 ll p = 911382323, p1 = 972663749;
 
+void calc_power0() {
+    power[0] = 1;
+    for (int i=1; i<MaxN; i++) {
+        power[i] = power[i-1] * p;
+    }
+}
+
+void prefHash0(string s) {
+    if (s.length() > 0) pref[0] = s[0] - 'a';
+    for (int i=1; i<s.length(); i++) {
+        pref[i] = pref[i-1]*p + (s[i] - 'a');
+    }
+}
+
+ll SubstringHash0(int i, int j) {
+    if (i != 0) {
+        return pref[j] - (pref[i-1] * power[j - i + 1]);
+    }
+    else {
+        return pref[j];
+    }
+}
+
 void calc_power1() {
     power[0] = 1;
     for (int i=1; i<MaxN; i++) {
@@ -96,7 +119,7 @@ int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    // use the right ones together; either all '1' or all '2'
+    // use the right ones together; either all '0', '1', or '2'
 
 
 
