@@ -7,7 +7,7 @@ public class SmalltoLarge {
 	static int n, q;
 	static ArrayList<Integer>[] g, queries;
 	static int[] ans, value;
-	static ArrayList<TreeMap<Integer, Integer>> vals = new ArrayList<>();
+	static ArrayList<TreeMap<Integer, Integer>> vals;
 		// node --> set of lengths
 	
 	public static void main(String[] args) throws IOException, FileNotFoundException {
@@ -21,31 +21,32 @@ public class SmalltoLarge {
 		value = new int[n];
 		g = new ArrayList[n];
 		queries = new ArrayList[n];
+		vals = new ArrayList<>();
 		
 		st = new StringTokenizer(in.readLine());
-		for (int i=0; i<n; i++) {
+		for (int i = 0; i < n; i++) {
 			value[i] = Integer.parseInt(st.nextToken());
 			g[i] = new ArrayList<>();
 			vals.add(new TreeMap<>());
 			queries[i] = new ArrayList<>();
 		}
 		
-		for (int i=0; i<n-1; i++) {
+		for (int i = 0; i < n-1; i++) {
 			st = new StringTokenizer(in.readLine());
-			int one = Integer.parseInt(st.nextToken())-1;
-			int two = Integer.parseInt(st.nextToken())-1;
+			int one = Integer.parseInt(st.nextToken()) - 1;
+			int two = Integer.parseInt(st.nextToken()) - 1;
 			g[one].add(two);
 			g[two].add(one);
 		}
 		
-		for (int i=0; i<q; i++) {
+		for (int i = 0; i < q; i++) {
 			st = new StringTokenizer(in.readLine());
-			int one = Integer.parseInt(st.nextToken())-1;
-			int two = Integer.parseInt(st.nextToken())-1;
+			int one = Integer.parseInt(st.nextToken()) - 1;
+			int two = Integer.parseInt(st.nextToken()) - 1;
 			queries[one].add(two);
 		}
 		
-		smalltolarge(0,-1);
+		smalltolarge(0, -1);
 		
 		
 	}
@@ -73,7 +74,7 @@ public class SmalltoLarge {
 		}
 				
 		// add/remove values at node
-		vals.get(node).put(value[node], vals.get(node).getOrDefault(value[node], 0)+1);
+		vals.get(node).put(value[node], vals.get(node).getOrDefault(value[node], 0) + 1);
 		
 		// answer queries
 		for (Integer i : queries[node]) {

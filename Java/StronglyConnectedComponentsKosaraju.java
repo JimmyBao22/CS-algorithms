@@ -21,15 +21,15 @@ public class StronglyConnectedComponentsKosaraju {
 		reverse = new ArrayList[n];
 		
 		visited = new boolean[n];
-		for (int i=0; i<n; i++) {
+		for (int i = 0; i < n; i++) {
 			g[i] = new ArrayList<>();
 			reverse[i] = new ArrayList<>();
 		}
 		
-		for (int i=0; i<m; i++) {
+		for (int i = 0; i < m; i++) {
 			st = new StringTokenizer(in.readLine());
-			int a = Integer.parseInt(st.nextToken())-1;
-			int b = Integer.parseInt(st.nextToken())-1;
+			int a = Integer.parseInt(st.nextToken()) - 1;
+			int b = Integer.parseInt(st.nextToken()) - 1;
 			g[a].add(b);
 			reverse[b].add(a);
 		}
@@ -38,8 +38,8 @@ public class StronglyConnectedComponentsKosaraju {
 	}
 	
 	public static void SCC() {
-		for (int i=0; i<n; i++) {
-			if (!visited[i]) fillstack(i);
+		for (int i = 0; i < n; i++) {
+			if (!visited[i]) fillStack(i);
 		}
 		
 		Arrays.fill(visited, false);
@@ -47,26 +47,30 @@ public class StronglyConnectedComponentsKosaraju {
 		while (!stack.isEmpty()) {
 			int cur = stack.pop();
 			if (!visited[cur]) {
-				ArrayList<Integer> curarr = new ArrayList<>();
-				dfsRev(cur, curarr);
-				SCC.add(curarr);
+				ArrayList<Integer> curArr = new ArrayList<>();
+				dfsRev(cur, curArr);
+				SCC.add(curArr);
 			}
 		}
 	}
 	
-	public static void fillstack(int cur) {
+	public static void fillStack(int cur) {
 		visited[cur] = true;
 		for (Integer i : g[cur]) {
-			if (!visited[i]) fillstack(i);
+			if (!visited[i]) {
+				fillStack(i);
+			}
 		}
 		stack.push(cur);
 	}
 	
-	public static void dfsRev(int cur, ArrayList<Integer> curarr) {
+	public static void dfsRev(int cur, ArrayList<Integer> curArr) {
 		visited[cur] = true;
-		curarr.add(cur);
+		curArr.add(cur);
 		for (Integer i : reverse[cur]) {
-			if (!visited[i]) dfsRev(i, curarr);
+			if (!visited[i]) {
+				dfsRev(i, curArr);
+			}
 		}
 	}
 }

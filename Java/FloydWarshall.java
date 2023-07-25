@@ -18,16 +18,16 @@ public class FloydWarshall {
 		m = Integer.parseInt(st.nextToken());
 		dist = new long[n][n];
 		g = new ArrayList[n];
-		for (int i=0; i<n; i++) {
+		for (int i = 0; i < n; i++) {
 			Arrays.fill(dist, INF);
 			dist[i][i]=0;
 			g[i] = new ArrayList<>();
 		}
 		
-		for (int i=0; i<m; i++) {
+		for (int i = 0; i < m; i++) {
 			st = new StringTokenizer(in.readLine());
-			int one = Integer.parseInt(st.nextToken())-1;
-			int two = Integer.parseInt(st.nextToken())-1;
+			int one = Integer.parseInt(st.nextToken()) - 1;
+			int two = Integer.parseInt(st.nextToken()) - 1;
 			long weight = Long.parseLong(st.nextToken());
 			g[one].add(two);
 			g[two].add(one);
@@ -35,14 +35,14 @@ public class FloydWarshall {
 			dist[two][one] = weight;
 		}
 		
-		FW();
+		floydWarshall();
 		
 	}
 	
-	public static void FW () {
-		for (int k=0; k<n; k++) {
-			for (int i=0; i<n; i++) {
-				for (int j=0; j<n; j++) {
+	public static void floydWarshall () {
+		for (int k = 0; k < n; k++) {
+			for (int i = 0; i < n; i++) {
+				for (int j = 0; j < n; j++) {
 					dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
 				}
 			}

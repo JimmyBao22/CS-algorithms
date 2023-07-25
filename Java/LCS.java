@@ -13,30 +13,31 @@ public class LCS {
 		int n = a.length();
 		int m = b.length();
 		int[][] dp = new int[n][m];
-		if (a.charAt(0) == b.charAt(0)) dp[0][0] = 1;
-		for (int i=1; i<n; i++) {
-		    if (a.charAt(i) == b.charAt(0)) dp[i][0] = 1;
+		if (a.charAt(0) == b.charAt(0)) {
+			dp[0][0] = 1;
+		}
+		for (int i = 1; i < n; i++) {
+		    if (a.charAt(i) == b.charAt(0)) {
+				dp[i][0] = 1;
+			}
 		    else dp[i][0] = dp[i-1][0];
 		}
-		for (int i=1; i<m; i++) {
-		    if (a.charAt(0) == b.charAt(i)) dp[0][i] = 1;
+		for (int i = 1; i < m; i++) {
+		    if (a.charAt(0) == b.charAt(i)) {
+				dp[0][i] = 1;
+			}
 		    else dp[0][i] = dp[0][i-1];
 		}
-		for (int i=1; i<n; i++) {
-			for (int j=1; j<m; j++) {
+		for (int i = 1; i < n; i++) {
+			for (int j = 1; j < m; j++) {
 				if (a.charAt(i) == b.charAt(j)) {
-				    dp[i][j] = dp[i-1][j-1]+1;
+				    dp[i][j] = dp[i-1][j-1] + 1;
 				}
 				dp[i][j] = Math.max(dp[i][j], Math.max(dp[i-1][j], dp[i][j-1]));
 			}
 		}
 
-		int max=0;
-		for (int i=0; i<n; i++) {
-			for (int j=0; j<n; j++) {
-				max = Math.max(max, dp[i][j]);
-			}
-		}
+		int max = dp[n-1][m-1];
 	}
 	
 	static int[][] memo;
@@ -47,9 +48,9 @@ public class LCS {
 		if (memo[posa][posb] != -1) return memo[posa][posb];
 		int ans=0;
 		if (a.charAt(posa) == b.charAt(posb)) {
-			ans = dp(a, b, posa+1, posb+1) + 1;
+			ans = dp(a, b, posa + 1, posb + 1) + 1;
 		}
-		ans = Math.max(ans, Math.max(dp(a, b, posa+1, posb), dp(a, b, posa, posb+1)));
+		ans = Math.max(ans, Math.max(dp(a, b, posa + 1, posb), dp(a, b, posa, posb + 1)));
 		return memo[posa][posb] = ans;
 	}
 	
@@ -60,17 +61,17 @@ public class LCS {
 		if (a.charAt(0) == b.charAt(0)) dp[0][0] = new A(1, 0, 0);
 		else dp[0][0] = new A(0,0,0);
 
-		for (int i=1; i<n; i++) {
+		for (int i = 1; i < n; i++) {
 		    if (a.charAt(i) == b.charAt(0)) dp[i][0] = new A(1, i, 0);
 		    else dp[i][0] = new A(dp[i-1][0].val, i-1, 0);
 		}
-		for (int i=1; i<m; i++) {
+		for (int i = 1; i < m; i++) {
 		    if (a.charAt(0) == b.charAt(i)) dp[0][i] = new A(1, 0, i);
 		    else dp[0][i] = new A(dp[0][i-1].val, 0, i-1);
 		}
 
-		for (int i=1; i<n; i++) {
-			for (int j=1; j<m; j++) {
+		for (int i = 1; i < n; i++) {
+			for (int j = 1; j < m; j++) {
 				if (a.charAt(i) == b.charAt(j)) {
 				    dp[i][j] = new A(dp[i-1][j-1].val+1, i-1, j-1);
 				}
@@ -84,8 +85,8 @@ public class LCS {
 		}
 
 		int max=0;
-		for (int i=0; i<n; i++ ) {
-			for (int j=0; j<m; j++) {
+		for (int i = 0; i < n; i++ ) {
+			for (int j = 0; j < m; j++) {
 				max = Math.max(max, dp[i][j].val);
 			}
 		}
@@ -96,8 +97,8 @@ public class LCS {
 		}
 
 		A cur = new A(0,0,0);
-		o: for (int i=0; i<n; i++) {
-			for (int j=0; j<m; j++) {
+		o: for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
 				if (dp[i][j].val == max) {
 					cur = new A(dp[i][j].val, dp[i][j].x, dp[i][j].y, i, j);
 					break o;
@@ -124,7 +125,7 @@ public class LCS {
 		}
 
 		StringBuilder s = new StringBuilder();
-		for (int i=f.size()-1; i>=0; i--) {
+		for (int i = f.size() - 1; i >= 0; i--) {
 			s.append(f.get(i));
 		}
 		System.out.println(s);

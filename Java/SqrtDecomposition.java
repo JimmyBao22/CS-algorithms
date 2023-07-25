@@ -15,7 +15,7 @@ public class SqrtDecomposition {
 		arr = new int[n];
 		
 		StringTokenizer st = new StringTokenizer(in.readLine());
-		for (int i=0; i<n; i++) {
+		for (int i = 0; i < n; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
 		}	
 		
@@ -29,12 +29,12 @@ public class SqrtDecomposition {
 		public SqrtDecomp() {
 			len = (int) (Math.sqrt(n) + 1);
 			b = new int[len];
-			for (int i=0; i<n; i++) b[i/len] += arr[i];
+			for (int i = 0; i < n; i++) b[i/len] += arr[i];
 		}
 		
 		// set index i
 		public void update(int i, int x) {
-			int block = i/len;
+			int block = i / len;
 			b[block] += x - arr[i];
 			arr[i] = x;
 		}
@@ -42,28 +42,29 @@ public class SqrtDecomposition {
 		// query l to r
 		public int query(int l, int r) {
 			int sum=0;
-			int left = l/len; int right = r/len;
+			int left = l / len; 
+			int right = r / len;
 			if (left == right) {
-				for (int i=l; i<=r; i++) sum += arr[i];
+				for (int i = l; i <= r; i++) sum += arr[i];
 			}
 			else {
-				for (int i=l; i<=(left + 1)*len - 1; i++) sum += arr[i];
-				for (int i=left+1; i<=right-1; i++) sum += b[i];
-				for (int i=right*len; i<=r; i++) sum += arr[i];
+				for (int i = l; i <= (left + 1) * len - 1; i++) sum += arr[i];
+				for (int i = left + 1; i <= right - 1; i++) sum += b[i];
+				for (int i = right * len; i <= r; i++) sum += arr[i];
 			}
 			return sum;
 		}
 		
 		// update l to r
 		public void update_seg(int l, int r, int x) {
-			int left = l/len; int right = r/len;
+			int left = l / len; int right = r / len;
 			if (left == right) {
-				for (int i=l; i<=r; i++) arr[i] += x;
+				for (int i = l; i <= r; i++) arr[i] += x;
 			}
 			else {
-				for (int i=l; i<=(left + 1)*len - 1; i++) arr[i] += x;
-				for (int i=left+1; i<=right-1; i++) b[i] += x;
-				for (int i=right*len; i<=r; i++) arr[i] += x;
+				for (int i = l; i <= (left + 1) * len - 1; i++) arr[i] += x;
+				for (int i = left + 1; i <= right - 1; i++) b[i] += x;
+				for (int i = right * len; i <= r; i++) arr[i] += x;
 			}
 		}
 		
@@ -91,7 +92,7 @@ public class SqrtDecomposition {
 		int right = 0;
 		int[] count = new int[(int)(1e6+1)];
 		ans = add(arr[0], count, ans);
-		for (int i=0; i<q; i++) {
+		for (int i = 0; i < q; i++) {
 			while (left < queries[i].left) {
 				ans = remove(arr[left], count, ans);
 				left++;
@@ -112,7 +113,7 @@ public class SqrtDecomposition {
 		}
 		
 		StringBuilder sb = new StringBuilder();
-		for (int i=0; i<q; i++) {
+		for (int i = 0; i < q; i++) {
 			sb.append(answer[i] + "\n");
 		}
 		System.out.print(sb);

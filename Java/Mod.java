@@ -12,26 +12,26 @@ public class Mod {
 		return pow(a, m - 2, m);
 	}
 
-	public static long pow(long a, long b, long m) {
-		long ans=1;
-		while (b > 0) {
-			if (b%2 == 1) {
-				ans *= a;
-				ans %= m;
-			}
-			a *= a;
-			a %= m;
-			b >>= 1;
-		}
-		return ans;
-	}
+    public static long pow(long a, long b, long m) {
+    	long ans = 1;
+    	while (b > 0) {
+    		if ((b & 1) == 1) {
+    			ans *= a;
+    			ans %= m;
+    		}
+    		a *= a;
+    		a %= m;
+    		b >>= 1;
+    	}
+    	return ans;
+    }
 
 	static long x,y;
 	public static long modInverse1(long a, long m) {         
 		x=y=1;
 		long g = gcdExtended(a, m);
-		if (g!=1) return -1; 	// if a and m are not coprime, there is not an inverse
-		long inverse = (x%m + m)%m;
+		if (g != 1) return -1; 	// if a and m are not coprime, there is not an inverse
+		long inverse = (x % m + m) % m;
 		return inverse;
 	} 
 
@@ -43,10 +43,10 @@ public class Mod {
 		    return b; 
 		}
 
-		long gcd = gcdExtended(b%a, a); 
-		long x1=x, y1=y;  
+		long gcd = gcdExtended(b % a, a); 
+		long x1 = x, y1 = y;  
 		// Update x and y 
-		x = y1 - (b/a) * x1; 
+		x = y1 - (b / a) * x1; 
 		y = x1; 
 
 		return gcd; 
@@ -62,14 +62,14 @@ public class Mod {
 					    // x = remainders[0] mod mods[0]
 						// x = remainders[1] mod mods[1]
 						// x = remainders[2] mod mods[2] ... 
-    	public static long CRT(long[] remainders, long[] mods) {
+	public static long CRT(long[] remainders, long[] mods) {
 		int m = remainders.length;
 		long modAll = 1;
-		for (int i=0; i<m; i++) modAll *= mods[i];
+		for (int i = 0; i < m; i++) modAll *= mods[i];
 
 		long ans=0;
-		for (int i=0; i<m; i++) {
-			long x = modAll/mods[i];
+		for (int i = 0; i < m; i++) {
+			long x = modAll / mods[i];
 											// use better modinverse if mods[i] not prime
 			ans += remainders[i] * x * modInverse(x, mods[i]);
 		}

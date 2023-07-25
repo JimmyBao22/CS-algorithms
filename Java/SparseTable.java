@@ -30,8 +30,8 @@ public class SparseTable {
 				st[0][i] = arr[i];
 			}
 			
-			for (int log=1; (1 << log)<=n; log++) {
-				for (int i=0; i + (1 << log) < n+1; i++) {
+			for (int log = 1; (1 << log) <= n; log++) {
+				for (int i = 0; i + (1 << log) < n+1; i++) {
 					st[log][i] = Math.min(st[log-1][i], st[log-1][i + (1 << (log-1))]);
 				}
 			}
@@ -56,11 +56,11 @@ public class SparseTable {
 			len = 32;
 			st = new long[len][n];
 
-			for (int i=0; i<n; i++) {
+			for (int i = 0; i < n; i++) {
 				st[0][i] = arr[i];
 			}
 			
-			for (int log=1; (1 << log)<=n; log++) {
+			for (int log = 1; (1 << log) <= n; log++) {
 				for (int i=0; i + (1 << log) < n+1; i++) {
 					st[log][i] = st[log-1][i] + st[log-1][i + (1 << (log-1))];
 				}
@@ -70,7 +70,7 @@ public class SparseTable {
 		// query l to r
 		public long query(int l, int r) {
 			long sum=0;
-			for (int log=len; log>=0; log--) {
+			for (int log = len; log >= 0; log--) {
 				if ((1 << log) <= r - l + 1) {
 					sum += st[log][l];
 					l += (1 << log);

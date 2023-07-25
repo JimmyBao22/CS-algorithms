@@ -31,9 +31,9 @@ public class MatrixExponentationFibonacci {
 	
 	public static long[][] multiply (int n, long[][] a, long[][] b) {
 		long[][] product = new long[n][n];
-		for (int i=0; i<n; i++) {
-			for (int j=0; j<n; j++) {
-				for (int k=0; k<n; k++) {
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				for (int k = 0; k < n; k++) {
 					product[i][k] += a[i][j] * b[j][k];
 					product[i][k] %= mod;
 				}

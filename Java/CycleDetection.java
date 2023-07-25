@@ -20,19 +20,19 @@ public class CycleDetection {
 		open = new boolean[n];
 		g = new ArrayList[n];
 
-		for (int i=0; i<n; i++) g[i] = new ArrayList<>();
+		for (int i = 0; i < n; i++) g[i] = new ArrayList<>();
 
-		for (int i=0; i<m; i++) {
+		for (int i = 0; i < m; i++) {
 			st = new StringTokenizer(in.readLine());
-			int a = Integer.parseInt(st.nextToken())-1; 	
-			int b = Integer.parseInt(st.nextToken())-1; 
+			int a = Integer.parseInt(st.nextToken()) - 1; 	
+			int b = Integer.parseInt(st.nextToken()) - 1; 
 			g[a].add(b);
 			// g[b].add(a);			// if undirected
 		}
 
-		for (int i=0; i<n; i++) {
+		for (int i = 0; i < n; i++) {
 			if (!visited[i]) {
-				if (dfscheck(i)) {
+				if (dfsCheck(i)) {
 					System.out.println("cycle");
 				}
 			}
@@ -41,42 +41,42 @@ public class CycleDetection {
 		Arrays.fill(visited, false);
 		Arrays.fill(open, false);
 		
-		for (int i=0; i<n; i++) {
+		for (int i = 0; i < n; i++) {
 			if (!visited[i]) {
-			    findcycle(i);
+			    findCycle(i);
 			    if (!cycle.isEmpty()) break;
 			}
 		}
 		
-	    	Collections.reverse(cycle);
+		Collections.reverse(cycle);
 		
 	}
 	
 		// true = cycle, false = no cycle
-	public static boolean dfscheck(int node) { 
+	public static boolean dfsCheck(int node) { 
 		if (open[node]) return true;
 		if (visited[node]) return false;
 		visited[node] = true;
 		open[node] = true;
 		for (Integer i : g[node]) {
-			if (dfscheck(i)) return true;
+			if (dfsCheck(i)) return true;
 		}
 		open[node] = false;
 		return false;
 	}
 	
-	public static boolean findcycle(int node) {
+	public static boolean findCycle(int node) {
 	    visited[node] = true;
 	    open[node] = true;
 	    for (Integer i : g[node]) {
-	        if (open[i]) {
-	            cycle.add(node);     						// start cycle
+	        if (open[i]) {									// start cycle
+	            cycle.add(node);     						
 	            open[node] = false;
 	            open[i] = false;
 	            return true;
 	        }
 	        else if (!visited[i]) {
-	            if (findcycle(i)) {         				// continue cycle
+	            if (findCycle(i)) {         				// continue cycle
 	                if (open[node]) {
 	                    cycle.add(node);
 	                    open[node] = false;
@@ -87,7 +87,9 @@ public class CycleDetection {
 	                    return false;
 	                }
 	            }
-	            if (!cycle.isEmpty()) return false;       	// finished cycle
+	            if (!cycle.isEmpty()) {						// finished cycle
+					return false;       	
+				}
 	        }
 	    }
 	    open[node] = false;

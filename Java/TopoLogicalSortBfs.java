@@ -4,8 +4,8 @@ import java.io.*;
 public class TopoLogicalSortBfs {
 	
 	static ArrayList<Integer>[] g;
-	static ArrayDeque<Integer> queue = new ArrayDeque<>();
-	static ArrayList<Integer> fs = new ArrayList<>();
+	static ArrayDeque<Integer> queue;
+	static ArrayList<Integer> fs;
 	static int[] indegree;
 	static boolean[] visited;
 	static int n, m;
@@ -18,24 +18,28 @@ public class TopoLogicalSortBfs {
 		n = Integer.parseInt(st.nextToken()); 	// number of vertices
 		m = Integer.parseInt(st.nextToken()); 	// number of edges
 		g = new ArrayList[n];
+		queue = new ArrayDeque<>();
+		fs = new ArrayList<>();
 		
 		visited = new boolean[n];
 		indegree = new int[n];
-		for (int i=0; i<n; i++) g[i] = new ArrayList<>();
+		for (int i = 0; i < n; i++) {
+			g[i] = new ArrayList<>();
+		}
 		
-		for (int i=0; i<m; i++) {
+		for (int i = 0; i < m; i++) {
 			st = new StringTokenizer(in.readLine());
-			int a = Integer.parseInt(st.nextToken())-1;
-			int b = Integer.parseInt(st.nextToken())-1;
+			int a = Integer.parseInt(st.nextToken()) - 1;
+			int b = Integer.parseInt(st.nextToken()) - 1;
 			g[a].add(b);
 			indegree[b]++;
 		}
 		
-		toposort();
+		topoSortBFS();
 	}
 	
-	public static void toposort() {
-		for (int i=0; i<n; i++) {
+	public static void topoSortBFS() {
+		for (int i = 0; i < n; i++) {
 			if (indegree[i] == 0) {
 				queue.add(i);
 				visited[i] = true;

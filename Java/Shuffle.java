@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class shuffle {
+public class Shuffle {
 	public static void main(String[] args) {
 
 	}

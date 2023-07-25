@@ -22,15 +22,15 @@ public class HLD {
 		starr = new long[n];
 		
 		StringTokenizer st = new StringTokenizer(in.readLine());
-		for (int i=0; i<n; i++) {
+		for (int i = 0; i < n; i++) {
 			arr[i] = new A(Integer.parseInt(st.nextToken()));
 			g[i] = new ArrayList<>();
 		}
 		
-		for (int i=0; i<n-1; i++) {
+		for (int i = 0; i < n-1; i++) {
 			st = new StringTokenizer(in.readLine());
-			int one = Integer.parseInt(st.nextToken())-1;
-			int two = Integer.parseInt(st.nextToken())-1;
+			int one = Integer.parseInt(st.nextToken()) - 1;
+			int two = Integer.parseInt(st.nextToken()) - 1;
 			g[one].add(two); 
 			g[two].add(one);
 		}
@@ -42,18 +42,18 @@ public class HLD {
 		
 		StringBuilder sb = new StringBuilder();
 		int q = Integer.parseInt(in.readLine());
-		for (int i=0; i<q; i++) {
+		for (int i = 0; i < q; i++) {
 			st = new StringTokenizer(in.readLine());
 			int one = Integer.parseInt(st.nextToken());
 			if (one == 0) {			// update
-				int two = Integer.parseInt(st.nextToken())-1;		// node
+				int two = Integer.parseInt(st.nextToken()) - 1;		// node
 				long three = Long.parseLong(st.nextToken());		// value
 				arr[two].val = three;
 				s.set(arr[two].stpos, arr[two].val);
 			}
-			else {					// query
-				int two = Integer.parseInt(st.nextToken())-1;		
-				int three = Integer.parseInt(st.nextToken())-1;	
+			else {													// query
+				int two = Integer.parseInt(st.nextToken()) - 1;		
+				int three = Integer.parseInt(st.nextToken()) - 1;	
 				long ans = query(two, three);
 				sb.append(ans);
 				sb.append("\n");
@@ -63,20 +63,21 @@ public class HLD {
 	}
 	
 	static long query(int a, int b) {
-		long ans=0;
-		while (arr[a].head != arr[b].head) {		// while part of different chains
+		long ans = 0;
+		while (arr[a].head != arr[b].head) {						// while part of different chains
 			if (arr[arr[a].head].depth > arr[arr[b].head].depth) {
-				int temp = a; a = b; b = temp;		// swap so now b greater depth
+				int temp = a; a = b; b = temp;						// swap so now b greater depth
 			}
 			int current_head = arr[b].head;
-			ans = Math.max(ans, s.comp_seg(arr[current_head].stpos, arr[b].stpos+1));
-			b = arr[current_head].parent;		// move b to parent of head so you are on a new chain
+			ans = Math.max(ans, s.comp_seg(arr[current_head].stpos, arr[b].stpos + 1));
+			b = arr[current_head].parent;							// move b to parent of head so you are on a new chain
 		}
 		if (arr[a].depth > arr[b].depth) {
 			int temp = a; a = b; b = temp;
 		}
+
 		// now a and b on same chain
-		ans = Math.max(ans, s.comp_seg(arr[a].stpos, arr[b].stpos+1));
+		ans = Math.max(ans, s.comp_seg(arr[a].stpos, arr[b].stpos + 1));
 		return ans;
 	}
 	

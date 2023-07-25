@@ -13,14 +13,15 @@ public class BinaryIndexTree {
 		int n;
 		long[] f;	// 1 base indexing
 		BIT (int n) {
-			this.n = n; f = new long[n+1];
+			this.n = n;
+			f = new long[n+1];
 		}
 		
 		// sum from i to 0
 		long sum (int i) {		
 			i++;
-			long ret=0;
-			while (i>0) {
+			long ret = 0;
+			while (i > 0) {
 				ret += f[i];
 				i -= i&-i;
 			}
@@ -35,7 +36,7 @@ public class BinaryIndexTree {
 		// add value to index i
 		void add(int i, long value) {	
 			i++;
-			while (i<=n) {
+			while (i <= n) {
 				f[i] += value;
 				i += i&-i;
 			}
@@ -43,7 +44,8 @@ public class BinaryIndexTree {
 
 		// add value to indices l to r --> arr[i] = sum(i);
 		void range_add(int l, int r, long value) {	
-			add(l,value); add(r+1,-value);
+			add(l, value);
+			add(r+1, -value);
 		}
 	}
 	
@@ -51,16 +53,18 @@ public class BinaryIndexTree {
 		int n,m;
 		long[][] f;		// 1 base indexing
 		BIT2D(int n, int m) {
-			this.n = n; this.m = m; f = new long[n+1][m+1];
+			this.n = n;
+			this.m = m;
+			f = new long[n+1][m+1];
 		}
 		
 		// sum from (i,j) to (0,0)
 		long sum (int i, int j) {
 			i++; j++;
-			long ret=0;
-			while (i>0) {
+			long ret = 0;
+			while (i > 0) {
 				int y=j;
-				while (y>0) {
+				while (y > 0) {
 					ret += f[i][y];
 					y -= y&-y;
 				}
@@ -77,9 +81,9 @@ public class BinaryIndexTree {
 		// add value to (i,j)
 		void add(int i, int j, long val) {
 			i++; j++;
-			while (i<=n) {
+			while (i <= n) {
 				int y=j;
-				while (y<=m) {
+				while (y <= m) {
 					f[i][y] += val;
 					y += y&-y;
 				}

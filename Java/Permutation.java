@@ -14,7 +14,7 @@ public class Permutation {
 			System.out.println(Arrays.toString(arr));
 			return;
 		}
-		for (int j=i; j<arr.length; j++) {
+		for (int j = i; j < arr.length; j++) {
 			swap(arr, i, j);
 			permutation(arr, i+1);
 			swap(arr, i, j);		// undo
@@ -31,10 +31,10 @@ public class Permutation {
 			System.out.println(include);
 			return;
 		}
-		combination(arr, include, i+1);			// don't include
+		combination(arr, include, i + 1);			// don't include
 		include.add(arr[i]); 					// include
-		combination(arr, include, i+1);
-		include.remove(include.size()-1);		// undo
+		combination(arr, include, i + 1);
+		include.remove(include.size() - 1);		// undo
 	}
 	
 	// ABC (length_needed = 2) --> [A, B], [A, C], [B, C]
@@ -44,9 +44,9 @@ public class Permutation {
 			return;
 		}
 		if (i >= arr.length || arr.length - i + include.size() < length_needed) return;
-		combination_size(arr, include, i+1, length_needed);		// don't include
+		combination_size(arr, include, i + 1, length_needed);		// don't include
 		include.add(arr[i]); 									// include
-		combination_size(arr, include, i+1, length_needed);
-		include.remove(include.size()-1);						// undo
+		combination_size(arr, include, i + 1, length_needed);
+		include.remove(include.size() - 1);						// undo
 	}
 }

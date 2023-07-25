@@ -12,7 +12,8 @@ public class EqualsHashCode {
 		int a;
 		
 		@Override    
-		public boolean equals(Object o) {        
+		public boolean equals(Object o) {  
+			if (o == null || getClass() != o.getClass()) return false;     
 		    A cur = (A) o;   
 		    if (a != cur.a) return false;
 		    return true;

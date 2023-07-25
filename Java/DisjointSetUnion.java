@@ -16,17 +16,20 @@ public class DisjointSetUnion {
 			this.n = n;
 			parent = new int[n];
 			size = new int[n];
-			for (int i=0; i<n; i++) {parent[i] = i; size[i] = 1;}
+			for (int i = 0; i < n; i++) {
+				parent[i] = i;
+				size[i] = 1;
+			}
 		}
 
-		public int FindSet(int a) {
+		public int findSet(int a) {
 			if (a == parent[a]) return a;
-			return parent[a] = FindSet(parent[a]);
+			return parent[a] = findSet(parent[a]);
 		}
 		
-		public void Union(int a, int b) {
-			a = FindSet(a);
-			b = FindSet(b);
+		public void union(int a, int b) {
+			a = findSet(a);
+			b = findSet(b);
 			if (a == b) return;
 			
 			if (size[a] < size[b]) {
@@ -49,24 +52,27 @@ public class DisjointSetUnion {
 			this.n = n;
 			parent = new ArrayList<>();
 			size = new ArrayList<>();
-			for (int i=0; i<n; i++) {parent.add(i); size.add(1);}
+			for (int i = 0; i < n; i++) {
+				parent.add(i);
+				size.add(1);
+			}
 		}
 		
-		public void MakeSet(int a) {
+		public void makeSet(int a) {
 			n++;
 			parent.add(a);
 			size.add(1);
 		}
 		
-		public int FindSet(int a) {
+		public int findSet(int a) {
 			if (a == parent.get(a)) return a;
-			parent.set(a, FindSet(parent.get(a)));
+			parent.set(a, findSet(parent.get(a)));
 			return parent.get(a);
 		}
 		
-		public void Union(int a, int b) {
-			a = FindSet(a);
-			b = FindSet(b);
+		public void union(int a, int b) {
+			a = findSet(a);
+			b = findSet(b);
 			if (a == b) return;
 			
 			if (size.get(a) < size.get(b)) {
@@ -87,31 +93,33 @@ public class DisjointSetUnion {
 		int[][] size;
 		
 		DSU2D (int n, int m) {
-			this.n = n; this.m = m;
+			this.n = n;
+			this.m = m;
 			parent = new int[n][m];
 			size = new int[n][m];
-			for (int i=0; i<n; i++) {
-				for (int j=0; j<m; j++) {
-					parent[i][j] = i*mult+j; size[i][j] = 1;
+			for (int i= 0 ; i < n; i++) {
+				for (int j = 0; j < m; j++) {
+					parent[i][j] = i * mult + j;
+					size[i][j] = 1;
 				}	
 			}
 		}
 
 		public int FindSet(int i, int j) {
-			if (i*mult+j == parent[i][j]) return i*mult+j;
-			return parent[i][j] = FindSet(parent[i][j]/mult, parent[i][j]%mult);
+			if (i * mult + j == parent[i][j]) return i * mult + j;
+			return parent[i][j] = FindSet(parent[i][j] / mult, parent[i][j] % mult);
 		}
 		
 		public boolean Union(int i1, int j1, int i2, int j2) {
 			int a = FindSet(i1,j1);
 			int b = FindSet(i2,j2);
-			i1 = a/mult;
-			j1 = a%mult;
-			i2 = b/mult;
-			j2 = b%mult;
 			if (a == b) { 			// already grouped
 				return false;
 			}
+			i1 = a / mult;
+			j1 = a % mult;
+			i2 = b / mult;
+			j2 = b % mult;
 			
 			if (size[i1][j1] < size[i2][j2]) {
 				parent[i1][j1] = b;

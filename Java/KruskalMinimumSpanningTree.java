@@ -16,22 +16,22 @@ public class KruskalMinimumSpanningTree {
 		m = Integer.parseInt(st.nextToken()); 	// number of edges
 		edges = new Edge[m];
 				
-		for (int i=0; i<m; i++) {
+		for (int i = 0; i < m; i++) {
 			st = new StringTokenizer(in.readLine());
-			int a = Integer.parseInt(st.nextToken())-1; 	
-			int b = Integer.parseInt(st.nextToken())-1; 	
+			int a = Integer.parseInt(st.nextToken()) - 1; 	
+			int b = Integer.parseInt(st.nextToken()) - 1; 	
 			long c = Long.parseLong(st.nextToken()); 
 			edges[i] = new Edge(a,b,c);
 		}
 		Arrays.parallelSort(edges);
-		dsu s = new dsu(n);
+		DSU dsu = new DSU(n);
 		
 	}
 	
-	public static long MST(dsu s) {
-		long ans=0;
-		for (int i=0; i<m; i++) {
-			if (s.Union(edges[i].from, edges[i].destination)) {
+	public static long MST(DSU dsu) {
+		long ans = 0;
+		for (int i = 0; i < m; i++) {
+			if (dsu.union(edges[i].from, edges[i].destination)) {
 				ans += edges[i].length;
 			}
 		}
@@ -53,29 +53,30 @@ public class KruskalMinimumSpanningTree {
 		}
 	}
 	
-	static class dsu {
+	static class DSU {
 		int n;
 		int[] parent;
 		int[] size;
 		
-		dsu (int n) {
+		DSU (int n) {
 			this.n = n;
 			parent = new int[n];
 			size = new int[n];
-			for (int i=0; i<n; i++) {parent[i] = i; size[i] = 1;}
+			for (int i = 0; i < n; i++) {
+				parent[i] = i;
+				size[i] = 1;
+			}
 		}
 
-		public int FindSet(int a) {
+		public int findSet(int a) {
 			if (a == parent[a]) return a;
-			return parent[a] = FindSet(parent[a]);
+			return parent[a] = findSet(parent[a]);
 		}
 		
-		public boolean Union(int a, int b) {
-			a = FindSet(a);
-			b = FindSet(b);	
-			if (a == b) { 			// already grouped
-				return false;
-			}
+		public boolean union(int a, int b) {
+			a = findSet(a);
+			b = findSet(b);
+			if (a == b) return false;
 			
 			if (size[a] < size[b]) {
 				parent[a] = b;

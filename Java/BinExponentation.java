@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class binexponentation {
+public class BinExponentation {
     
     public static void main(String[] args) {
 
@@ -10,7 +10,7 @@ public class binexponentation {
     public static long pow(long a, long b) {
     	long ans = 1;
     	while (b > 0) {
-    		if (b%2 == 1) {
+    		if ((b & 1) == 1) {
     			ans *= a;
     		}
     		a *= a;
@@ -22,7 +22,7 @@ public class binexponentation {
     public static long pow(long a, long b, long m) {
     	long ans = 1;
     	while (b > 0) {
-    		if (b%2 == 1) {
+    		if ((b & 1) == 1) {
     			ans *= a;
     			ans %= m;
     		}

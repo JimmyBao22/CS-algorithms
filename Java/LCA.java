@@ -16,16 +16,16 @@ public class LCA {
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		n = Integer.parseInt(st.nextToken());
 		m = Integer.parseInt(st.nextToken());
-		log = log2(n)+1;
+		log = log2(n) + 1;
 		parent = new int[n][log];
 		depth = new int[n];
 		g = new ArrayList[n];
-		for (int i=0; i<n; i++) g[i] = new ArrayList<>();
+		for (int i = 0; i < n; i++) g[i] = new ArrayList<>();
 		
-		for (int i=0; i<m; i++) {
+		for (int i = 0; i < m; i++) {
 			st = new StringTokenizer(in.readLine());
-			int a = Integer.parseInt(st.nextToken())-1;
-			int b = Integer.parseInt(st.nextToken())-1;
+			int a = Integer.parseInt(st.nextToken()) - 1;
+			int b = Integer.parseInt(st.nextToken()) - 1;
 			g[a].add(b);
 			g[b].add(a);
 		}
@@ -41,15 +41,17 @@ public class LCA {
 		}
 		// depth[u] >= depth[v];
 		int diff = depth[u] - depth[v];
-		for (int i=0; i<log; i++) {
+		for (int i = 0; i < log; i++) {
 			if (((1 << i) & diff) > 0) {
 				u = parent[u][i];
 			}
 		}
 		if (u == v) return u;
-		for (int i=log-1; i>=0; i--) {
+		// depth[u] == depth[v]
+		for (int i = log - 1; i >= 0; i--) {
 			if (parent[u][i] != parent[v][i]) {
-				u = parent[u][i]; v = parent[v][i];
+				u = parent[u][i];
+				v = parent[v][i];
 			}
 		}
 		return parent[u][0];
@@ -57,12 +59,14 @@ public class LCA {
 	
 	public static void precomp() {
 		parent[0][0] = -1;	// parent of root = -1
-		for (int i=1; i<log; i++) {
-			for (int j=0; j<n; j++) {
+		for (int i = 1; i < log; i++) {
+			for (int j = 0; j < n; j++) {
 				if (parent[j][i-1] != -1) {
 					parent[j][i] = parent[parent[j][i-1]][i-1];
 				}
-				else parent[j][i] = -1;
+				else {
+					parent[j][i] = -1;
+				}
 			}
 		}
 	}

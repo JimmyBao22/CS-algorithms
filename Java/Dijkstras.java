@@ -20,12 +20,14 @@ public class Dijkstras {
 		parent = new int[n];
 		g = new ArrayList[n];
 		
-		for (int i=0; i<n; i++) g[i] = new ArrayList<>();
+		for (int i = 0; i < n; i++) {
+			g[i] = new ArrayList<>();
+		}
 		
-		for (int i=0; i<m; i++) {
+		for (int i = 0; i < m; i++) {
 			st = new StringTokenizer(in.readLine());
-			int a = Integer.parseInt(st.nextToken())-1; 	
-			int b = Integer.parseInt(st.nextToken())-1; 	
+			int a = Integer.parseInt(st.nextToken()) - 1; 	
+			int b = Integer.parseInt(st.nextToken()) - 1; 	
 			long c = Long.parseLong(st.nextToken()); 
 			g[a].add(new Edge(b, c));
 			g[b].add(new Edge(a, c));
@@ -70,10 +72,10 @@ public class Dijkstras {
 		
 		while (true) {
 			// find the smallest one
-			int smallest=-1;
-			long minval=INF;
+			int smallest = -1;
+			long minval = INF;
 			for (int j=0; j<n; j++) {
-				if (!visited[j] && dist[j]<minval) {
+				if (!visited[j] && dist[j] < minval) {
 					minval = dist[j];
 					smallest = j;
 				}
@@ -92,7 +94,9 @@ public class Dijkstras {
 	
 	public static ArrayList<Integer> Backtrack(int dest) {
 		ArrayList<Integer> path = new ArrayList<>();
-		if (dist[dest] == INF) return path;
+		if (dist[dest] == INF) {
+			return path;
+		}
 		while (dest != -1) {
 			path.add(dest);
 			dest = parent[dest];
@@ -103,6 +107,7 @@ public class Dijkstras {
 	static class Edge implements Comparable<Edge> {
 		int destination;
 		long length;
+		
 		Edge(int a , long b) {
 			destination = a;
 			length = b;

@@ -20,8 +20,8 @@ public class PrimMinimumSpanningTree {
 		
 		for (int i=0; i<m; i++) {
 			st = new StringTokenizer(in.readLine());
-			int a = Integer.parseInt(st.nextToken())-1; 	
-			int b = Integer.parseInt(st.nextToken())-1; 	
+			int a = Integer.parseInt(st.nextToken()) - 1; 	
+			int b = Integer.parseInt(st.nextToken()) - 1; 	
 			long c = Long.parseLong(st.nextToken()); 
 			g[a].add(new Edge(b, c));
 			g[b].add(new Edge(a, c));
@@ -58,10 +58,10 @@ public class PrimMinimumSpanningTree {
 		
 		while (true) {
 			// find the smallest one
-			int smallest=-1;
-			long minval=INF;
+			int smallest = -1;
+			long minval = INF;
 			for (int i=0; i<n; i++) {
-				if (!visited[i] && dist[i]<minval) {
+				if (!visited[i] && dist[i] < minval) {
 					minval = dist[i];
 					smallest = i;
 				}
