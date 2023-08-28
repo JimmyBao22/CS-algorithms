@@ -30,9 +30,9 @@ void calc_power0() {
 }
 
 void prefHash0(string s) {
-    if (s.length() > 0) pref[0] = s[0] - 'a';
+    if (s.length() > 0) pref[0] = s[0] - 'a' + 1;
     for (int i=1; i<s.length(); i++) {
-        pref[i] = pref[i-1]*p + (s[i] - 'a');
+        pref[i] = pref[i-1]*p + (s[i] - 'a' + 1);
     }
 }
 
@@ -54,9 +54,9 @@ void calc_power1() {
 }
 
 void prefHash1(string s) {
-    if (s.length() > 0) pref[0] = s[0] - 'a';
+    if (s.length() > 0) pref[0] = s[0] - 'a' + 1;
     for (int i=1; i<(int)s.length(); i++) {
-        pref[i] = (pref[i-1]*p + (s[i] - 'a'))%mod;
+        pref[i] = (pref[i-1]*p + (s[i] - 'a' + 1))%mod;
     }
 }
 
@@ -97,9 +97,9 @@ void calc_power2() {
 }
 
 void prefHash2(string s) {
-    if (s.length() > 0) pref[0] = s[0] - 'a';
+    if (s.length() > 0) pref[0] = s[0] - 'a' + 1;
     for (int i=1; i<(int)s.length(); i++) {
-        pref[i] = (pref[i-1] + (s[i] - 'a') * power[i])%mod;
+        pref[i] = (pref[i-1] + (s[i] - 'a' + 1) * power[i])%mod;
     }
 }
 

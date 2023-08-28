@@ -29,10 +29,10 @@ public class Hashing {
 
 	public static void prefHash0(String s) {
 		if (s.length() > 0) {
-			pref[0] = s.charAt(0) - 'a';
+			pref[0] = s.charAt(0) - 'a' + 1;
 		}
 		for (int i = 1; i < s.length(); i++) {
-			pref[i] = pref[i-1] * p + (s.charAt(i) - 'a');
+			pref[i] = pref[i-1] * p + (s.charAt(i) - 'a' + 1);
 		}
 	}
 
@@ -54,10 +54,10 @@ public class Hashing {
 	
 	public static void prefHash1(String s) {
 	    if (s.length() > 0) {
-			pref[0] = s.charAt(0) - 'a';
+			pref[0] = s.charAt(0) - 'a' + 1;
 		}
 	    for (int i = 1; i < s.length(); i++) {
-	        pref[i] = (pref[i-1] * p + (s.charAt(i) - 'a')) % mod;
+	        pref[i] = (pref[i-1] * p + (s.charAt(i) - 'a' + 1)) % mod;
 	    }
 	}
 	
@@ -81,10 +81,10 @@ public class Hashing {
 
 	public static void prefHash2(String s) {
 	    if (s.length() > 0) {
-			pref[0] = s.charAt(0) - 'a';
+			pref[0] = s.charAt(0) - 'a' + 1;
 		}
 	    for (int i = 1; i < s.length(); i++) {
-	        pref[i] = (pref[i-1] + (s.charAt(i) - 'a') * power[i]) % mod;
+	        pref[i] = (pref[i-1] + (s.charAt(i) - 'a' + 1) * power[i]) % mod;
 	    }
 	}
 	
