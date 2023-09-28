@@ -21,24 +21,24 @@ typedef long double ld;
 const int MaxN = 1e5+10;
 const int MaxM = 1e5+10;
 vector<int> g[MaxN];
-bool visited[MaxN], open [MaxN];
+bool visited[MaxN], open[MaxN];
 vector<int> cycle;
 int n, m;
 
     // true = cycle, false = no cycle
-bool dfscheck(int node) { 
+bool dfsCheck(int node) { 
     if (open[node]) return true;
     if (visited[node]) return false;
     visited[node] = true;
     open[node] = true;
     for (auto i : g[node]) {
-        if (dfscheck(i)) return true;
+        if (dfsCheck(i)) return true;
     }
     open[node] = false;
     return false;
 }
 
-bool findcycle(int node) {
+bool findCycle(int node) {
     visited[node] = true;
     open[node] = true;
     for (auto i : g[node]) {
@@ -49,7 +49,7 @@ bool findcycle(int node) {
             return true;
         }
         else if (!visited[i]) {
-            if (findcycle(i)) {         				// continue cycle
+            if (findCycle(i)) {         				// continue cycle
                 if (open[node]) {
                     cycle.pb(node);
                     open[node] = false;
@@ -73,7 +73,7 @@ int main() {
 
     cin >> n >> m;
     
-    for (int i=0; i<m; i++) {
+    for (int i = 0; i < m; i++) {
         int a, b;
         cin >> a >> b;
         a--; b--;
@@ -81,16 +81,16 @@ int main() {
         // g[b].push_back(a);       // if undirected
     }
     
-    for (int i=0; i<n; i++) {
-        if (!visited[i]) dfscheck(i);
+    for (int i = 0; i < n; i++) {
+        if (!visited[i]) dfsCheck(i);
     }
 
     fill(visited, visited+n,false);
     fill(open, open+n, false);
 
-    for (int i=0; i<n; i++) {
+    for (int i = 0; i < n; i++) {
         if (!visited[i]) {
-            findcycle(i);
+            findCycle(i);
             if (!cycle.empty()) break;
         }
     }

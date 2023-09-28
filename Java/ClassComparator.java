@@ -4,33 +4,37 @@ import java.io.*;
 
 public class ClassComparator {
 	public static void main(String[] args) {
-		A[] arr = new A[2];
-		arr[0] = new A(1);
-		arr[1] = new A(2);
-		Arrays.sort(arr, new Comparator<A>() {
-			public int compare(A a, A b) {
+		ExampleClass[] arr = new ExampleClass[2];
+		arr[0] = new ExampleClass(1);
+		arr[1] = new ExampleClass(2);
+
+		// method 2: create new comparator passed into sort function
+		Arrays.sort(arr, new Comparator<ExampleClass>() {
+			public int compare(ExampleClass a, ExampleClass b) {
 				return a.x - b.x;
 		    }
 		});
 		
-		Arrays.sort(arr, new C());
-		
+
+		Arrays.sort(arr, new Compare());
 	}
 	
-	public static class C implements Comparator<A> {
-		public int compare(A a, A b) {
+	// method 3: implements Comparator<>
+	public static class Compare implements Comparator<ExampleClass> {
+		public int compare(ExampleClass a, ExampleClass b) {
 			return a.x - b.x;
 		}
 	}
-	
-	public static class A implements Comparable<A> {
+
+	// method 1: implements Comparable<>
+	public static class ExampleClass implements Comparable<ExampleClass> {
 		int x;
 		
-		A(int x) {
+		ExampleClass (int x) {
 			this.x = x;
 		}
 		
-		public int compareTo(A other) {
+		public int compareTo(ExampleClass other) {
 			return this.x - other.x;
 		}
 	}

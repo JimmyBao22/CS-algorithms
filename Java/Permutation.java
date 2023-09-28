@@ -5,7 +5,7 @@ import java.io.*;
 public class Permutation {
 
 	public static void main(String[] args) {
-		combination_size("ABC".toCharArray(), new ArrayList<>(), 0, 2);
+		combinationSize("ABC".toCharArray(), new ArrayList<>(), 0, 2);
 	}
 		
 	// ABC --> [A, B, C], [A, C, B], [B, A, C], [B, C, A], [C, B, A], [C, A, B]
@@ -17,7 +17,7 @@ public class Permutation {
 		for (int j = i; j < arr.length; j++) {
 			swap(arr, i, j);
 			permutation(arr, i+1);
-			swap(arr, i, j);		// undo
+			swap(arr, i, j);			// undo
 		}
 	}
 	
@@ -32,21 +32,21 @@ public class Permutation {
 			return;
 		}
 		combination(arr, include, i + 1);			// don't include
-		include.add(arr[i]); 					// include
+		include.add(arr[i]); 						// include
 		combination(arr, include, i + 1);
-		include.remove(include.size() - 1);		// undo
+		include.remove(include.size() - 1);			// undo
 	}
 	
 	// ABC (length_needed = 2) --> [A, B], [A, C], [B, C]
-	public static void combination_size(char[] arr, ArrayList<Character> include, int i, int length_needed) {
+	public static void combinationSize(char[] arr, ArrayList<Character> include, int i, int length_needed) {
 		if (include.size() == length_needed) {
 			System.out.println(include);
 			return;
 		}
 		if (i >= arr.length || arr.length - i + include.size() < length_needed) return;
-		combination_size(arr, include, i + 1, length_needed);		// don't include
-		include.add(arr[i]); 									// include
-		combination_size(arr, include, i + 1, length_needed);
-		include.remove(include.size() - 1);						// undo
+		combinationSize(arr, include, i + 1, length_needed);		// don't include
+		include.add(arr[i]); 										// include
+		combinationSize(arr, include, i + 1, length_needed);
+		include.remove(include.size() - 1);							// undo
 	}
 }

@@ -25,28 +25,28 @@ public class CentroidDecomposition {
 		
 		for (int i = 0; i < n-1; i++) {
 			StringTokenizer st = new StringTokenizer(in.readLine());
-			int a = Integer.parseInt(st.nextToken())-1; 	
-			int b = Integer.parseInt(st.nextToken())-1; 	
+			int a = Integer.parseInt(st.nextToken()) - 1; 	
+			int b = Integer.parseInt(st.nextToken()) - 1; 	
 			g[a].add(b);
 			g2[a].add(b);
 			g[b].add(a);
 			g2[b].add(a);
 		}
 		
-		centroidDecompbuild(0, -1);
+		centroidDecompBuild(0, -1);
 		
 	}
 	
-	public static void centroidDecompbuild(int node, int p) {
-		int s = findSizes(node, p); 						// find the size of each subtree
-		int centroid = getCentroid(node, p, s); 			// find the centroid
+	public static void centroidDecompBuild(int node, int p) {
+		int size = findSizes(node, p); 						// find the size of each subtree
+		int centroid = getCentroid(node, p, size); 			// find the centroid
 		if (p == -1) p = centroid; 							// parent of root is the root itself
 		parent[centroid] = p;
 
 		// for each tree remove the centroid and build
 		for (Integer i : g2[centroid]) {
 			g2[i].remove(centroid);
-			centroidDecompbuild(i, centroid);
+			centroidDecompBuild(i, centroid);
 		}
 	}
 	
@@ -61,10 +61,10 @@ public class CentroidDecomposition {
 		return subtreeSize[node];
 	}
 
-	public static int getCentroid(int node, int p, int s) {
+	public static int getCentroid(int node, int p, int size) {
 		for (Integer i : g2[node]) {
-			if (i != p && subtreeSize[i] > s/2) {
-				return getCentroid(i, node, s);
+			if (i != p && subtreeSize[i] > size/2) {
+				return getCentroid(i, node, size);
 			}
 		}
 

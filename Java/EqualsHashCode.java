@@ -9,19 +9,19 @@ public class EqualsHashCode {
 	}
 	
 	static class A {
-		int a;
+		int element;
 		
 		@Override    
 		public boolean equals(Object o) {  
 			if (o == null || getClass() != o.getClass()) return false;     
 		    A cur = (A) o;   
-		    if (a != cur.a) return false;
+		    if (element != cur.element) return false;
 		    return true;
 		}    
 		 
 		@Override    
 		public int hashCode() {        
-			return a * 97 + 103;
+			return element * 97 + 103;
 		} 
 	}
 }

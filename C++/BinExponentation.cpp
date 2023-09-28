@@ -18,10 +18,11 @@ typedef long long ll;
 typedef long double ld;
 #define pb push_back
 
+// a ^ b
 ll pow(ll a, ll b) {
     ll ans = 1;
     while (b > 0) {
-        if (b%2 == 1) {
+        if ((b & 1) == 1) {
             ans *= a;
         }
         a *= a;
@@ -30,10 +31,11 @@ ll pow(ll a, ll b) {
     return ans;
 }
 
+// (a ^ b) % m
 ll pow(ll a, ll b, ll m) {
     ll ans = 1;
     while (b > 0) {
-        if (b%2 == 1) {
+        if ((b & 1) == 1) {
             ans *= a;
             ans %= m;
         }

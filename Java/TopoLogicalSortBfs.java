@@ -5,8 +5,8 @@ public class TopoLogicalSortBfs {
 	
 	static ArrayList<Integer>[] g;
 	static ArrayDeque<Integer> queue;
-	static ArrayList<Integer> fs;
-	static int[] indegree;
+	static ArrayList<Integer> result;
+	static int[] inDegree;
 	static boolean[] visited;
 	static int n, m;
 	
@@ -19,10 +19,10 @@ public class TopoLogicalSortBfs {
 		m = Integer.parseInt(st.nextToken()); 	// number of edges
 		g = new ArrayList[n];
 		queue = new ArrayDeque<>();
-		fs = new ArrayList<>();
+		result = new ArrayList<>();
 		
 		visited = new boolean[n];
-		indegree = new int[n];
+		inDegree = new int[n];
 		for (int i = 0; i < n; i++) {
 			g[i] = new ArrayList<>();
 		}
@@ -32,7 +32,7 @@ public class TopoLogicalSortBfs {
 			int a = Integer.parseInt(st.nextToken()) - 1;
 			int b = Integer.parseInt(st.nextToken()) - 1;
 			g[a].add(b);
-			indegree[b]++;
+			inDegree[b]++;
 		}
 		
 		topoSortBFS();
@@ -40,7 +40,7 @@ public class TopoLogicalSortBfs {
 	
 	public static void topoSortBFS() {
 		for (int i = 0; i < n; i++) {
-			if (indegree[i] == 0) {
+			if (inDegree[i] == 0) {
 				queue.add(i);
 				visited[i] = true;
 			}
@@ -49,13 +49,13 @@ public class TopoLogicalSortBfs {
 		while (!queue.isEmpty()) {
 			int cur = queue.poll();
 			for (Integer a : g[cur]) {
-				indegree[a]--;
-				if (indegree[a] == 0 && !visited[a]) {
+				inDegree[a]--;
+				if (inDegree[a] == 0 && !visited[a]) {
 					queue.add(a);
 					visited[a] = true;
 				}
 			}
-			fs.add(cur);
+			result.add(cur);
 		}
 	}
 }

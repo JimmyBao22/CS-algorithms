@@ -9,26 +9,26 @@ public class SegmentTree2D {
 	}
 	
 	static class SegTree2D {
-		int sizex=1; int sizey=1;
+		int sizeX = 1; int sizeY = 1;
 		long[][] tree;
 		
 		public SegTree2D(int n, int m) {		
-			while (sizex < n) sizex <<= 1;
-			while (sizey < m) sizey <<= 1;
-			tree = new long[2*sizex][2*sizey];
+			while (sizeX < n) sizeX <<= 1;
+			while (sizeY < m) sizeY <<= 1;
+			tree = new long[sizeX << 1][sizeY << 1];
 		}
 		
 		// random computation from (l1, r1) to (l2-1, r2-1)
-		public long compSeg(int l1, int r1, int l2, int r2) { return compSegX(l1, l2, r1, r2, 0, 0, sizex); }
+		public long compSeg(int l1, int r1, int l2, int r2) { return compSegX(l1, l2, r1, r2, 0, 0, sizeX); }
 		
 		public long compSegX(int l1, int l2, int r1, int r2, int x, int lx, int rx) {
 			if (lx >= l2 || rx <= l1) return 0;								// do not intersect this segment
 			if (rx - lx == 1) {
-				return compSegY(l1, l2, r1, r2, x, 0, 0, sizey);	
+				return compSegY(l1, l2, r1, r2, x, 0, 0, sizeY);	
 			}
 			int m = (lx + rx) >> 1;
-			long one = compSegX(l1, l2, r1, r2, 2*x+1, lx, m); 
-			long two = compSegX(l1, l2, r1, r2, 2*x+2, m, rx);
+			long one = compSegX(l1, l2, r1, r2, (x<<1)+1, lx, m); 
+			long two = compSegX(l1, l2, r1, r2, (x<<1)+2, m, rx);
 			return one + two;
 		}
 		
@@ -38,21 +38,21 @@ public class SegmentTree2D {
 				return tree[x][y];											// inside whole segment
 			}
 			int m = (ly + ry) >> 1;
-			long one = compSegY(l1, l2, r1, r2, x, 2*y+1, ly, m); 
-			long two = compSegY(l1, l2, r1, r2, x, 2*y+2, m, ry);
+			long one = compSegY(l1, l2, r1, r2, x, (y<<1)+1, ly, m); 
+			long two = compSegY(l1, l2, r1, r2, x, (y<<1)+2, m, ry);
 			return one + two;
 		}
 		
 		// arr[i][j] = v;
-		public void set(int i, int j, long v) { setX(i, j, v, 0, 0, sizex); }
+		public void set(int i, int j, long v) { setX(i, j, v, 0, 0, sizeX); }
 		
 		public void setX(int i, int j, long v, int x, int lx, int rx) {
 			if (rx - lx == 1) {												// in leaf node aka bottom level
-				setY(i, j, v, x, 0, 0, sizey); return;
+				setY(i, j, v, x, 0, 0, sizeY); return;
 			}
 			int m = (lx + rx) >> 1;
-			if (i < m) setX(i, j, v, 2*x+1, lx, m); 						// go to left subtree
-			else setX(i, j, v, 2*x+2, m, rx);								// go to right subtree
+			if (i < m) setX(i, j, v, (x<<1)+1, lx, m); 						// go to left subtree
+			else setX(i, j, v, (x<<1)+2, m, rx);								// go to right subtree
 		}
 		
 		public void setY(int i, int j, long v, int x, int y, int ly, int ry) {
@@ -60,23 +60,23 @@ public class SegmentTree2D {
 				tree[x][y] = v; return;
 			}
 			int m = (ly + ry) >> 1;
-			if (j < m) setY(i, j, v, x, 2*y+1, ly, m); 						// go to left subtree
-			else setY(i, j, v, x, 2*y+2, m, ry);							// go to right subtree
-			tree[x][y] = tree[x][2*y+1] + tree[x][2*y+2];
+			if (j < m) setY(i, j, v, x, (y<<1)+1, ly, m); 						// go to left subtree
+			else setY(i, j, v, x, (y<<1)+2, m, ry);							// go to right subtree
+			tree[x][y] = tree[x][(y<<1)+1] + tree[x][(y<<1)+2];
 		}
 		
-		public void build(long[][] arr) { buildX(arr, 0, 0, sizex); }	// arr is the orig arr
+		public void build(long[][] arr) { buildX(arr, 0, 0, sizeX); }	// arr is the orig arr
 		
 		public void buildX(long[][] arr, int x, int lx, int rx) {
 			if (rx - lx == 1) {												// in leaf node aka bottom level
 				if (lx < arr.length) {
-					buildY(arr, x, 0, lx, 0, sizey);
+					buildY(arr, x, 0, lx, 0, sizeY);
 				}
 				return;
 			}
 			int m = (lx + rx) >> 1;
-			buildX(arr, 2*x+1, lx, m);
-			buildX(arr, 2*x+2, m, rx);
+			buildX(arr, (x<<1)+1, lx, m);
+			buildX(arr, (x<<1)+2, m, rx);
 		}
 		
 		public void buildY(long[][] arr, int x, int y, int lx, int ly, int ry) {
@@ -85,9 +85,9 @@ public class SegmentTree2D {
 				return;
 			}
 			int m = (ly + ry) >> 1;
-			buildY(arr, x, 2*y+1, lx, ly, m);
-			buildY(arr, x, 2*y+2, lx, m, ry);
-			tree[x][y] = tree[x][2*y+1] + tree[x][2*y+2];
+			buildY(arr, x, (y<<1)+1, lx, ly, m);
+			buildY(arr, x, (y<<1)+2, lx, m, ry);
+			tree[x][y] = tree[x][(y<<1)+1] + tree[x][(y<<1)+2];
 		} 
 		
 		public void print() {

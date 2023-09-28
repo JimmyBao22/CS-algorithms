@@ -41,7 +41,7 @@ public class SuffixArray {
 			// k --> k+1
 			
 			for (int i = 0; i < n; i++) {		//shift all positions 2^k to the left
-				p[i] = (p[i] - (1 << k) + n)%n;
+				p[i] = (p[i] - (1 << k) + n) % n;
 			}
 			
 			countSort(n, p, c);
@@ -64,7 +64,7 @@ public class SuffixArray {
 		}
 		
 		StringBuilder sb = new StringBuilder();
-		for (int i=0; i<n; i++) {
+		for (int i = 0; i < n; i++) {
 			sb.append(p[i] + " ");
 		}
 		System.out.println(sb);

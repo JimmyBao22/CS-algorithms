@@ -11,23 +11,23 @@ public class Trie {
 	}
 	
 	void insert(String s) {
-		Trie curr = this;
+		Trie cur = this;
 		for(int i = 0; i < s.length(); i++) {
 			int at = s.charAt(i) - 'a';
-			if (curr.children[at] == null) curr.children[at] = new Trie();
-			curr = curr.children[at];
+			if (cur.children[at] == null) cur.children[at] = new Trie();
+			cur = cur.children[at];
 		}
-		curr.wordCount++;
+		cur.wordCount++;
 	}
 	
 	boolean contains(String s) {
-		Trie curr = this;
+		Trie cur = this;
 		for(int i = 0; i < s.length(); i++) {
 			int at = s.charAt(i) - 'a';
-			if (curr.children[at] == null) return false;
-			curr = curr.children[at];
+			if (cur.children[at] == null) return false;
+			cur = cur.children[at];
 		}
-		return curr.wordCount > 0;
+		return cur.wordCount > 0;
 	}
 	
 	void delete(String s) {
@@ -38,8 +38,8 @@ public class Trie {
 		if(depth == s.length()) {
 			wordCount--;
 			if (wordCount != 0) return false;				// still has words ending here
-			for (Trie c : children) {
-				if (c != null) return false;					// still has words going off here
+			for (Trie child : children) {
+				if (child != null) return false;					// still has words going off here
 			}
 			return true;
 		}

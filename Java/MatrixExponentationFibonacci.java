@@ -29,7 +29,7 @@ public class MatrixExponentationFibonacci {
 		System.out.println(ans[0][0]);
 	}
 	
-	public static long[][] multiply (int n, long[][] a, long[][] b) {
+	public static long[][] multiply(int n, long[][] a, long[][] b) {
 		long[][] product = new long[n][n];
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {

@@ -43,14 +43,14 @@ public class BinaryIndexTree {
 		}
 
 		// add value to indices l to r --> arr[i] = sum(i);
-		void range_add(int l, int r, long value) {	
+		void rangeAdd(int l, int r, long value) {	
 			add(l, value);
 			add(r+1, -value);
 		}
 	}
 	
 	static class BIT2D {
-		int n,m;
+		int n, m;
 		long[][] f;		// 1 base indexing
 		BIT2D(int n, int m) {
 			this.n = n;
@@ -92,7 +92,7 @@ public class BinaryIndexTree {
 		}
 		
 		// add value from (i1, j1) to (i2, j2) --> arr[i][j] = sum(i, j);
-		void range_add(int i1, int j1, int i2, int j2, long val) {
+		void rangeAdd(int i1, int j1, int i2, int j2, long val) {
 			add(i1, j1, val);
 			add(i1, j2+1, -val);
 			add(i2+1, j1, -val);

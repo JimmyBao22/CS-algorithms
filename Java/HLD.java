@@ -4,11 +4,11 @@ import java.io.*;
 
 public class HLD {
 	
-	static int n, curpos;
+	static int n, curPos;
 	static ArrayList<Integer>[] g;
-	static A[] arr;
-	static SegTree s;
-	static long[] starr;
+	static Node[] arr;
+	static SegTree segTree;
+	static long[] segTreeArr;
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -16,14 +16,14 @@ public class HLD {
 		
 		n = Integer.parseInt(in.readLine());
 		g = new ArrayList[n];
-		arr = new A[n];
-		curpos = 0;
-		s = new SegTree(n);
-		starr = new long[n];
+		arr = new Node[n];
+		curPos = 0;
+		segTree = new SegTree(n);
+		segTreeArr = new long[n];
 		
 		StringTokenizer st = new StringTokenizer(in.readLine());
 		for (int i = 0; i < n; i++) {
-			arr[i] = new A(Integer.parseInt(st.nextToken()));
+			arr[i] = new Node(Integer.parseInt(st.nextToken()));
 			g[i] = new ArrayList<>();
 		}
 		
@@ -38,7 +38,7 @@ public class HLD {
 		dfs(0, 0, 0);
 		hld(0, 0);
 		
-		s.build(starr);
+		segTree.build(segTreeArr);
 		
 		StringBuilder sb = new StringBuilder();
 		int q = Integer.parseInt(in.readLine());
@@ -49,7 +49,7 @@ public class HLD {
 				int two = Integer.parseInt(st.nextToken()) - 1;		// node
 				long three = Long.parseLong(st.nextToken());		// value
 				arr[two].val = three;
-				s.set(arr[two].stpos, arr[two].val);
+				segTree.set(arr[two].stpos, arr[two].val);
 			}
 			else {													// query
 				int two = Integer.parseInt(st.nextToken()) - 1;		
@@ -69,7 +69,7 @@ public class HLD {
 				int temp = a; a = b; b = temp;						// swap so now b greater depth
 			}
 			int current_head = arr[b].head;
-			ans = Math.max(ans, s.comp_seg(arr[current_head].stpos, arr[b].stpos + 1));
+			ans = Math.max(ans, segTree.compSeg(arr[current_head].stpos, arr[b].stpos + 1));
 			b = arr[current_head].parent;							// move b to parent of head so you are on a new chain
 		}
 		if (arr[a].depth > arr[b].depth) {
@@ -77,15 +77,15 @@ public class HLD {
 		}
 
 		// now a and b on same chain
-		ans = Math.max(ans, s.comp_seg(arr[a].stpos, arr[b].stpos + 1));
+		ans = Math.max(ans, segTree.compSeg(arr[a].stpos, arr[b].stpos + 1));
 		return ans;
 	}
 	
 	public static void hld(int node, int head) {
 		arr[node].head = head;
-		arr[node].stpos = curpos;
-		starr[curpos] = arr[node].val;
-		curpos++;
+		arr[node].stpos = curPos;
+		segTreeArr[curPos] = arr[node].val;
+		curPos++;
 		if (arr[node].heavy != -1) {	
 			hld(arr[node].heavy, head);
 		}
@@ -100,20 +100,20 @@ public class HLD {
 		arr[node].parent = p;
 		arr[node].depth = d;
 		
-		int max_subtree_size = 0;
+		int maxSubtreeSize = 0;
 		for (Integer i : g[node]) {
 			if (i == p) continue;
-			int cursize = dfs(i, node, d+1);
-			arr[node].size += cursize;
-			if (cursize > max_subtree_size) {
-				max_subtree_size = cursize;
+			int curSize = dfs(i, node, d+1);
+			arr[node].size += curSize;
+			if (curSize > maxSubtreeSize) {
+				maxSubtreeSize = curSize;
 				arr[node].heavy = i;
 			}
 		}
 		return arr[node].size;
 	}
 	
-	static class A {
+	static class Node {
 		int size;
 		int heavy = -1; 	// child at other end of heavy edge from this node
 		int head;			// head of heavy path that this node is in
@@ -121,29 +121,27 @@ public class HLD {
 		long val = 0;
 		int parent;
 		int depth;
-		A () { }
-		A (long a) { val = a; }
+		Node (long val) { this.val = val; }
 	}
 	
 	static class SegTree {
-		int size=1;
+		int size = 1;
 		long[] tree;
 		
 		public SegTree(int n) {			
-			while (size < n) size *= 2;
-			tree = new long[2*size];
-			for (int i=0; i<2*size; i++) tree[i] = 0;
+			while (size < n) size <<= 1;
+			tree = new long[size << 1];
 		}
 		
 		// random computation on segment
-		public long comp_seg(int l, int r) { return comp_seg(l, r, 0, 0, size); }
+		public long compSeg(int l, int r) { return compSeg(l, r, 0, 0, size); }
 		
-		public long comp_seg(int l, int r, int x, int lx, int rx) {
+		public long compSeg(int l, int r, int x, int lx, int rx) {
 			if (lx >= r || rx <= l) return 0;	// do not intersect this segment
 			if (l <= lx && rx <= r) return tree[x];	// inside whole segment
-			int m = (lx + rx)/2;
-			long one = comp_seg(l, r, 2*x+1, lx, m); 
-			long two = comp_seg(l, r, 2*x+2, m, rx);
+			int m = (lx + rx) >> 1;
+			long one = compSeg(l, r, (x<<1)+1, lx, m); 
+			long two = compSeg(l, r, (x<<1)+2, m, rx);
 			return Math.max(one, two);
 		}
 		
@@ -153,10 +151,10 @@ public class HLD {
 			if (rx - lx == 1) {		// in leaf node aka bottom level
 				tree[x] = v; return;
 			}
-			int m = (lx + rx)/2;
-			if (i < m) set(i, v, 2*x+1, lx, m); 	// go to left subtree
-			else set(i, v, 2*x+2, m, rx);			// go to right subtree
-			tree[x] = Math.max(tree[2*x+1], tree[2*x+2]);
+			int m = (lx + rx) >> 1;
+			if (i < m) set(i, v, (x<<1)+1, lx, m); 	// go to left subtree
+			else set(i, v, (x<<1)+2, m, rx);			// go to right subtree
+			tree[x] = Math.max(tree[(x<<1)+1], tree[(x<<1)+2]);
 		}
 		
 		public void build(long[] arr) {	build(arr, 0, 0, size); }	// arr is the orig arr
@@ -166,13 +164,14 @@ public class HLD {
 				if (lx < arr.length) tree[x] = arr[lx];
 				return;
 			}
-			int m = (lx + rx)/2;
-			build(arr, 2*x+1, lx, m);	build(arr, 2*x+2, m, rx);
-			tree[x] = Math.max(tree[2*x+1], tree[2*x+2]);
+			int m = (lx + rx) >> 1;
+			build(arr, (x<<1)+1, lx, m);
+			build(arr, (x<<1)+2, m, rx);
+			tree[x] = Math.max(tree[(x<<1)+1], tree[(x<<1)+2]);
 		}
 		
 		public void print() {
-			for (int i=0; i<tree.length; i++) System.out.print(tree[i] + " ");
+			System.out.println(Arrays.toString(tree));
 			System.out.println();
 		}
 	}

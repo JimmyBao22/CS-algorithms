@@ -28,7 +28,7 @@ public class Mod {
 
 	static long x,y;
 	public static long modInverse1(long a, long m) {         
-		x=y=1;
+		x = y = 1;
 		long g = gcdExtended(a, m);
 		if (g != 1) return -1; 	// if a and m are not coprime, there is not an inverse
 		long inverse = (x % m + m) % m;

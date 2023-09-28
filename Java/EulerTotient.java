@@ -7,6 +7,7 @@ public class EulerTotient {
 	static int[] totient;
 	static ArrayList<Integer> primes;
 	
+	// builds totient array up to MaxN
 	public static void buildTotient() {
 		for (int i = 1; i < MaxN; i++) {
 			totient[i] = i;
@@ -24,18 +25,19 @@ public class EulerTotient {
 		}
 	}
 	
-	public static void getPrimes() {
-		for (int i = 1; i < MaxN; i++) {
+	// get all primes up to max
+	public static void getPrimes(int max) {
+		for (int i = 1; i < max; i++) {
 			totient[i] = i;
 		}		
 		primes.add(2);
-		for (int i = 2; i < MaxN; i += 2) {
+		for (int i = 2; i < max; i += 2) {
 			totient[i] = totient[i] / 2;
 		}
-		for (int i = 3; i < MaxN; i += 2) {
+		for (int i = 3; i < max; i += 2) {
 			if (totient[i] == i) {				// prime
 				primes.add(i);
-				for (int j = i; j < MaxN; j += i) {
+				for (int j = i; j < max; j += i) {
 					totient[j] /= i;
 					totient[j] *= (i-1);
 				}
@@ -51,6 +53,7 @@ public class EulerTotient {
 
 	}
 	
+	// totient(n)
 	public static long totient(long n) {
 		long ret = 1;
 		if ((n & 1) == 0) {

@@ -7,7 +7,7 @@ public class Dijkstras {
 	static long[] dist;
 	static int[] parent;
 	static int n, m;
-	static long INF = (long)(1e18);
+	static final long INF = (long)(1e18);
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -46,17 +46,17 @@ public class Dijkstras {
 		pq.add(new Edge(start, 0));
 		while (!pq.isEmpty()) {
 			Edge cur = pq.poll();
-			int node = cur.destination;
+			int node = cur.dest;
 			if (visited[node]) continue;
 			visited[node] = true;
 			
 			for (Edge i : g[node]) {
-				if (visited[i.destination]) continue;
+				if (visited[i.dest]) continue;
 				
-				if (cur.length + i.length < dist[i.destination]) {
-					dist[i.destination] = cur.length + i.length;
-					parent[i.destination] = node;
-					pq.add(new Edge(i.destination, dist[i.destination]));
+				if (cur.length + i.length < dist[i.dest]) {
+					dist[i.dest] = cur.length + i.length;
+					parent[i.dest] = node;
+					pq.add(new Edge(i.dest, dist[i.dest]));
 				}
 				
 			}
@@ -83,9 +83,9 @@ public class Dijkstras {
 			if (smallest == -1) break;
 			
 			for (Edge a : g[smallest]) {
-				if (!visited[a.destination] && dist[a.destination] > minval + a.length) {
-					dist[a.destination] = minval + a.length;
-					parent[a.destination] = smallest;
+				if (!visited[a.dest] && dist[a.dest] > minval + a.length) {
+					dist[a.dest] = minval + a.length;
+					parent[a.dest] = smallest;
 				}
 			}
 			visited[smallest] = true;
@@ -105,12 +105,12 @@ public class Dijkstras {
 	}
 	
 	static class Edge implements Comparable<Edge> {
-		int destination;
+		int dest;
 		long length;
 		
-		Edge(int a , long b) {
-			destination = a;
-			length = b;
+		Edge(int dest , long len) {
+			this.dest = dest;
+			length = len;
 		}
 		
 		public int compareTo(Edge o) {

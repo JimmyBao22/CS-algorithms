@@ -5,8 +5,8 @@ public class StronglyConnectedComponentsKosaraju {
 	
 	static ArrayList<Integer>[] g, reverse;
 	static boolean[] visited;
-	static ArrayDeque<Integer> stack = new ArrayDeque<>();
-	static ArrayList<ArrayList<Integer>> SCC = new ArrayList<>();
+	static ArrayDeque<Integer> stack;
+	static ArrayList<ArrayList<Integer>> SCC;
 					// stores all of the components
 	static int n, m;
 	
@@ -19,6 +19,8 @@ public class StronglyConnectedComponentsKosaraju {
 		m = Integer.parseInt(st.nextToken()); 	// number of edges
 		g = new ArrayList[n];
 		reverse = new ArrayList[n];
+		stack = new ArrayDeque<>();
+		SCC = new ArrayList<>();
 		
 		visited = new boolean[n];
 		for (int i = 0; i < n; i++) {

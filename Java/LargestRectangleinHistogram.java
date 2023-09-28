@@ -18,7 +18,7 @@ public class LargestRectangleinHistogram {
 		ArrayDeque<Integer> s = new ArrayDeque<>();
 		int maxArea = 0;
 		int i = 0;
-		while (i<n) {
+		while (i < n) {
 			if (s.isEmpty() || heights[i] > heights[s.peek()]) {
 				s.push(i++);
 			} 
@@ -37,7 +37,7 @@ public class LargestRectangleinHistogram {
 			int cur = s.pop();
 			int left = 0;
 			if (!s.isEmpty()) {
-				left = s.peek()+1;
+				left = s.peek() + 1;
 			}
 			int right = n - 1;
 			maxArea = Math.max(maxArea, heights[cur] * (right - left + 1));

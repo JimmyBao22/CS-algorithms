@@ -8,7 +8,7 @@ public class Geometry {
 	}
 	
 	// note: points need to be in clockwise/counterclockwise order beforehand
-	public static double shoelaceArea (long[][] points) {
+	public static double shoelaceArea(long[][] points) {
 		int n = points.length; 
 		long firstsum = 0;
 		long secsum = 0;
@@ -25,7 +25,7 @@ public class Geometry {
 		return (double)Math.abs(firstsum - secsum) / 2.0;
 	}
 	
-	// counterclockwise (x,y) around (a,b)
+	// rotate (x,y) counterclockwise around (a,b)
 	public static double[] rotate(double x, double y, double a, double b, double degree) {
 		double rad = toRadians(degree);
 		double ansx = x * Math.cos(rad) - a * Math.cos(rad) - y * Math.sin(rad) + b * Math.sin(rad) + a;
@@ -141,9 +141,9 @@ public class Geometry {
 
 	static class Point {
 		double x, y;
-		Point(double a, double b) {
-			x = a;
-			y = b;
+		Point(double x, double y) {
+			this.x = x;
+			this.y = y;
 		}
 		void print() {
 			System.out.println(x + " " + y);

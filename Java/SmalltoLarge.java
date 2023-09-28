@@ -46,25 +46,25 @@ public class SmalltoLarge {
 			queries[one].add(two);
 		}
 		
-		smalltolarge(0, -1);
+		smallTolarge(0, -1);
 		
 		
 	}
 	
-	public static void smalltolarge(int node, int parent) {
+	public static void smallTolarge(int node, int parent) {
 		int biggest = node;			// node with biggest length
 		for (Integer to : g[node]) {
 			if (to == parent) continue;
-			smalltolarge(to, node);
+			smallTolarge(to, node);
 			if (vals.get(to).size() > vals.get(biggest).size()) {
 				biggest = to;
 			}
 		}
 		
 			// swap over so don't need to copy
-		TreeMap<Integer, Integer> c = vals.get(biggest);
+		TreeMap<Integer, Integer> temp = vals.get(biggest);
 		vals.set(biggest, vals.get(node));
-		vals.set(node, c);
+		vals.set(node, temp);
 		
 		for (Integer to : g[node]) {
 			if (to == parent || to == biggest) continue;

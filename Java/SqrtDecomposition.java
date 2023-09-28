@@ -56,7 +56,7 @@ public class SqrtDecomposition {
 		}
 		
 		// update l to r
-		public void update_seg(int l, int r, int x) {
+		public void updateSeg(int l, int r, int x) {
 			int left = l / len; int right = r / len;
 			if (left == right) {
 				for (int i = l; i <= r; i++) arr[i] += x;
@@ -69,14 +69,14 @@ public class SqrtDecomposition {
 		}
 		
 		// query index i
-		public int query_index(int i) {
+		public int queryIndex(int i) {
 			return arr[i] + b[i/len];
 		}
 	}
 	
-	public static void MO(A[] queries, int q, int len) {
-		Arrays.parallelSort(queries, new Comparator<A>() {
-			public int compare(A a, A b) {
+	public static void MO(Query[] queries, int q, int len) {
+		Arrays.sort(queries, new Comparator<Query>() {
+			public int compare(Query a, Query b) {
 				if (a.left/len == b.left/len) {
 					return a.right - b.right;
 				}
@@ -131,10 +131,10 @@ public class SqrtDecomposition {
 		return ans;
 	}
 	
-	static class A {
+	static class Query {
 		int left, right, index;
-		A (int a, int b, int c) {
-			left = a; right = b; index = c;
+		Query (int l, int r, int i) {
+			left = l; right = r; index = i;
 		}
 	}
 }

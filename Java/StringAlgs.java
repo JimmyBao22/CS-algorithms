@@ -21,29 +21,35 @@ public class StringAlgs {
 			if (pref1[middle] == pref2[middle]) min = middle;
 			else max = middle-1;
 		}
-		if (min == one.length() - 1 && min == two.length() - 1) return 0;		// equal
-		else if (min == one.length()-1) return -1;							// one < two
-		else if (min == two.length()-1) return 1;							// two < one
+		if (min == one.length() - 1 && min == two.length() - 1) {
+			return 0;												// equal
+		}
+		else if (min == one.length()-1) {
+			return -1;												// one < two
+		}
+		else if (min == two.length()-1) {
+			return 1;												// two < one
+		}
 		else {
-			if (one.charAt(min+1) < two.charAt(min+1)) return -1;			// one < two
-			else return 1;													// two < one
+			if (one.charAt(min+1) < two.charAt(min+1)) return -1;	// one < two
+			else return 1;											// two < one
 		}
 	}
 	
 		// constructs z-array in O(n)
 		// z-array = for each index contains the length of the longest substring of s that
 			// begins at that position and is a prefix of s
-	public static ArrayList<Integer> Zalgorithm(String s) {
+	public static ArrayList<Integer> zAlgorithm(String s) {
 		int n = s.length();
 		ArrayList<Integer> z = new ArrayList<>();
-		for (int i=0; i<n; i++) z.add(0);
+		for (int i = 0; i < n; i++) z.add(0);
 		int x = 0, y = 0;
 		for (int i = 1; i < n; i++) {
 			z.set(i, Math.max(0, Math.min(z.get(i - x), y - i + 1)));
 			while (i + z.get(i) < n && s.charAt(z.get(i)) == s.charAt(i + z.get(i))) {
 				x = i;
-				y = i+z.get(i);
-				z.set(i, z.get(i)+1);
+				y = i + z.get(i);
+				z.set(i, z.get(i) + 1);
 			}
 		}
 		return z;

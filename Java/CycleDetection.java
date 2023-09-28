@@ -7,7 +7,7 @@ public class CycleDetection {
 	static ArrayList<Integer>[] g;
 	static int n, m;
 	static boolean[] visited, open;
-	static ArrayList<Integer> cycle = new ArrayList<>();
+	static ArrayList<Integer> cycle;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -19,8 +19,11 @@ public class CycleDetection {
 		visited = new boolean[n];
 		open = new boolean[n];
 		g = new ArrayList[n];
+		cycle = new ArrayList<>();
 
-		for (int i = 0; i < n; i++) g[i] = new ArrayList<>();
+		for (int i = 0; i < n; i++) {
+			g[i] = new ArrayList<>();
+		}
 
 		for (int i = 0; i < m; i++) {
 			st = new StringTokenizer(in.readLine());
@@ -65,6 +68,7 @@ public class CycleDetection {
 		return false;
 	}
 	
+	// builds cycle arraylist
 	public static boolean findCycle(int node) {
 	    visited[node] = true;
 	    open[node] = true;

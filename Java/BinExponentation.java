@@ -7,6 +7,7 @@ public class BinExponentation {
 
     }
 
+	// a ^ b
     public static long pow(long a, long b) {
     	long ans = 1;
     	while (b > 0) {
@@ -19,6 +20,7 @@ public class BinExponentation {
     	return ans;
     }
 	
+	// (a ^ b) mod m
     public static long pow(long a, long b, long m) {
     	long ans = 1;
     	while (b > 0) {

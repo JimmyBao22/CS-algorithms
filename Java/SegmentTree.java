@@ -18,7 +18,7 @@ public class SegmentTree {
 		
 		public SegTree(int n) {			
 			while (size < n) size <<= 1;
-			tree = new long[2*size];
+			tree = new long[size << 1];
 		}
 		
 		// random computation on segment (l to r-1)
@@ -28,8 +28,8 @@ public class SegmentTree {
 			if (lx >= r || rx <= l) return 0;									// do not intersect this segment
 			if (l <= lx && rx <= r) return tree[x];								// inside whole segment
 			int m = (lx + rx) >> 1;
-			long one = compSeg(l, r, 2*x+1, lx, m); 
-			long two = compSeg(l, r, 2*x+2, m, rx);
+			long one = compSeg(l, r, (x<<1)+1, lx, m); 
+			long two = compSeg(l, r, (x<<1)+2, m, rx);
 			return one + two;
 		}
 		
@@ -40,9 +40,9 @@ public class SegmentTree {
 				tree[x] = v; return;
 			}
 			int m = (lx + rx) >> 1;
-			if (i < m) set(i, v, 2 * x + 1, lx, m); 							// go to left subtree
-			else set(i, v, 2 * x + 2, m, rx);									// go to right subtree
-			tree[x] = tree[2*x+1] + tree[2*x+2];
+			if (i < m) set(i, v, (x<<1)+1, lx, m); 							// go to left subtree
+			else set(i, v, (x<<1)+2, m, rx);									// go to right subtree
+			tree[x] = tree[(x<<1)+1] + tree[(x<<1)+2];
 		}
 		
 		// random computation on index
@@ -53,8 +53,8 @@ public class SegmentTree {
 			// propogate(x, lx, rx);
 			int m = (lx + rx) >> 1;	
 			long result = 0;
-			if (i < m) result = compIndex(i, 2*x+1, lx, m);						// go to left subtree
-			else result = compIndex(i, 2*x+2, m, rx);							// go to right subtree
+			if (i < m) result = compIndex(i, (x<<1)+1, lx, m);						// go to left subtree
+			else result = compIndex(i, (x<<1)+2, m, rx);							// go to right subtree
 			return result + tree[x];
 		}
 				
@@ -69,8 +69,8 @@ public class SegmentTree {
 				return;
 			}
 			int m = (lx + rx) >> 1;
-			modify(l, r, v, 2*x+1, lx, m);
-			modify(l, r, v, 2*x+2, m, rx);
+			modify(l, r, v, (x<<1)+1, lx, m);
+			modify(l, r, v, (x<<1)+2, m, rx);
 		}
 		
 		static long NONE = (long)(1e18);	// use a value that will never be used
@@ -79,8 +79,8 @@ public class SegmentTree {
 		public void propogate(int x, int lx, int rx) {
 			if (rx - lx == 1) return;		// leaf
 			if (tree[x] != NONE) {
-				tree[2*x+1] = tree[x];
-				tree[2*x+2] = tree[x];
+				tree[(x<<1)+1] = tree[x];
+				tree[(x<<1)+2] = tree[x];
 				tree[x] = NONE;
 			}
 		}
@@ -93,9 +93,9 @@ public class SegmentTree {
 				return;
 			}
 			int m = (lx + rx) >> 1;
-			build(arr, 2*x+1, lx, m);
-			build(arr, 2*x+2, m, rx);
-			tree[x] = tree[2*x+1] + tree[2*x+2];
+			build(arr, (x<<1)+1, lx, m);
+			build(arr, (x<<1)+2, m, rx);
+			tree[x] = tree[(x<<1)+1] + tree[(x<<1)+2];
 		}
 		
 		public void print() {

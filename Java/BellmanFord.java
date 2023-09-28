@@ -57,10 +57,10 @@ public class BellmanFord {
 	static class Edge {
 		int start, dest;
 		long weight;
-		Edge (int a, int b, long c) {
-			start = a;
-			dest = b;
-			weight = c;
+		Edge (int start, int dest, long weight) {
+			this.start = start;
+			this.dest = dest;
+			this.weight = weight;
 		}
 	}
 }

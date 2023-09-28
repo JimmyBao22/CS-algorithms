@@ -18,17 +18,18 @@ typedef long long ll;
 typedef long double ld;
 #define pb push_back
 
-void sort(int n, int arr[], int maxval) {
+// O(n + maxVal)
+void countingSort(int n, int arr[], int maxVal) {
     int output[n];
-    int count[maxval+1];
+    int count[maxVal+1];
     
-    for (int i=0; i<n; i++) count[arr[i]]++;
-    for (int i=1; i<=maxval; i++) count[i] += count[i-1];
-    for (int i=n-1; i>=0; i--) {
+    for (int i = 0; i < n; i++) count[arr[i]]++;
+    for (int i = 1; i <= maxVal; i++) count[i] += count[i-1];
+    for (int i = n-1; i >= 0; i--) {
         output[count[arr[i]] - 1] = arr[i];
         count[arr[i]]--;
     }
-    for (int i=0; i<n; i++) arr[i] = output[i];
+    for (int i = 0; i < n; i++) arr[i] = output[i];
 }
 
 int main() {

@@ -61,7 +61,7 @@ public class SparseTable {
 			}
 			
 			for (int log = 1; (1 << log) <= n; log++) {
-				for (int i=0; i + (1 << log) < n+1; i++) {
+				for (int i = 0; i + (1 << log) < n+1; i++) {
 					st[log][i] = st[log-1][i] + st[log-1][i + (1 << (log-1))];
 				}
 			}

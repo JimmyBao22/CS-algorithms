@@ -26,12 +26,13 @@ public class KruskalMinimumSpanningTree {
 		Arrays.parallelSort(edges);
 		DSU dsu = new DSU(n);
 		
+		mst(dsu);
 	}
 	
-	public static long MST(DSU dsu) {
+	public static long mst(DSU dsu) {
 		long ans = 0;
 		for (int i = 0; i < m; i++) {
-			if (dsu.union(edges[i].from, edges[i].destination)) {
+			if (dsu.union(edges[i].from, edges[i].dest)) {
 				ans += edges[i].length;
 			}
 		}
@@ -40,12 +41,12 @@ public class KruskalMinimumSpanningTree {
 	
 	static class Edge implements Comparable<Edge> {
 		int from;
-		int destination;
+		int dest;
 		long length;
-		Edge(int a , int b, long c) {
-			from = a;
-			destination = b;
-			length = c;
+		Edge(int from , int dest, long len) {
+			this.from = from;
+			this.dest = dest;
+			length = len;
 		}
 		
 		public int compareTo(Edge o) {

@@ -5,7 +5,7 @@ import java.io.*;
 public class FloydWarshall {
 	
 	static int n, m;
-	static long INF = (long)(1e18);
+	static final long INF = (long)(1e18);
 	static ArrayList<Integer>[] g;
 	static long[][] dist;
 	
@@ -39,7 +39,7 @@ public class FloydWarshall {
 		
 	}
 	
-	public static void floydWarshall () {
+	public static void floydWarshall() {
 		for (int k = 0; k < n; k++) {
 			for (int i = 0; i < n; i++) {
 				for (int j = 0; j < n; j++) {

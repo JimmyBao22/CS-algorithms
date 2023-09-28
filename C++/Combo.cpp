@@ -23,12 +23,14 @@ const int MaxK = 1e4+10;
 const ll mod = 1e9+7;
 ll choose[MaxN][MaxK];
 
-ll fact[MaxN], inv_fact[MaxN];
+ll fact[MaxN], invFact[MaxN];
 
 void build() {
-    for (int i=0; i<MaxN; i++) {
-        for (int j=0; j<MaxK && j<=i; j++) {
-            if (j == 0 || j == i) choose[i][j] = 1;
+    for (int i = 0; i < MaxN; i++) {
+        for (int j = 0; j < MaxK && j <= i; j++) {
+            if (j == 0 || j == i) {
+                choose[i][j] = 1;
+            }
             else {
                 choose[i][j] = choose[i-1][j-1] + choose[i-1][j];
                 choose[i][j] %= mod;
@@ -39,13 +41,13 @@ void build() {
 
     // top! / bottom! (top - bottom)!
 ll C(int top, int bottom) {
-    return fact[top] * inv_fact[bottom] % mod * inv_fact[top - bottom] % mod;
+    return fact[top] * invFact[bottom] % mod * invFact[top - bottom] % mod;
 }
 
 ll pow(ll a, ll b, ll m) {
     ll ans = 1;
     while (b > 0) {
-        if (b%2 == 1) {
+        if ((b & 1) == 1) {
             ans *= a;
             ans %= m;
         }
@@ -60,11 +62,11 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
 
-    fact[0] = inv_fact[0] = 1;
+    fact[0] = invFact[0] = 1;
     for (int i=1; i<MaxN; i++) {
         fact[i] = fact[i-1] * i;
         fact[i] %= mod;
-        inv_fact[i] = pow(fact[i], mod-2, mod);
+        invFact[i] = pow(fact[i], mod-2, mod);
     }
     
 }

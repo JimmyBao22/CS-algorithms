@@ -67,8 +67,8 @@ void dijkstras2(int start) {
         // find the smallest one
         int smallest=-1;
         ll minval=INF;
-        for (int j=0; j<n; j++) {
-            if (!visited[j] && dist[j]<minval) {
+        for (int j = 0; j < n; j++) {
+            if (!visited[j] && dist[j] < minval) {
                 minval = dist[j];
                 smallest = j;
             }
@@ -88,7 +88,7 @@ void dijkstras2(int start) {
 vector<int> Backtrack(int dest) {
     vector<int> path;
     if (dist[dest] == INF) return path;
-    while (dest!= -1) {
+    while (dest != -1) {
         path.push_back(dest);
         dest = parent[dest];
     }
@@ -101,7 +101,7 @@ int main() {
 
     cin >> n >> m;
 
-    for (int i=0; i<m; i++) {
+    for (int i = 0; i < m; i++) {
         int a, b; ll weight;
         cin >> a >> b >> weight;
         a--; b--;

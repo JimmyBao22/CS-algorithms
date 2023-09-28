@@ -5,7 +5,7 @@ public class PrimMinimumSpanningTree {
 	
 	static ArrayList<Edge>[] g;
 	static int n, m;
-	static long INF = (long)(1e18);
+	static final long INF = (long)(1e18);
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -29,7 +29,7 @@ public class PrimMinimumSpanningTree {
 		
 	}
 	
-	public static long MST(int start) {
+	public static long mst(int start) {
 		PriorityQueue<Edge> pq = new PriorityQueue<>();
 		boolean[] visited = new boolean[n];
 		pq.add(new Edge(start, 0));
@@ -37,19 +37,19 @@ public class PrimMinimumSpanningTree {
 		
 		while (!pq.isEmpty()) {
 			Edge cur = pq.poll();
-			if (visited[cur.destination]) continue;
-			visited[cur.destination] = true;
+			if (visited[cur.dest]) continue;
+			visited[cur.dest] = true;
 			minlength += cur.length;
 			
-			for (Edge i : g[cur.destination]) {
-				if (visited[i.destination]) continue;
+			for (Edge i : g[cur.dest]) {
+				if (visited[i.dest]) continue;
 				pq.add(i);
 			}
 		}
 		return minlength;
 	}
 	
-	public static long MST2(int start) {
+	public static long mst2(int start) {
 		boolean[] visited = new boolean[n];
 		long[] dist = new long[n];
 		Arrays.fill(dist, INF);
@@ -70,8 +70,8 @@ public class PrimMinimumSpanningTree {
 			minlength += minval;
 			
 			for (Edge a : g[smallest]) {
-				if (!visited[a.destination] && dist[a.destination] > a.length) {
-					dist[a.destination] = a.length;
+				if (!visited[a.dest] && dist[a.dest] > a.length) {
+					dist[a.dest] = a.length;
 				}
 			}
 			visited[smallest] = true;
@@ -80,11 +80,11 @@ public class PrimMinimumSpanningTree {
 	}
 	
 	static class Edge implements Comparable<Edge> {
-		int destination;
+		int dest;
 		long length;
-		Edge(int a , long b) {
-			destination = a;
-			length = b;
+		Edge(int dest , long len) {
+			this.dest = dest;
+			length = len;
 		}
 		
 		public int compareTo(Edge o) {

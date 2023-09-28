@@ -24,16 +24,15 @@ struct BIT {
     int n;
     vector<ll> f;   // 1 base indexing
     
-    BIT (int nn) {
-        n = nn;
+    BIT (int n) : n(n) {
         f.resize(n+1, 0);
     }
 
     // sum from i to 0
     ll sum (int i) {		
         i++;
-        ll ret=0;
-        while (i>0) {
+        ll ret = 0;
+        while (i > 0) {
             ret += f[i];
             i -= i&-i;
         }
@@ -48,15 +47,16 @@ struct BIT {
     // add value to index i
     void add(int i, ll value) {	
         i++;
-        while (i<=n) {
+        while (i <= n) {
             f[i] += value;
             i += i&-i;
         }
     }
 
     // add value to indices l to r --> arr[i] = sum(i);
-    void range_add(int l, int r, ll value) {	
-        add(l,value); add(r+1,-value);
+    void rangeAdd(int l, int r, ll value) {	
+        add(l,value);
+        add(r+1,-value);
     }
 };
 
@@ -69,7 +69,7 @@ struct BIT2D {
     
     BIT2D (int nn, int mm) {
         n = nn; m = mm;
-        for (int i=0; i<n; i++) {
+        for (int i = 0; i < n; i++) {
             vector<ll> ff(m+1, 0);
             f.pb(ff);
         }
