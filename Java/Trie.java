@@ -37,11 +37,10 @@ public class Trie {
 	boolean delete(String s, int depth) {
 		if(depth == s.length()) {
 			wordCount--;
-			if (wordCount != 0) return false;				// still has words ending here
 			for (Trie child : children) {
 				if (child != null) return false;					// still has words going off here
 			}
-			return true;
+			return wordCount == 0;							// check if there are no more words ending here
 		}
 	
 		int nextChar = s.charAt(depth) - 'a';
@@ -50,6 +49,9 @@ public class Trie {
 		}
 		if (children[nextChar].delete(s, depth + 1)) {
 			children[nextChar] = null;
+			for (Trie child : children) {
+				if (child != null) return false;					// still has words going off here
+			}
 			return wordCount == 0;
 		}
 		return false;
