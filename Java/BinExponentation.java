@@ -33,5 +33,24 @@ public class BinExponentation {
     		b >>= 1;
     	}
     	return ans;
-    }	
+	}
+
+	// a ^ b, where b can be negative
+	public static double negPow(double a, long b) {
+		double ans = 1;
+		
+		if (b < 0) {
+			b = -b;
+			a = 1.0 / a;
+		}
+		
+		while (b > 0) {
+			if ((b & 1) == 1) {
+				ans *= a;
+			}
+			a *= a;
+			b >>>= 1;
+		}
+		return ans;
+	}
 }
