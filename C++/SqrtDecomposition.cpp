@@ -41,7 +41,7 @@ struct SqrtDecomp {
     
     // query l to r
     ll query(int l, int r) {
-        ll sum=0;
+        ll sum = 0;
         int left = l/len; int right = r/len;
         if (left == right) {
             for (int i=l; i<=r; i++) sum += arr[i];

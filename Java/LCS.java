@@ -13,7 +13,7 @@ public class LCS {
 	}
 
 	// finds LCS - bottom up
-	public static int lcs(String a, String b) {
+	public static int LCS(String a, String b) {
 		int n = a.length();
 		int m = b.length();
 		int[][] dp = new int[n][m];
