@@ -29,6 +29,13 @@ public class TreeDiameter {
             g[b].add(a);
         }
      
+        List<Integer> sequence = getDiameterSequence();
+        getMaxDistanceOfAllNodes(sequence);
+
+        
+    }
+
+    static List<Integer> getDiameterSequence() {
         // first dfs - get node with maximum distance from node 0
         dfs(0, -1);
      
@@ -56,21 +63,14 @@ public class TreeDiameter {
         }
     
         // sequence stores the vector of nodes representing the diameter
-        // sequence.size() = maxDistance + 1
+        // maxDistance = sequence.size() - 1
         List<Integer> sequence = new ArrayList<>();
         while (furthestNode != -1) {
             sequence.add(furthestNode);
             furthestNode = parent[furthestNode];
         }
-     
-        // maxDist[i] = max distance of node i to another other node
-        maxDist[sequence.get(0)] = maxDistance;
-        maxDist[sequence.get(sequence.size()-1)] = maxDistance;
-        for (int i = 1; i < sequence.size()-1; i++) {
-            getMaxDistances(sequence.get(i), sequence.get(i-1), sequence.get(i+1), Math.max(i, maxDistance-i));
-        }
-
-
+    
+        return sequence;
     }
 
     static void dfs(int node, int p) {
@@ -80,6 +80,17 @@ public class TreeDiameter {
                 dist[to] = dist[node]+1;
                 dfs(to, node);
             }
+        }
+    }
+
+    static void getMaxDistanceOfAllNodes(List<Integer> sequence) {
+        int maxDistance = sequence.size() - 1;
+     
+        // maxDist[i] = max distance of node i to another other node
+        maxDist[sequence.get(0)] = maxDistance;
+        maxDist[sequence.get(sequence.size()-1)] = maxDistance;
+        for (int i = 1; i < sequence.size()-1; i++) {
+            getMaxDistances(sequence.get(i), sequence.get(i-1), sequence.get(i+1), Math.max(i, maxDistance-i));
         }
     }
 

@@ -30,6 +30,17 @@ void getMaxDistances(int node, int p1, int p2, int d) {
     }
 }
 
+void getMaxDistanceOfAllNodes(vector<int>& sequence) {
+    int maxDistance = sequence.size() - 1;
+ 
+    // maxDist[i] = max distance of node i to another other node
+    maxDist[sequence[0]] = maxDistance;
+    maxDist[sequence[sequence.size()-1]] = maxDistance;
+    for (int i = 1; i < (int)sequence.size()-1; i++) {
+        getMaxDistances(sequence[i], sequence[i-1], sequence[i+1], max(i, maxDistance-i));
+    }
+}
+
 void dfs(int node, int p) {
     parent[node] = p;
     for (auto to : g[node]) {
@@ -39,20 +50,8 @@ void dfs(int node, int p) {
         }
     }
 }
- 
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
- 
-    cin >> n;
-    for (int i = 0; i < n-1; i++) {
-        int a, b;
-        cin >> a >> b;
-        a--; b--;
-        g[a].push_back(b);
-        g[b].push_back(a);
-    }
- 
+
+vector<int> getDiameterSequence() {
     // first dfs - get node with maximum distance from node 0
     dfs(0, -1);
  
@@ -80,19 +79,31 @@ int main() {
     }
 
     // sequence stores the vector of nodes representing the diameter
-    // sequence.size() = maxDistance + 1
+    // maxDistance = sequence.size() - 1
     vector<int> sequence;
     while (furthestNode != -1) {
         sequence.push_back(furthestNode);
         furthestNode = parent[furthestNode];
     }
+
+    return sequence;
+}
  
-    // maxDist[i] = max distance of node i to another other node
-    maxDist[sequence[0]] = maxDistance;
-    maxDist[sequence[sequence.size()-1]] = maxDistance;
-    for (int i = 1; i < (int)sequence.size()-1; i++) {
-        getMaxDistances(sequence[i], sequence[i-1], sequence[i+1], max(i, maxDistance-i));
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+ 
+    cin >> n;
+    for (int i = 0; i < n-1; i++) {
+        int a, b;
+        cin >> a >> b;
+        a--; b--;
+        g[a].push_back(b);
+        g[b].push_back(a);
     }
-    
+ 
+    vector<int> sequence = getDiameterSequence();
+    getMaxDistanceOfAllNodes(sequence);
+
 
 }
