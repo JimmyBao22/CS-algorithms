@@ -58,7 +58,6 @@ public class Dijkstras {
 					parent[i.dest] = node;
 					pq.add(new Edge(i.dest, dist[i.dest]));
 				}
-				
 			}
 		}
 	}

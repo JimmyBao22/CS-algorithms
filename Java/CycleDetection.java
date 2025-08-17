@@ -35,7 +35,7 @@ public class CycleDetection {
 
 		for (int i = 0; i < n; i++) {
 			if (!visited[i]) {
-				if (dfsCheck(i)) {
+				if (hasCycle(i)) {
 					System.out.println("cycle");
 				}
 			}
@@ -55,15 +55,19 @@ public class CycleDetection {
 		
 	}
 	
-		// true = cycle, false = no cycle
-	public static boolean dfsCheck(int node) { 
+	/* Directed Graph */
+
+	// true = cycle, false = no cycle
+	public static boolean hasCycle(int node) { 
 		if (open[node]) return true;
 		if (visited[node]) return false;
 		visited[node] = true;
 		open[node] = true;
+
 		for (Integer i : g[node]) {
-			if (dfsCheck(i)) return true;
+			if (hasCycle(i)) return true;
 		}
+
 		open[node] = false;
 		return false;
 	}
@@ -98,5 +102,20 @@ public class CycleDetection {
 	    }
 	    open[node] = false;
 	    return false;
+	}
+
+	/* Undirected Graph */
+	
+	public static boolean hasCycleUndirected(int node, int p) {
+		if (visited[node]) return true;
+		visited[node] = true;
+
+		for (Integer i : g[node]) {
+			if (i != p) {
+				if (hasCycleUndirected(i, node)) return true;
+			}
+		}
+
+		return false;
 	}
 }
