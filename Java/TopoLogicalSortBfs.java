@@ -48,6 +48,7 @@ public class TopoLogicalSortBfs {
 		
 		while (!queue.isEmpty()) {
 			int cur = queue.poll();
+			result.add(cur);
 			for (Integer a : g[cur]) {
 				inDegree[a]--;
 				if (inDegree[a] == 0 && !visited[a]) {
@@ -55,7 +56,6 @@ public class TopoLogicalSortBfs {
 					visited[a] = true;
 				}
 			}
-			result.add(cur);
 		}
 	}
 }
